@@ -25,8 +25,13 @@ export default function LoginPage() {
 		e.preventDefault();
 		//console.log("login", email, password)
 		const resp = await autenticar({ email, password });
-		//console.log("token", resp); 
+		console.log("token", resp.token.accessToken); 
 		if (resp.ok == true) {
+			localStorage.setItem('user', JSON.stringify(resp.token)) //para guardar como texto mi objeto para poder guardarlo en el local storage(no se puede guardar como objeto)
+			//al desloguearme logOut debo eliminar el token
+			//localStorage.removeItem('user')
+			//para usar user
+			//const user = JSON.parse(localStorage.getItem('user'))   //para convertir mi texto a objeto para poder usar el token y usuario
 			navigate('/take-order')
 		}
 		else {
