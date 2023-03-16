@@ -1,10 +1,13 @@
+import { useState, useEffect } from "react";
 import { getProductos } from "../service.auth.js";
 
-function ProductCategoryRow({ category }) {
+import "./css-pages/taking-order.css"
+
+function ProductTypeRow({ type }) {
   return (
     <tr>
       <th colSpan="2">
-        {category}
+        {type}
       </th>
     </tr>
   );
@@ -17,7 +20,7 @@ function ProductRow({ product }) {
     <>
     <tr>
       <td>{name}</td>
-      <td>{product.price}</td>
+      <td>${product.price}</td>
 
     </tr>
 
@@ -27,16 +30,16 @@ function ProductRow({ product }) {
 
 function ProductTable({ products }) {
   const rows = [];
-  let lastCategory = null;
+  let lastType = null;
 
   products.forEach((product) => {
    
     
-    if (product.category !== lastCategory) {
+    if (product.type !== lastType) {
       rows.push(
-        <ProductCategoryRow
-          category={product.category}
-          key={product.category} />
+        <ProductTypeRow
+          type={product.type}
+          key={product.type} />
       );
     }
     rows.push(
@@ -44,7 +47,7 @@ function ProductTable({ products }) {
         product={product}
         key={product.name} />
     );
-    lastCategory = product.category;
+    lastType = product.type;
   });
 
   return (
@@ -62,38 +65,34 @@ function ProductTable({ products }) {
 
 
 
-const PRODUCTS = [
-  {category: "Fruits", price: "$1", stocked: true, name: "Apple"},
-  {category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit"},
-  {category: "Fruits", price: "$2", stocked: false, name: "Passionfruit"},
-  {category: "Vegetables", price: "$2", stocked: true, name: "Spinach"},
-  {category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin"},
-  {category: "Vegetables", price: "$1", stocked: true, name: "Peas"}
-];
-
-const traerProductos =async()=>{
-  const user = JSON.parse(localStorage.getItem('user'))
-  //console.log(user);
-   const token=user.accessToken;
- //console.log(token);
- 
- 
- let productos=await getProductos(token);
- console.log(productos);
-}
-
-
-
-
-
 export default function TakingOrder() {
-  traerProductos();
+  const [PRODUCTOS, setPRODUCTOS]=useState([]);
 
+  const traerProductos =async()=>{
+    const user = JSON.parse(localStorage.getItem('user'))
+    //console.log(user);
+     const token=user.accessToken;
+   //console.log(token);
+   
+   let productos=await getProductos(token);
+   console.log(productos);
+   setPRODUCTOS(productos);
+  }
+
+
+  useEffect(() => {
+    traerProductos();
   
+  }, []); //después del primer render y solo 1 vez ejecutará mi función traerProductos
+
   return (
     <div>
-    <h2>toma de orden</h2>
-  <ProductTable products={PRODUCTS} />
+    <h2>Toma de orden</h2>
+    <div className="botones-menu">
+    <button>Desayunos</button>
+    <button>Almuerzos</button>
+    </div>
+    <ProductTable products={PRODUCTOS} />
   </div>
   );
 }

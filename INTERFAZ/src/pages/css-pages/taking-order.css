@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+h2{
+    margin-left: 45%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+  table {
+    margin-left: 150px;
+  }
+
+  .botones-menu{
+    display: flex;
+    justify-content: center;
+}
+  button{
+    cursor: pointer;
+/* background-color: aqua; */ 
+}  

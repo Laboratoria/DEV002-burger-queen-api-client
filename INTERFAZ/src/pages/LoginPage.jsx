@@ -25,7 +25,7 @@ export default function LoginPage() {
 		e.preventDefault();
 		//console.log("login", email, password)
 		const resp = await autenticar({ email, password });
-		console.log("token", resp.token.accessToken); 
+		console.log("token", resp.token.accessToken);
 		if (resp.ok == true) {
 			localStorage.setItem('user', JSON.stringify(resp.token)) //para guardar como texto mi objeto para poder guardarlo en el local storage(no se puede guardar como objeto)
 			//al desloguearme logOut debo eliminar el token
@@ -43,18 +43,20 @@ export default function LoginPage() {
 
 	return (
 		<div className="login-page">
-			<pre>{email} {password}</pre>
-
+			{/* <pre>{email} {password}</pre> */}
+			<h1>Burger Queen</h1>
 
 			<form className="contenedor-form " onSubmit={onSubmit} >
 				<label>
 					Correo:
-					<input type="email" name="email" value={email} onChange={onChangeLogin} />
 				</label>
+
+				<input type="email" name="email" value={email} onChange={onChangeLogin} />
 				<label>
-					contraseña:
-					<input type="password" name="password" value={password} onChange={onChangeLogin} />
+					Contraseña:
 				</label>
+
+				<input type="password" name="password" value={password} onChange={onChangeLogin} />
 				<input type="submit" value="Submit" />
 			</form>
 		</div>
