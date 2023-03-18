@@ -1,3 +1,7 @@
+body {
+  background-color: #131315;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -6,37 +10,43 @@
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.img-logo {
+  width: 100px;
+  border-radius: 50%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.lyrics-logo {
+  width: 380px;
 }
 
-.card {
-  padding: 2em;
+#WAY {
+  color: #f8fd03;
 }
 
-.read-the-docs {
-  color: #888;
+.form {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.col-md-3 {
+  margin-top: 30px;
+}
+
+.loginbtn {
+  margin-top: 20px;
+  border-radius: 8px;
+  border: 1px solid #23D956;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
 }

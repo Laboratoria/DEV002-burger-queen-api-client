@@ -1,34 +1,69 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import React, {Fragment, useState} from 'react';
+import logo from "./img/imgLogo.jpg";
+import lyricsLogo from "./img/lyricsLogo.jpg";
+import referenceFood from "./img/referenceFood.png";
+
+
+
+const App = () => {
+
+    const [datos, setDatos] = useState({
+        email: '',
+        password: ''
+    })
+
+    const handleInputChange = (event) => {
+        // console.log(event.target.name)
+        // console.log(event.target.value)
+        setDatos({
+            ...datos,
+            [event.target.name] : event.target.value
+        })
+    }
+
+    const enviarDatos = (event) => {
+        event.preventDefault()
+        console.log('enviando datos...' + datos.nombre + ' ' + datos.apellido)
+    }
 
   return (
-    <div className="App">
+    <Fragment>
+      <div className='logo'>
+        <img className='lyrics-logo' src={lyricsLogo} alt="lyricsLogo" />
+        <img className='img-logo' src={logo} alt="logo" />
+      </div>
+      <h1 id='WAY'>Who are you?</h1>
+      <section className='form'>
+        <form className="row" onSubmit={enviarDatos}>
+        <div className="col-md-3">
+          <label>
+            Name: 
+            <input type="text" placeholder="Email" className="form-control" onChange={handleInputChange} name="email"></input>
+          </label>
+        </div>
+        <div className="col-md-3">
+          <label>
+            Password:  
+           <input type="text" placeholder="Password" className="form-control" onChange={handleInputChange} name="password"></input>
+          </label>
+        </div>
+        <button type="submit" className="loginbtn">Login</button>
+      </form>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <img src={referenceFood} alt="referenceFood" />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+      </section>
+      
+      <ul>
+        <li>{datos.email}</li>
+        <li>{datos.password}</li>
+      </ul>
+    </Fragment>
+  );
 }
-
-export default App
+ 
+export default App;
