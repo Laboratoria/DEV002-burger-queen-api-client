@@ -3,6 +3,8 @@ import { autenticar } from "../service.auth.js";
 import "./css-pages/login.css"
 import { useNavigate } from 'react-router-dom'
 
+import background from "../img/hamburguer.png";
+
 
 export default function LoginPage() {
 	const navigate = useNavigate();
@@ -44,9 +46,11 @@ export default function LoginPage() {
 	return (
 		<div className="login-page">
 			{/* <pre>{email} {password}</pre> */}
-			<h1>Burger Queen</h1>
-
+			<h1 >Burger Queen</h1>
+			
+				<div className="image-hamburguer" style={{ backgroundImage: `url(${background})` }}></div>
 			<form className="contenedor-form " onSubmit={onSubmit} >
+				<h3>Lo mejor que probarás en toda tu vida...</h3>
 				<label>
 					Correo:
 				</label>
