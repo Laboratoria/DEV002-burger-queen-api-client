@@ -16,12 +16,14 @@ body {
 }
 
 .img-logo {
-  width: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
 }
 
 .lyrics-logo {
-  width: 380px;
+  width: 180px;
+  height: 50px;
 }
 
 #WAY {

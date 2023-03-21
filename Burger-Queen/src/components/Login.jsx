@@ -1,15 +1,12 @@
 // import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import '../estilos/login/login.css'
 
 import React, {Fragment, useState} from 'react';
 import logo from "./img/imgLogo.jpg";
 import lyricsLogo from "./img/lyricsLogo.jpg";
 import referenceFood from "./img/referenceFood.png";
 
-
-
-const App = () => {
+const Login = () => {
 
     const [datos, setDatos] = useState({
         email: '',
@@ -57,13 +54,9 @@ const App = () => {
         <img src={referenceFood} alt="referenceFood" />
       </div>
       </section>
-      
-      <ul>
-        <li>{datos.email}</li>
-        <li>{datos.password}</li>
-      </ul>
+     
     </Fragment>
   );
 }
  
-export default App;
+export default Login;
