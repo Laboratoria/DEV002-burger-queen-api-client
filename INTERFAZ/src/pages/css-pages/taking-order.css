@@ -19,14 +19,45 @@ table {
   display: flex;
   justify-content: center;
   height: 25px;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   flex-direction: row;
+  /* width: 200px;
+  margin-left: 300px; */
+
+
 
 }
 
 button {
   cursor: pointer;
 
+
   /* background-color: aqua; */
 }
 
+.checkbox-container{
+  width: 30px;
+  position: relative;
+  margin-right: 200px;
+}
+.checkbox{
+    width: 20px;
+    margin-top: -10px;
+    margin-left: 12px;
+}
+h4{
+margin-top:-32px;
+margin-left: 35px;
+font-size: 10px;
+}
+
+
+/*toma de orden*/
+.nombre-cliente{
+  margin: 2px 10px 2px 10px;
+  font-size: 0.8rem;
+  border: black solid 1px;
+  margin-left: 40%;
+  margin-top: 20px;
+  width: 150px;
+}

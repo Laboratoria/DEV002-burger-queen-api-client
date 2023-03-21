@@ -13,12 +13,12 @@ function ProductTypeRow({ type }) {
   );
 }
 
-function ProductRow({ product }) {
+function ProductRow({ product, clickChild }) {//crearé un useState para guardar los productos de mi orden(click, almaceno)
   const name = product.name;
 
   return (
     <>
-      <tr>
+      <tr onClick={()=>clickChild(product)}>  
         <td>{name}</td>
         <td>${product.price}</td>
 
@@ -32,9 +32,12 @@ function ProductTable({ products }) {
   const rows = [];
   let lastType = null; //para que se muestre solo 1 vez  al inicio de la tabla el type de los productos
 
+const clickChild =(product)=>{
+  console.log('click', product)
+}
+
+
   products.forEach((product) => {
-
-
     if (product.type !== lastType) {
       rows.push(
         <ProductTypeRow
@@ -45,7 +48,8 @@ function ProductTable({ products }) {
     rows.push(
       <ProductRow
         product={product}
-        key={product.name} />
+        key={product.name}
+        clickChild={clickChild} />
     );
     lastType = product.type;
   });
@@ -64,56 +68,73 @@ function ProductTable({ products }) {
 }
 
 
-
 export default function TakingOrder() {
 
+
   const [PRODUCTOS, setPRODUCTOS] = useState([]);
-  const [DESAYUNOS, setDESAYUNOS] = useState([]);
-  const [ALMUERZOS, setALMUERZOS] = useState([]);
 
-  const traerProductos = async () => {
-    const user = JSON.parse(localStorage.getItem('user'))
-    //console.log(user);
-    const token = user.accessToken;
-    //console.log(token);
+  const [isChecked, setIsChecked] = useState(false);
+  const handleOnChange = () => {
+    setIsChecked(!isChecked);
+    // setPRODUCTOS(PRODUCTOSTODOS);
+    if (isChecked) { getProductsByTypes('Desayuno') }
+    else {
+      getProductsByTypes(null); //para que no filtre
+    }
 
-    let productos = await getProductos(token);
-    console.log(productos);
-    setPRODUCTOS(productos);
-
-    let desayunos = productos.filter(producto => producto.type == 'Desayuno');
-    setDESAYUNOS(desayunos);
-
-    let almuerzos = productos.filter(producto => producto.type == 'Almuerzo');
-    setALMUERZOS(almuerzos)
   }
 
 
+  const getProductsByTypes = async (tipo) => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    //console.log(user);
+    const token = user.accessToken;
+    // console.log(token);
+
+    const productos = await getProductos(token);
+    if (tipo) {
+      setPRODUCTOS(productos.filter(producto => producto.type == tipo))
+
+    }
+    else {
+      setPRODUCTOS(productos)
+
+    }
+  }
+
+  const filterBtn = async (tipo) => {
+    await getProductsByTypes(tipo);
+    setIsChecked(false)
+  }
 
 
-useEffect(() => {
-  traerProductos();
+  useEffect(() => {
+    getProductsByTypes('Desayuno')
 
-}, []); //después del primer render y solo 1 vez ejecutará mi función traerProductos
+  }, []); //después del primer render y solo 1 vez ejecutará mi función traerProductos
 
-return (
-  <div>
-    <h2>Toma de orden</h2>
-    <div className="botones-menu">
-      <button>Desayunos</button>
-      <button>Almuerzos</button>
-      {/* <button>Todos</button> */}
-      {/* <label><input type="checkbox" id="cbox1" value="first_checkbox"/> Este es mi primer checkbox</label><br></br> */}
+  return (
+    <div>
+      <h2>Toma de orden</h2>
+      <div className="botones-menu">
+        <button onClick={() => filterBtn('Desayuno')}>Desayunos</button>
+        <button onClick={() => filterBtn('Almuerzo')}>Almuerzos</button>
+        <div className="checkbox-container">
+          <input type="checkbox"
+            className="checkbox"
+            checked={isChecked}
+            onChange={handleOnChange} />
+          <h4>Todos</h4>
+        </div>
+      </div>
+      
+      <ProductTable products={PRODUCTOS} />
+      
+      {/* TOMA DE ORDEN */}
+      <input type="text" className="nombre-cliente" placeholder="   clientx..."></input>
+
     </div>
-
-
-    <ProductTable products={PRODUCTOS} />
-    <ProductTable products={DESAYUNOS} />
-    <ProductTable products={ALMUERZOS} />
-
-
-  </div>
-);
+  );
 }
 
 

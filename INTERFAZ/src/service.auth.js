@@ -13,7 +13,7 @@ export const autenticar = async ({ email, password }) => { //mi componente tiene
       //"Authorization": "Bearer (token)"    //sin paréntesisis. Para tener acceso para el resto de rutas 
     },
     
-    body: JSON.stringify({ email, password })
+    body: JSON.stringify({ email, password }) //JSON a texto plano
   })
     .then(res => {
       token = {
@@ -76,9 +76,35 @@ export const getProductos = async (token) => { //mi componente tiene que esperar
 }
 
 
+//---------------------------para tomar pedido de cliente-----------------------------------------------------------------
+
+export const postOrden = async (token) => { 
+  let respuesta=null;
+
+  await fetch('http://localhost:8080/products', {
+    method: 'POST', 
+    headers: {
+      "Content-Type": "application/json",
+
+      "Authorization": "Bearer " + token   //sin paréntesisis. Para tener acceso para el resto de rutas 
+    },
+    
+  })
+    .then(res => {
+      //console.log(res)
+      return res.json()
+    })
+    .then(res => {
+      respuesta=res;
+      //console.log('res', res)
+    })
+    .catch(error => {
+      console.log(error, error.response, "Error al traer los productos")
+    });
+  return respuesta;
 
 
-
+}
 
 
 
