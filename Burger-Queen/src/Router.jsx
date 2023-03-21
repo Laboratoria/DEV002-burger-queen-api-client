@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
-import Waiter from './components/Waiter';
+import Admin from './components/Admin';
 // import Contact from './components/Contact';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/waiter" element={<Waiter />} />
+        <Route path="/admin" element={<Admin />} />
         {/* <Route path="/contact" element={<Contact />} /> */}
       </Routes>
     </Router>
