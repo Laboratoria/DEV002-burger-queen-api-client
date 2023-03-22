@@ -55,12 +55,12 @@ export default function LoginPage() {
 					Correo:
 				</label>
 
-				<input type="email" name="email" value={email} onChange={onChangeLogin} />
+				<input type="email" name="email" placeholder="lalita25@gmail.com" value={email} onChange={onChangeLogin} />
 				<label>
 					Contraseña:
 				</label>
 
-				<input type="password" name="password" value={password} onChange={onChangeLogin} />
+				<input type="password" name="password" placeholder="******" value={password} onChange={onChangeLogin} />
 				<input type="submit" value="Submit" />
 			</form>
 		</div>

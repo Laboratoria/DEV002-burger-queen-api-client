@@ -25,7 +25,7 @@ export const autenticar = async ({ email, password }) => { //mi componente tiene
     })
     .then(res => {
 
-      //console.log('res', res)
+      console.log('res', res)
       token = {
         ok: (token.status == 200) ? true : false, //respuesta correcta
         message: (token.status == 200) ? "Login ejecutado de forma correcta" : res,
@@ -44,6 +44,8 @@ export const autenticar = async ({ email, password }) => { //mi componente tiene
   return token;
 
 }
+
+
 
 
 //------------------------para obtener los productos disponibles-----------------------------------

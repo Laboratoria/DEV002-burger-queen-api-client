@@ -46,7 +46,7 @@ const clickChild =(product)=>{
       );
     }
     rows.push(
-      <ProductRow
+      <ProductRow 
         product={product}
         key={product.name}
         clickChild={clickChild} />
@@ -114,7 +114,7 @@ export default function TakingOrder() {
   }, []); //después del primer render y solo 1 vez ejecutará mi función traerProductos
 
   return (
-    <div>
+    <div className="take-order-page">
       <h2>Toma de orden</h2>
       <div className="botones-menu">
         <button onClick={() => filterBtn('Desayuno')}>Desayunos</button>
