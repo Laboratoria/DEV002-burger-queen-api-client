@@ -1,0 +1,39 @@
+h1 {
+    color: aliceblue;
+}
+
+.navigation {
+    background-color: #D9D9D9;
+    height: 100%;
+    width: 80px;
+    border-radius: 37px;
+    display: flex;
+}
+
+.navigation__item {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation__list {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: space-around;
+    margin: 0px;
+    left: 0px;
+}
+
+.cards {
+    width: 90%;
+    height: 403px;
+    background-color: blue;
+}
+
+.admiContainer {
+    display: flex;
+    background-color: black;
+    justify-content:space-between;
+    /* align-content: center; */
+}

@@ -39,7 +39,7 @@ body {
 .form {
   display: flex;
   flex-direction: row;
-
+  align-items: center;
 }
 
 .col-md-3 {
@@ -47,6 +47,7 @@ body {
 }
 
 .loginbtn {
+  color: #23D956;
   margin-top: 20px;
   border-radius: 8px;
   border: 1px solid #23D956;
@@ -54,7 +55,12 @@ body {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #101010;
   cursor: pointer;
   transition: border-color 0.25s;
+}
+
+.label-form {
+  color: #f8fd03;
+  
 }

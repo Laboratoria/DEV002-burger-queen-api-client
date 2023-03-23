@@ -24,7 +24,8 @@ const Login = () => {
       const response = await auth({ email, password });
       console.log('token', response);
       
-      if (response.data.ok === true) {
+      if (response.data.user.role == 'admin') {
+        console.log('response', response)
         localStorage.setItem('token', response.data.token);
         // redirigir a la página principal
         onNavigate('/admin')
@@ -46,14 +47,14 @@ const Login = () => {
         <section className='form'>
           <form className="row" onSubmit={enviarDatos}>
             <div className="col-md-3">
-              <label>
-                Email:
+              <label className='label-form'>
+                Email  
                 <input type="email" placeholder="Email" className="form-control" onChange={handleInputChange} value={email} name="email"></input>
               </label>
             </div>
             <div className="col-md-3">
-              <label>
-                Password:
+              <label className='label-form'>
+                Password  
                 <input type="password" placeholder="Password" className="form-control" onChange={handleInputChange}value={password} name="password"></input>
               </label>
             </div>
@@ -68,60 +69,5 @@ const Login = () => {
     </Fragment>
   );
 }
-
-
-// const Login = () => {
-
-//   const [datos, setDatos] = useState({
-//     email: '',
-//     password: ''
-//   })
-
-//   const handleInputChange = (event) => {
-//     // console.log(event.target.name)
-//     // console.log(event.target.value)
-//     setDatos({
-//       ...datos,
-//       [event.target.name]: event.target.value
-//     })
-//   }
-
-//   const enviarDatos = (event) => {
-//     event.preventDefault()
-//     console.log('enviando datos...' + datos.nombre + ' ' + datos.apellido)
-//   }
-
-//   return (
-//     <Fragment>
-//       <div className='logo'>
-//         <img className='lyrics-logo' src={lyricsLogo} alt="lyricsLogo" />
-//         <img className='img-logo' src={logo} alt="logo" />
-//       </div>
-//       <h1 id='WAY'>Who are you?</h1>
-//       <div className='loginContent'>
-//         <section className='form'>
-//           <form className="row" onSubmit={enviarDatos}>
-//             <div className="col-md-3">
-//               <label>
-//                 Email:
-//                 <input type="email" placeholder="Email" className="form-control" onChange={handleInputChange} name="email"></input>
-//               </label>
-//             </div>
-//             <div className="col-md-3">
-//               <label>
-//                 Password:
-//                 <input type="password" placeholder="Password" className="form-control" onChange={handleInputChange} name="password"></input>
-//               </label>
-//             </div>
-//             <button type="submit" className="loginbtn">Login</button>
-//           </form>
-//           <div>
-//             <img src={referenceFood} alt="referenceFood" />
-//           </div>
-//         </section>
-//       </div>
-//     </Fragment>
-//   );
-// }
 
 export default Login;
