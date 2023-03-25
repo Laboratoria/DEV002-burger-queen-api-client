@@ -76,11 +76,66 @@ body {
 
 .iconsOrdersx {
     width: 40px;
-    /* display: flex; */
-    /* flex-direction: row; */
-    /* justify-content: space-around; */
+}
+
+.iconsOrders {
+    margin: 10px;
 }
 
 #iconsOrdersx {
     margin: 0px 50px 0px 50px;
+}
+
+.bar {
+    height: 490px;
+    width: 100%;
+    overflow: auto;
+}
+
+.grid-cards {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.row {
+    background-color: #e2d7d7;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 25px;
+}
+
+.card-tittle {
+    color: #EA11FC;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: 'Inknut Antiqua', serif;
+}
+
+.card-Body {
+    display: flex;
+    justify-content: space-around;
+}
+
+.img-card {
+    width: 50px;
+}
+
+.trash,
+.edit {
+    width: 20px;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+/* ::-webkit-scrollbar-track {
+    background: #ffffff;
+} */
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 20px; /* Agrega un borde redondeado a la barra de scroll */
 }
