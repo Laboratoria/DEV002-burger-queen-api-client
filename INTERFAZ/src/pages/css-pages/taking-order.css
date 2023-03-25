@@ -13,10 +13,34 @@
   width: auto;
   height: 1024px;  
 }
+
+.tomar-orden-h2{
+width: 100%;
+height: 50px;
+background-color:#318aac ;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+
 h2 {
-  margin-left: 45%;
+  /* margin-left: 45%; */
   /* margin-top: 20px; */
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
+  text-align: center;
+  color:white;
+  font-size: 35px;
+}
+
+.log-out{
+position: relative;
+left: 30%}
+
+.flow-icon {
+  color: white;
+
 }
 
 table {
@@ -33,7 +57,8 @@ table {
   /* flex-direction: row; */
   /* width: 200px;
   margin-left: 300px; */
-  margin-left: 180px;
+  margin-left: 150px;
+  margin-top: 20px;
 }
 
 button {
@@ -77,7 +102,8 @@ button:hover {
 h4{
 margin-top:-32px;
 margin-left: 35px;
-font-size: 10px;
+font-size: 20px;
+color:#318aac
 }
 
 

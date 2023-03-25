@@ -8,11 +8,11 @@ export const autenticar = async ({ email, password }) => { //mi componente tiene
   await fetch('http://localhost:8080/login', {
     method: 'POST',
     headers: {
-      "Content-Type": "application/json", 
+      "Content-Type": "application/json",
 
-      //"Authorization": "Bearer (token)"    //sin paréntesisis. Para tener acceso para el resto de rutas 
+      //"Authorization": "Bearer (token)"    //sin paréntesisis. Para tener acceso para el resto de rutas
     },
-    
+
     body: JSON.stringify({ email, password }) //JSON a texto plano
   })
     .then(res => {
@@ -44,9 +44,12 @@ export const autenticar = async ({ email, password }) => { //mi componente tiene
   return token;
 
 }
+//------------------------para cerrar sesión(remove token)-----------------------------------
 
 
-
+export function logOut(){
+  console.log('cerrando sesión')
+}
 
 //------------------------para obtener los productos disponibles-----------------------------------
 
@@ -58,9 +61,9 @@ export const getProductos = async (token) => { //mi componente tiene que esperar
     headers: {
       "Content-Type": "application/json",
 
-      "Authorization": "Bearer " + token   //sin paréntesisis. Para tener acceso para el resto de rutas 
+      "Authorization": "Bearer " + token   //sin paréntesisis. Para tener acceso para el resto de rutas
     },
-    
+
   })
     .then(res => {
       //console.log(res)
@@ -80,17 +83,17 @@ export const getProductos = async (token) => { //mi componente tiene que esperar
 
 //---------------------------para tomar pedido de cliente-----------------------------------------------------------------
 
-export const postOrden = async (token) => { 
+export const postOrden = async (token) => {
   let respuesta=null;
 
   await fetch('http://localhost:8080/products', {
-    method: 'POST', 
+    method: 'POST',
     headers: {
       "Content-Type": "application/json",
 
-      "Authorization": "Bearer " + token   //sin paréntesisis. Para tener acceso para el resto de rutas 
+      "Authorization": "Bearer " + token   //sin paréntesisis. Para tener acceso para el resto de rutas
     },
-    
+
   })
     .then(res => {
       //console.log(res)
@@ -111,6 +114,35 @@ export const postOrden = async (token) => {
 
 
 
+//---------------------------para obtener a los trabajadores-----------------------------------------------------------------
+
+export const getTrabajadores = async (token) => { //mi componente tiene que esperar a que mi servicio se ejecute por completo para que el token no me lo devuelva en blanco
+  //console.log(token);
+  let respuesta=null;
+   await fetch('http://localhost:8080/users', {
+     method: 'GET', //no lleva body
+     headers: {
+       "Content-Type": "application/json",
+ 
+       "Authorization": "Bearer " + token   //sin paréntesisis. Para tener acceso para el resto de rutas
+     },
+ 
+   })
+     .then(res => {
+       //console.log(res)
+       return res.json()
+     })
+     .then(res => {
+       respuesta=res;
+       //console.log('res', res)
+     })
+     .catch(error => {
+       console.log(error, error.response, "Error al traer los trabajadores")
+     });
+   return respuesta;
+ 
+ }
+ 
 
 
 
@@ -133,8 +165,8 @@ export const postOrden = async (token) => {
 
 
 
-//debo agregar el token de obtenido en auth para  
-// const urlAPI='http://localhost:8080/'; 
+//debo agregar el token de obtenido en auth para
+// const urlAPI='http://localhost:8080/';
 // const ensayo=fetch(urlAPI+'products');
 // //console.log(ensayo);
 // const resultado=ensayo.then(data=> {return data.json();})

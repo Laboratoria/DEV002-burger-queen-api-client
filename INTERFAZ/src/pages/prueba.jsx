@@ -152,3 +152,116 @@ export default function App() {
 
           </input>
         </div> */
+
+
+
+
+        // console.log('click', product);
+    // product = {
+    //   qty: 0,
+    //   ...product  
+    // }
+
+
+
+
+    //PRUEBA DE TAKE ORDER
+
+    // }
+  //  {productosElegidos.map((prod)=>{prod})}
+  // let productoInicial= productosElegidos.product.id.includes(product.id)
+
+  // const cars = [ 
+  //   { id: 'PSS-123', model: 'Mustang', price: 30000},
+  //   { id: 'CHS-345', model: 'Camaro', price: 14500},
+  //   { id: 'ABS-567', model: 'Aveo', price: 9000},
+  //   ];
+    
+    
+  //   const carsDiscount = cars.map( function(car) { 
+    
+  //    if( car.price < 15000 ) 
+  //   return { 
+  //   ...car,
+  //   price: car.price *0.9 
+  //   }
+    
+  //   })
+
+
+
+
+
+
+
+
+  // for (let i = 0; i < productosElegidos.length; i++) {
+  //     productosElegidos[i].id.reduce((a, e) => {
+  //         if (!a.find(d => d == e)) {
+  //             a.push(e)
+  //         }
+  //         return a;
+  //     }, idsProdElegidos);
+  // }
+ //console.log(productosElegidos);
+
+
+
+
+
+
+
+
+
+
+
+ // productosElegidos.map((prod)=>{
+    //   // if(productoInicial)
+    //   let productoInicial= prod.includes(product.id);
+    //   console.log(productoInicial);
+    //   console.log(prod.id)}
+    //   );
+    // console.log(productosElegidos);
+  
+    // console.log(producto.product.id)
+    // console.log(productosElegidos[0].id)
+    //   console.log(productoInicial);
+    // console.log(productosElegidos);
+
+    // setPRODUCTOSORDEN(product);
+    // console.log(PRODUCTOSORDEN)
+    // let productos=addProducts(producto);
+    // console.log(productos);
+
+    // return productosElegidos;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // const addProducts = () => {
+//   let product=clickChild(product)
+
+//   let arrayProductos = [];
+//   if (product.qty >= 1) {
+//     arrayProductos.push(product)
+//   }
+//   return arrayProductos;
+// }
+
+// let arrayProductosElegidos =addProducts();
+// console.log(arrayProductosElegidos);

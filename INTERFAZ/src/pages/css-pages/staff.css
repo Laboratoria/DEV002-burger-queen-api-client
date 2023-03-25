@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  /* @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) { */
+  /* body{
+    background: linear-gradient(180deg, #ebdd76 0%, #8F9CA3 100%);
+  } */
+  
+  .staff-page{
+    background:  #efe389;
+    width: auto;
+    height: 1024px;  
+  }
+  
+  .staff-h2{
+  width: 100%;
+  height: 50px;
+  background-color:#318aac ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  }
+  
+  
+  h2 {
+    /* margin-left: 45%; */
+    /* margin-top: 20px; */
+    /* margin-bottom: 10px; */
+    text-align: center;
+    color:white;
+    font-size: 35px;
+  }
+  .log-out{
+    position: relative;
+    left: 30%}
+    
+    .flow-icon {
+      color: white;
+    
+    }
+ 
+    a{
+      text-decoration: none;
+    }
+  
+  .botones-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 25px; */
+    /* border: 1px solid blue; */
+    /* flex-direction: row; */
+    /* width: 200px;
+    margin-left: 300px; */
+    margin-left: 35px;
+    margin-top: 20px;
+  }
+  
+  button {
+    cursor: pointer;
+    color: #318aac !important;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0.5em 1.2em;
+    background: rgba(0,0,0,0);
+    border: 2px solid;
+    border-color: #318aac;
+    transition: all 1s ease;
+    position: relative;
+    height: 30px;
+  
+  
+  }
+  button:hover {
+    background: #318aac;
+    color: #fff !important;
+  }
+  
