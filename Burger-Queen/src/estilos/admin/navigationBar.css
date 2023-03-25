@@ -99,7 +99,7 @@ body {
     gap: 20px;
 }
 
-.row {
+.card {
     background-color: #e2d7d7;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
@@ -131,9 +131,9 @@ body {
     width: 20px;
 }
 
-/* ::-webkit-scrollbar-track {
-    background: #ffffff;
-} */
+::-webkit-scrollbar-track {
+    /* background: #ffffff; */
+}
 
 ::-webkit-scrollbar-thumb {
     background: #888;
