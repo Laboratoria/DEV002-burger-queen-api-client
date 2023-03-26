@@ -2,25 +2,10 @@ import Logotype from "./logotype.jsx";
 import NavigationBar from "./navigationBar.jsx";
 import IconsOrders from "./iconsOrders.jsx";
 import Cards from "../cards.jsx"
-import { getProducts } from "../../request.js";
 
 
 
 const Admin = () => {
-    const token = localStorage.getItem("token");
-    const verify = async () => {
-        try {
-            const response = await getProducts();
-            console.log('token', token);
-            console.log('response', response);
-            // if (response.)
-        }
-        catch (error) {
-            console.log(error)
-        }
-    }
-
-    verify()
 
     return (
         <>

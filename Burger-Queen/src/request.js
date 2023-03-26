@@ -36,7 +36,6 @@ const auth = async ({email, password}) => {
 const getProducts = async () => {
 
     const urlBurguerApi = "http://localhost:8080/products";
-    console.log(token)
 
     await axios.get(urlBurguerApi, {
         headers: {

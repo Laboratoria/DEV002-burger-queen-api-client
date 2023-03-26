@@ -1,48 +1,77 @@
-import React from "react";
-import Card from "../components/card.jsx"
+import React, { useState, useEffect } from 'react';
 
-const cards = [
-    {
-        "id": 1,
-        "name": "Sandwich de jamón y queso",
-        "price": 1000,
-        "image": "https://raw.githubusercontent.com/ssinuco/burger-queen-api-mock/main/resources/images/sandwich.png",
-        "type": "Desayuno",
-        "dateEntry": "2022-03-05 15:14:10"
-    },
-    {
-        "id": 2,
-        "name": "Café americano",
-        "price": 500,
-        "image": "https://raw.githubusercontent.com/ssinuco/burger-queen-api-mock/main/resources/images/coffee.png",
-        "type": "Desayuno",
-        "dateEntry": "2022-03-05 15:14:10"
-    },
-    {
-        "id": 3,
-        "name": "Agua 500ml",
-        "price": 500,
-        "image": "https://raw.githubusercontent.com/ssinuco/burger-queen-api-mock/main/resources/images/water.png",
-        "type": "Almuerzo",
-        "dateEntry": "2022-03-05 15:14:10"
-    }
-]
+import Card from "../components/card.jsx"
+import axios from "axios";
 
 const Cards = () => {
+    const token = localStorage.getItem("token");
+    const [cardsData, setCardsData] = useState([]);
+  
+    const getData = async () => {
+      const urlBurguerApi = "http://localhost:8080/products";
+      await axios
+        .get(urlBurguerApi, {
+          headers: {
+            Authorization: "Bearer " + token, //the token is a variable which holds the token
+          },
+        })
+        .then((response) => {
+          const data = response.data;
+          setCardsData(data);
+        });
+    };
+  
+    useEffect(() => {
+      getData();
+    }, []);
+  
     return (
-        <div>
-            <div className="grid-cards">
-
-                {
-                    cards.map(card => (
-                        <div key={card.name}>
-                        <Card tittle={card.name} />    
-                        </div>
-                    ))
-                }
-
+      <div>
+        <div className="grid-cards">
+          {cardsData.map((card) => (
+            <div key={card.id}>
+              <Card />
             </div>
+          ))}
         </div>
-    )
-}
+      </div>
+    );
+  };
+  
+
+
+// const Cards = () => {
+//     const token = localStorage.getItem("token");
+//     const getData = async () => {
+
+//         const urlBurguerApi = "http://localhost:8080/products";
+
+//         await axios.get(urlBurguerApi, {
+//             headers: {
+//                 Authorization: 'Bearer ' + token //the token is a variable which holds the token
+//             }
+//         })
+//             .then((response) => {
+//                 const data = response.data;
+//                 console.log(data);
+//             });
+//     };
+
+//     getData();
+//     return (
+//         <div>
+//             <div className="grid-cards">
+//                 {/* <Card tittle='titulo' /> */}
+//                 {
+//                     card.map(card => (
+//                         <div key={card.name}>
+//                         <Card tittle={card.name} />    
+//                         </div>
+//                     ))
+//                 }
+
+//             </div>
+//         </div>
+//     )
+// }
 export default Cards;
