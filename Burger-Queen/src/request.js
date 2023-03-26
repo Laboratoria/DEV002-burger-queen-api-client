@@ -33,6 +33,23 @@ const auth = async ({email, password}) => {
     // return token;
 }
 
+const getProducts = async () => {
+
+    const urlBurguerApi = "http://localhost:8080/products";
+    console.log(token)
+
+    await axios.get(urlBurguerApi, {
+        headers: {
+          Authorization: 'Bearer ' + token //the token is a variable which holds the token
+        }
+    })
+        .then((response) => {
+        const data = response;
+        console.log(data);
+    });
+};
+
 export {
-    auth
+    auth,
+    getProducts,
 }

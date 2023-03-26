@@ -1,5 +1,5 @@
 import '../estilos/login/login.css'
-import { auth } from '../../src/auth.js';
+import { auth } from '../request.js';
 import { useNavigate } from 'react-router-dom';
 import React, { Fragment, useState } from 'react';
 import logo from "./img/imgLogo.jpg";
@@ -26,7 +26,7 @@ const Login = () => {
       
       if (response.data.user.role == 'admin') {
         console.log('response', response)
-        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('token', response.data.accessToken);
         // redirigir a la página principal
         onNavigate('/admin')
       }
