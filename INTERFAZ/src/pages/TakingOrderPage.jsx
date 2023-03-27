@@ -16,7 +16,7 @@ function ProductTypeRow({ type }) {
   );
 }
 
-function ProductRow({ product, clickChild }) {//crearé un useState para guardar los productos de mi orden(click, almaceno)
+function ProductRow({ product, clickChild}) {//crearé un useState para guardar los productos de mi orden(click, almaceno)
   const name = product.name;
 
   return (
@@ -29,52 +29,72 @@ function ProductRow({ product, clickChild }) {//crearé un useState para guardar
   );
 }
 
+function ProductRowOrder({ product, clickChild, cantidad }) {//crearé un useState para guardar los productos de mi orden(click, almaceno)
+  const name = product.name;
+
+  return (
+    <>
+      <tr onClick={() => clickChild(product)}>
+      <td>{cantidad}</td>
+        <td>{name}</td>
+        <td>${product.price}</td>
+        {/* botones + y - */}
+
+      </tr>
+    </>
+  );
+}
+
+
 var productosElegidos = [];
 var productosElegidosQty = [];
-var PRODUCTOSELEGIDOS;
+var PRODUCTOSELEGIDOS= [];
 
 var idsArray = [];
 
-function ProductTable({ products }) {
+function ProductTable({ products}) {
   const rows = [];
   let lastType = null; //para que se muestre solo 1 vez  al inicio de la tabla el type de los productos
 
-  // const [PRODUCTOSORDEN, setPRODUCTOSORDEN] = useState([]);
+  const [PRODUCTOSORDEN, setPRODUCTOSORDEN] = useState([]);
   const [countClick, setCountClick] = useState(1);
-  // let productosElegidos = [];
 
   const clickChild = (product) => {
-    let idProduct = product.id;
-    idsArray.push(idProduct);
-    console.log(idsArray);
-    // setCountClick(countClick+ 1);
-    // setCountClick(product.id== ? countClick:(countClick+ 1));
+    //1ºpaso: validar si el producto existe en el array de PRODUCTOSORDEN
+    //2ªpaso: si no está creo un nuevo objeto con el campo cantidad inicializado con 1 y el product
+    //3ºpaso: si ya está que encuentre el objeto y modifique su cantidad
 
-    let producto = { qty: countClick, product }
-    // console.log('click', producto);
-    // const mapProdElegidos = () => {
-    productosElegidos.push(product)
-    productosElegidosQty.push(producto)
-    console.log(productosElegidos);
-    // console.log(productosElegidosQty);
-
-    function unique(arr) {
-      let result = [];
-
-      for (let str of arr) {
-        if (!result.includes(str)) {
-          result.push(str);
+    if(PRODUCTOSORDEN.find(elemento=>elemento.product.id==product.id)===undefined){
+      const newProduct={qty:1,product}
+      const productosElegidos = [...PRODUCTOSORDEN]; 
+      productosElegidos.push(newProduct);
+      setPRODUCTOSORDEN(productosElegidos);
+    }
+    else {
+      const nuevoArray= PRODUCTOSORDEN.map( (element)=>{
+        if(element.product.id!==product.id){
+          return element;
         }
-      }
-
-      return result;
+        element.qty+=1;
+        return element;
+      })
+      setPRODUCTOSORDEN(nuevoArray);
     }
 
-    // console.log(unique(productosElegidos));
-    PRODUCTOSELEGIDOS = unique(productosElegidos);
-    console.log(PRODUCTOSELEGIDOS);
-    // return PRODUCTOSELEGIDOS;
-    localStorage.setItem('productosElegidos', JSON.stringify(PRODUCTOSELEGIDOS)) //para guardar como texto mi objeto para poder guardarlo en el local storage(no se puede guardar como objeto)
+    
+
+    // function unique(arr) {
+    //   let result = [];
+
+    //   for (let str of arr) {
+    //     if (!result.includes(str)) {
+    //       result.push(str);
+    //     }
+    //   }
+
+    //   return result;
+    // }
+
 
 
     //  let result = productosElegidos.filter(prod => {
@@ -104,6 +124,7 @@ function ProductTable({ products }) {
   });
 
   return (
+    <>
     <table>
       <thead>
         <tr>
@@ -113,6 +134,15 @@ function ProductTable({ products }) {
       </thead>
       <tbody>{rows}</tbody>
     </table>
+
+  {/* <div>{
+    PRODUCTOSELEGIDOS.map(product => <ProductRowOrder 
+       product={product.name} 
+       cantidad={product.name} />)
+    }</div> */}
+
+  </>
+
   );
 }
 

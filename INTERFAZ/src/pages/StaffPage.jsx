@@ -2,8 +2,8 @@ import "./css-pages/staff.css"
 import { Link } from "react-router-dom";
 import { FaSignOutAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
-
-
+import { FaPlusSquare } from "react-icons/fa"
+import { addNuevoTrabajador } from "../service.auth";
 
 
 const Worker = (props) => {
@@ -16,15 +16,15 @@ const Worker = (props) => {
         //             <th>Correo</th>
         //             <th>Rol</th>
         //         </tr>
-        //     </thead>
+        //     </thead>cd
         //     <tbody>
-                <tr>
-                    <td className="worker-rol">{props.id}</td>
-                    <td className="worker-email">{props.correo}</td>
-                    <td className="worker-rol">{props.contraseña}</td>
-                    {/* <td className="worker-rol">{props.rol}</td> */}
+        <tr>
+            <td className="worker-rol">{props.id}</td>
+            <td className="worker-email">{props.correo}</td>
+            <td className="worker-contraseña">{props.rol}</td>
+            <td className="worker-rol">{props.contraseña}</td>
 
-                </tr>
+        </tr>
         //     </tbody>
         // </table>
 
@@ -34,11 +34,24 @@ const Worker = (props) => {
 
 
 
-
-
-
 export default function Staff() {
     const [trabajadores, setTrabajadores] = useState([]);
+    const [addTrabajador, setAddTrabajador] = useState(false);
+
+    const [email, setEmail] = useState('');
+    const handleEmailChange = ({ target }) => {
+        setEmail(target.value);
+    };
+
+    const [password, setPassword] = useState('');
+    const handlePasswordChange = ({ target }) => {
+        setPassword(target.value);
+    };
+
+    const [role, setRole] = useState('');
+    const handleRoleChange = ({ target }) => {
+        setRole(target.value);
+    };
 
     useEffect(() => {
 
@@ -68,7 +81,24 @@ export default function Staff() {
 
 
     }, [])
-    console.log(trabajadores)
+    // console.log(trabajadores)
+
+
+    const crearUsuario = () => {
+        setAddTrabajador(true);
+    }
+    const closeModal = () => {
+        setAddTrabajador(false);
+        setEmail("");
+        setPassword("");
+        setRole("")
+    };
+    const createWorker =async()=>{
+    const user = JSON.parse(localStorage.getItem('user'))
+    const token = user.accessToken;
+    const resp =await addNuevoTrabajador(token, email, password, role);
+    console.log(resp);
+}
     return (
         <div className="staff-page">
             <div className="staff-h2">
@@ -84,29 +114,95 @@ export default function Staff() {
                 <button><Link to="/products"> Productos</Link></button>
             </div>
 
-           {/*------------ tabla de trabjadores---------------------- */}
-                <table>
+            {/*------------  agregar trabajadores---------------------- */}
+
+            <button className="btn-add-worker"><FaPlusSquare className="flow-icon" size={"2rem"} onClick={crearUsuario} />crear usuario</button>
+
+            {addTrabajador ? (
+                <div className="modal-container">
+                    <div className="input-nuevo-trabajador">
+                        <label>Correo:
+                            <input
+                                type="email"
+                                name="email"
+                                className="input-add-worker"
+                                // placeholder="Email..."
+                                value={email}
+                                onChange={handleEmailChange}
+                            ></input>
+                        </label>
+                    </div>
+                    {/* <div className="modal-body"> */}
+                    <div className="input-nuevo-trabajador">
+                        <label>Clave:
+                            <input
+                                type="password"
+                                name="password"
+                                className="input-add-worker"
+                                // placeholder=""
+                                value={password}
+                                onChange={handlePasswordChange}
+                            ></input>
+                        </label>
+                    </div>
+                    <div className="input-nuevo-trabajador">
+                        <label>Role:
+                            <input
+                                type="text"
+                                name="role"
+                                className="input-add-worker"
+                                // placeholder="rol..."
+                                value={role}
+                                onChange={handleRoleChange}
+                            ></input>
+                        </label>
+                    </div>
+                    <button
+                        type="button"
+                        className="btn-save-worker"
+                     onClick={() => createWorker()}
+                    >
+                        Guardar
+                    </button>
+                    <button
+                        onClick={closeModal}
+                        type="button"
+                        className="btn-cancel-worker"
+                        id="botonCancelar"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            ) : (
+                <p></p>
+            )}
+
+            {/*------------ tabla de trabjadores---------------------- */}
+            <table id='table-workers'>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Correo</th>
                         <th>Rol</th>
+                        <th>Contraseña</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                { trabajadores.map((trabajador) => {
-                    return (
-                        <Worker key={trabajador.id}
-                            correo={trabajador.email}
-                            rol={trabajador.role}
-                            // contraseña={trabajador.password}
+                    {trabajadores.map((trabajador) => {
+                        return (
+                            <Worker key={trabajador.id}
+                                correo={trabajador.email}
+                                rol={trabajador.role}
+                                id={trabajador.id}
+                                contraseña='******'
 
-                        />
-                    )
-                })}
-                 </tbody>
-        </table>
-            
+                            />
+                        )
+                    })}
+                </tbody>
+            </table>
+
 
         </div>)
 }

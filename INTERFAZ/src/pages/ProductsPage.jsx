@@ -1,5 +1,6 @@
 import "./css-pages/staff.css"
 import { FaSignOutAlt } from "react-icons/fa";
+import {FaPlusSquare} from "react-icons/fa"
 import { Link } from "react-router-dom";
 import { logOut } from "../service.auth";
 
@@ -18,9 +19,14 @@ export default function Products() {
                 </div>
             </div>
             <div className="botones-menu">
-            <button><Link to="/staff"> Trabajadores </Link></button>              
-               <button><Link to="/products"> Productos</Link></button>          
+                <button><Link to="/staff"> Trabajadores </Link></button>
+                <button><Link to="/products"> Productos</Link></button>
             </div>
+
+            {/*------------ botón para agregar trabjadores---------------------- */}
+
+            <button className="btn-add-worker"><FaPlusSquare className="flow-icon" size={"2rem"} />crear producto</button>
+
         </div>
     )
 

@@ -47,15 +47,15 @@ export const autenticar = async ({ email, password }) => { //mi componente tiene
 //------------------------para cerrar sesión(remove token)-----------------------------------
 
 
-export function logOut(){
+export function logOut() {
   console.log('cerrando sesión')
 }
 
 //------------------------para obtener los productos disponibles-----------------------------------
 
 export const getProductos = async (token) => { //mi componente tiene que esperar a que mi servicio se ejecute por completo para que el token no me lo devuelva en blanco
- //console.log(token);
- let respuesta=null;
+  //console.log(token);
+  let respuesta = null;
   await fetch('http://localhost:8080/products', {
     method: 'GET', //no lleva body
     headers: {
@@ -70,7 +70,7 @@ export const getProductos = async (token) => { //mi componente tiene que esperar
       return res.json()
     })
     .then(res => {
-      respuesta=res;
+      respuesta = res;
       //console.log('res', res)
     })
     .catch(error => {
@@ -84,7 +84,7 @@ export const getProductos = async (token) => { //mi componente tiene que esperar
 //---------------------------para tomar pedido de cliente-----------------------------------------------------------------
 
 export const postOrden = async (token) => {
-  let respuesta=null;
+  let respuesta = null;
 
   await fetch('http://localhost:8080/products', {
     method: 'POST',
@@ -100,7 +100,7 @@ export const postOrden = async (token) => {
       return res.json()
     })
     .then(res => {
-      respuesta=res;
+      respuesta = res;
       //console.log('res', res)
     })
     .catch(error => {
@@ -118,34 +118,52 @@ export const postOrden = async (token) => {
 
 export const getTrabajadores = async (token) => { //mi componente tiene que esperar a que mi servicio se ejecute por completo para que el token no me lo devuelva en blanco
   //console.log(token);
-  let respuesta=null;
-   await fetch('http://localhost:8080/users', {
-     method: 'GET', //no lleva body
-     headers: {
-       "Content-Type": "application/json",
- 
-       "Authorization": "Bearer " + token   //sin paréntesisis. Para tener acceso para el resto de rutas
-     },
- 
-   })
-     .then(res => {
-       //console.log(res)
-       return res.json()
-     })
-     .then(res => {
-       respuesta=res;
-       //console.log('res', res)
-     })
-     .catch(error => {
-       console.log(error, error.response, "Error al traer los trabajadores")
-     });
-   return respuesta;
- 
- }
- 
+  let respuesta = null;
+  await fetch('http://localhost:8080/users', {
+    method: 'GET', //no lleva body
+    headers: {
+      "Content-Type": "application/json",
 
+      "Authorization": "Bearer " + token   //sin paréntesisis. Para tener acceso para el resto de rutas
+    },
 
+  })
+    .then(res => {
+      //console.log(res)
+      return res.json()
+    })
+    .then(res => {
+      respuesta = res;
+      //console.log('res', res)
+    })
+    .catch(error => {
+      console.log(error, error.response, "Error al traer los trabajadores")
+    });
+  return respuesta;
 
+}
+
+//---------------------------para crear un nuevo trabajador-----------------------------------------------------------------
+
+export const addNuevoTrabajador = async (token, email, password, role) => { //mi componente tiene que esperar a que mi servicio se ejecute por completo para que el token no me lo devuelva en blanco
+  await fetch('http://localhost:8080/users', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+
+      "Authorization": "Bearer " + token    //sin paréntesisis. Para tener acceso para el resto de rutas
+    },
+
+    body: JSON.stringify({ email, password, role }) //JSON a texto plano
+  })
+    .then((response) => response.json())
+    .then((json) => console.log(json))
+    .catch(error => {
+      console.log(error, error.response)
+    });
+  return token;
+
+}
 
 
 
