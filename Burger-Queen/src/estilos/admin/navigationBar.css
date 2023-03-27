@@ -6,6 +6,7 @@ body,
     height: 100%;
     width: 100%;
     overflow: hidden;
+    font-family: 'Inknut Antiqua', serif;
 }
 
 body {
@@ -78,7 +79,7 @@ body {
     width: 40px;
 }
 
-.iconsOrders {
+.iconsOrders, .lunch, .breakFast, .botonsFilter {
     margin: 10px;
 }
 
@@ -138,4 +139,41 @@ body {
 ::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 20px; /* Agrega un borde redondeado a la barra de scroll */
+}
+
+.buttonsProducts {
+    display: flex;
+    justify-content:space-evenly;
+}
+
+.addProduct {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.add {
+    width: 50px;
+    height: 50px;
+}
+
+.textButtonAdd {
+    color: #e2d7d7;
+}
+.breakFast, .lunch {
+    border-radius: 20px;
+    border: none;
+    font-size:medium;
+    font-family: 'Inknut Antiqua', serif;
+    color: #D9D9D9;
+    cursor: pointer;
+}
+
+.breakFast {
+    background-color: #CB44CE;
+
+}
+
+.lunch {
+    background-color: #44BDCD;
 }
