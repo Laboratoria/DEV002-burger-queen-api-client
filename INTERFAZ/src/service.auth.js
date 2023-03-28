@@ -186,25 +186,25 @@ export const deleteTrabajador = async (token, idUser) => {
 
 //---------------------------actualizando el trabajador-----------------------------------------------------------------
 
-// export const updateTrabajador = async (token, idUser, email, password, role) => {
-//   fetch('http://localhost:8080/users' + "/" + idUser, {
-//     method: 'PATCH',
-//     body: JSON.stringify({
-//       email: 'email',
-//       password: 'email',
-//       role: 'role'
+export const updateTrabajador = async (token, idUser, mail, pass, rol) => {
+  fetch('http://localhost:8080/users' + "/" + idUser, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      email: 'mail',
+      password: 'pass',
+      role: 'rol'
 
-//     }),
-//     headers: {
-//       "Content-Type": "application/json",
+    }),
+    headers: {
+      "Content-Type": "application/json",
 
-//       "Authorization": "Bearer " + token    //sin paréntesisis. Para tener acceso para el resto de rutas
-//     },
-//   })
-//     .then((response) => response.json())
-//     .then((json) => console.log(json));
+      "Authorization": "Bearer " + token    //sin paréntesisis. Para tener acceso para el resto de rutas
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => console.log(json));
 
-// }
+}
 
 
 

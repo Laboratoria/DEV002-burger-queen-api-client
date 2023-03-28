@@ -130,7 +130,7 @@ export default function Staff() {
                 <button><Link to="/products"> Productos</Link></button>
             </div>
 
-            {/*------------  agregar trabajadores---------------------- */}
+            {/*------------  agregar un nuevo trabajador---------------------- */}
 
             <button className="btn-add-worker"><FaPlusSquare className="flow-icon" size={"2rem"} onClick={crearUsuario} />crear usuario</button>
 

@@ -16,7 +16,7 @@ function ProductTypeRow({ type }) {
   );
 }
 
-function ProductRow({ product, clickChild}) {//crearé un useState para guardar los productos de mi orden(click, almaceno)
+function ProductRow({ product, clickChild }) {//crearé un useState para guardar los productos de mi orden(click, almaceno)
   const name = product.name;
 
   return (
@@ -35,7 +35,7 @@ function ProductRowOrder({ product, clickChild, cantidad }) {//crearé un useSta
   return (
     <>
       <tr onClick={() => clickChild(product)}>
-      <td>{cantidad}</td>
+        <td>{cantidad}</td>
         <td>{name}</td>
         <td>${product.price}</td>
         {/* botones + y - */}
@@ -48,40 +48,40 @@ function ProductRowOrder({ product, clickChild, cantidad }) {//crearé un useSta
 
 var productosElegidos = [];
 var productosElegidosQty = [];
-var PRODUCTOSELEGIDOS= [];
+var PRODUCTOSELEGIDOS = [];
 
 var idsArray = [];
 
-function ProductTable({ products}) {
+function ProductTable({ products }) {
   const rows = [];
   let lastType = null; //para que se muestre solo 1 vez  al inicio de la tabla el type de los productos
 
   const [PRODUCTOSORDEN, setPRODUCTOSORDEN] = useState([]);
   const [countClick, setCountClick] = useState(1);
+  console.log(PRODUCTOSORDEN);
 
   const clickChild = (product) => {
     //1ºpaso: validar si el producto existe en el array de PRODUCTOSORDEN
     //2ªpaso: si no está creo un nuevo objeto con el campo cantidad inicializado con 1 y el product
     //3ºpaso: si ya está que encuentre el objeto y modifique su cantidad
 
-    if(PRODUCTOSORDEN.find(elemento=>elemento.product.id==product.id)===undefined){
-      const newProduct={qty:1,product}
-      const productosElegidos = [...PRODUCTOSORDEN]; 
+    if (PRODUCTOSORDEN.find(elemento => elemento.product.id == product.id) === undefined) {
+      const newProduct = { qty: 1, product }
+      const productosElegidos = [...PRODUCTOSORDEN];
       productosElegidos.push(newProduct);
       setPRODUCTOSORDEN(productosElegidos);
     }
     else {
-      const nuevoArray= PRODUCTOSORDEN.map( (element)=>{
-        if(element.product.id!==product.id){
+      const nuevoArray = PRODUCTOSORDEN.map((element) => {
+        if (element.product.id !== product.id) {
           return element;
         }
-        element.qty+=1;
+        element.qty += 1;
         return element;
       })
       setPRODUCTOSORDEN(nuevoArray);
     }
 
-    
 
     // function unique(arr) {
     //   let result = [];
@@ -125,24 +125,32 @@ function ProductTable({ products}) {
 
   return (
     <>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </table>
+      <h3>PRODUCTOS</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </table>
 
-  {/* <div>{
-    PRODUCTOSELEGIDOS.map(product => <ProductRowOrder 
-       product={product.name} 
-       cantidad={product.name} />)
-    }</div> */}
 
-  </>
+      <br></br>
 
+      <h3>PEDIDO</h3>
+      <table id='table-workers' className="tabla-pedido">
+        <thead>{
+
+          PRODUCTOSORDEN.map(product => <ProductRowOrder
+            key={product.product.id}
+            product={product.product}
+            cantidad={product.qty} />)
+        }
+        </thead>
+      </table>
+    </>
   );
 }
 
@@ -207,12 +215,12 @@ export default function TakingOrder() {
       <div className="tomar-orden-h2">
         <h2>Toma de orden</h2>
         <div className="log-out">
-        <Link to="/" >
-        <FaSignOutAlt className="flow-icon" size={"2rem"} />
-      </Link>
+          <Link to="/" >
+            <FaSignOutAlt className="flow-icon" size={"2rem"} />
+          </Link>
+        </div>
       </div>
-      </div>
-      
+
       <div className="botones-menu">
         <button onClick={() => filterBtn('Desayuno')}>Desayunos</button>
         <button onClick={() => filterBtn('Almuerzo')}>Almuerzos</button>
