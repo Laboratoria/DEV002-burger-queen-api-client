@@ -5,7 +5,7 @@ body,
     margin: 0px;
     height: 100%;
     width: 100%;
-    /* overflow: hidden; */
+    overflow: hidden;
     font-family: 'Inknut Antiqua', serif;
 }
 
@@ -105,7 +105,8 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
     border-radius: 25px;
-    height: 130px;
+    height: 150px;
+    width: 160px;
 }
 
 .card-tittle {
@@ -113,6 +114,7 @@ body {
     font-size: 10px;
     font-weight: 700;
     font-family: 'Inknut Antiqua', serif;
+    margin-top: 0px;
 }
 
 .card-Body {
@@ -150,7 +152,8 @@ body {
 .addProduct {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
+    margin-top: 15px;
 }
 
 .add {
@@ -177,4 +180,11 @@ body {
 
 .lunch {
     background-color: #44BDCD;
+}
+
+.price {
+    font-family: 'Inknut Antiqua', serif;
+    font-size: small;
+    margin: 0px 0px;
+
 }

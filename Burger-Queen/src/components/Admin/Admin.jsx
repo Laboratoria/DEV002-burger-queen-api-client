@@ -27,10 +27,9 @@ const Admin = () => {
                                 <p className="textButtonAdd">Agregar producto</p>
                             </div>
                         </div>
-                        {/* <div><Products /></div> */}
-                        <div className="bar">
+                        {/* <div className="bar">
                             <Cards />
-                        </div>
+                        </div> */}
                         
                     </div>
                 </div>
