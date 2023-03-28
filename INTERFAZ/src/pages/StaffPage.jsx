@@ -1,12 +1,24 @@
 import "./css-pages/staff.css"
 import { Link } from "react-router-dom";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt, FaPlusSquare, FaTrash, FaEdit } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { FaPlusSquare } from "react-icons/fa"
-import { addNuevoTrabajador } from "../service.auth";
+import { addNuevoTrabajador, deleteTrabajador } from "../service.auth";
 
 
 const Worker = (props) => {
+
+const EliminarTrabajador = async(idUser)=>{
+    const user = JSON.parse(localStorage.getItem('user'))
+        const token = user.accessToken;
+        const resp=await deleteTrabajador(token, idUser);
+        
+
+}
+
+const ActualizarTrabajador = (props) =>{
+    console.log("actualizando al trabajador")
+}
+
 
     return (
         // <table>
@@ -23,6 +35,9 @@ const Worker = (props) => {
             <td className="worker-email">{props.correo}</td>
             <td className="worker-contraseña">{props.rol}</td>
             <td className="worker-rol">{props.contraseña}</td>
+            <td><FaTrash className="flow-icon" size={"1rem"} color="black"  onClick={()=>EliminarTrabajador(props.id)}/></td>
+            <td><FaEdit className="flow-icon" size={"1rem"} color="black" onClick={()=>ActualizarTrabajador(props.id)}/></td>
+
 
         </tr>
         //     </tbody>
@@ -98,6 +113,7 @@ export default function Staff() {
     const token = user.accessToken;
     const resp =await addNuevoTrabajador(token, email, password, role);
     console.log(resp);
+    setAddTrabajador(false);
 }
     return (
         <div className="staff-page">
@@ -185,11 +201,14 @@ export default function Staff() {
                         <th>Correo</th>
                         <th>Rol</th>
                         <th>Contraseña</th>
+                        <th>Eliminar</th>
+                        <th>Editar</th>
 
                     </tr>
                 </thead>
                 <tbody>
                     {trabajadores.map((trabajador) => {
+                        
                         return (
                             <Worker key={trabajador.id}
                                 correo={trabajador.email}

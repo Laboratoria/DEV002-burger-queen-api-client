@@ -165,6 +165,46 @@ export const addNuevoTrabajador = async (token, email, password, role) => { //mi
 
 }
 
+//---------------------------para eliminar un trabajador-----------------------------------------------------------------
+
+export const deleteTrabajador = async (token, idUser) => {
+  // console.log("borrando usuario "+idUser)
+  await fetch('http://localhost:8080/users' + "/" + idUser, {
+    method: 'DELETE',
+    headers: {
+      "Content-Type": "application/json",
+
+      "Authorization": "Bearer " + token    //sin paréntesisis. Para tener acceso para el resto de rutas
+    },
+    // No need to have body, because we don't send nothing to the server.
+  })
+    .then(response => response.json())
+    .then(data => console.log(data)) // Manipulate the data retrieved back, if we want to do something with it (hacer getTrabajdores)
+    .catch(err => console.log(err)) // Do something with the error
+
+}
+
+//---------------------------actualizando el trabajador-----------------------------------------------------------------
+
+// export const updateTrabajador = async (token, idUser, email, password, role) => {
+//   fetch('http://localhost:8080/users' + "/" + idUser, {
+//     method: 'PATCH',
+//     body: JSON.stringify({
+//       email: 'email',
+//       password: 'email',
+//       role: 'role'
+
+//     }),
+//     headers: {
+//       "Content-Type": "application/json",
+
+//       "Authorization": "Bearer " + token    //sin paréntesisis. Para tener acceso para el resto de rutas
+//     },
+//   })
+//     .then((response) => response.json())
+//     .then((json) => console.log(json));
+
+// }
 
 
 
