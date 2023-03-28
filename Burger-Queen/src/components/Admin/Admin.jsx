@@ -3,10 +3,13 @@ import NavigationBar from "./navigationBar.jsx";
 import BotonsFilter from "../botonsFilter.jsx";
 import Cards from "../cards.jsx"
 import add from "../img/add.png"
-
+// import Products from "../pueba.jsx";
 
 
 const Admin = () => {
+
+
+
 
     return (
         <>
@@ -24,9 +27,11 @@ const Admin = () => {
                                 <p className="textButtonAdd">Agregar producto</p>
                             </div>
                         </div>
+                        {/* <div><Products /></div> */}
                         <div className="bar">
                             <Cards />
                         </div>
+                        
                     </div>
                 </div>
             </div>

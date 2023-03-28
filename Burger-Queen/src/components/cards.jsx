@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 import Card from "../components/card.jsx"
 import axios from "axios";
+  const token = localStorage.getItem("token");
 
 const Cards = () => {
-  const token = localStorage.getItem("token");
   const [cardsData, setCardsData] = useState([]);
 
   const getData = async () => {
