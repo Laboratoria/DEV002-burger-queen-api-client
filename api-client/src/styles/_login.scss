@@ -1,0 +1,58 @@
+
+.login_container{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+
+    .logo_container{
+        width: 50vw;
+        height: 100vh;
+        background-color:var(--blue-secundary);
+        
+        .logo{
+            width: 10vw;
+            height: 10vw;
+        }
+    }
+    .formulario{
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+        width: 50vw;
+
+        h2{
+            font-family: var( --font-primary);
+            margin-bottom: 5rem;
+        }
+
+        input{
+            width: 20vw;
+            height: 5vh;    
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 5%;
+        }
+        button{
+            margin-top: 3rem;
+            margin-bottom: 8rem;
+            cursor: pointer;
+            &:hover{
+                background-color: var(--blue-secundary);  
+                color: azure;   
+               
+            }
+        }
+        p{
+            font-family: var(--font-primary);
+            cursor: pointer;
+            &:hover{
+                color: var(--blue-secundary);
+            }
+           
+        }
+
+        
+    }
+
+  }
