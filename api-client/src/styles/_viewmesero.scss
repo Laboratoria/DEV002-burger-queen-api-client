@@ -1,0 +1,120 @@
+.containerMesero {
+    width: 100vw;
+    display: grid;
+//    grid-template-columns: repeat(2, 1fr);
+   gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    margin-top: 5rem;
+    grid-column-start: 1;
+     grid-column-end: 3;
+
+   ul{
+    align-items: center;
+    width: 40vw;
+    height: 5vh;
+    display: flex;
+    border: solid 1px var(--blue-primary);
+    border-radius: 5px;
+    margin-right: 2vw;
+    
+    li{
+        color: var(--blue-primary);
+        margin-left:3rem;
+       cursor: pointer;    
+    }
+   }
+   button{
+    width: 35vw;
+    height: 5vh;
+   border-radius: 5px;
+   font-size: 1rem;
+   }
+}
+
+.containerProducts{
+    width: 40vw;
+    height: max-content;
+    display: grid;
+    justify-items: center;
+    grid-column: 1;
+    grid-row: 2;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+    gap: 1.5rem;
+
+    .product{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       background-color: rgb(199, 199, 235);
+        width: 15vw;
+        height: 20vh;
+        border-radius: 15px;
+
+        h2{
+            font-family: var(--font-primary);
+            color: var(--blue-primary);
+            font-size: 1rem;
+
+        }
+    }
+}
+
+.containerOrder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 35vw;
+    height: max-content;
+    .containerButton{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 20vw;
+        button{
+            background: none;
+            color: var(--blue-primary);
+            border: solid 1px ;
+            border-radius: 10px;
+        }
+    }
+    .containerItems{
+        display: flex;
+        width: 35vw;
+        margin-top: 2vw;
+        .item{
+            display: flex;
+            width: 35vw;
+
+            h3{
+                font-family: var(--font-primary);
+                color: var(--blue-primary);
+                padding: 0 1rem;
+            }
+
+            .containerCantidad{
+                display: flex;
+                margin-left: 2rem ;
+            button{
+                font-size: 1.5rem;
+                width: 2.5vw;
+                height: 5vh;
+                border-radius: 100%;
+            }
+
+        }
+
+        }
+       
+    }
+}
+
+
+}
