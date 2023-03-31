@@ -265,3 +265,24 @@ export default function App() {
 
 // let arrayProductosElegidos =addProducts();
 // console.log(arrayProductosElegidos);
+
+
+// function unique(arr) {
+    //   let result = [];
+
+    //   for (let str of arr) {
+    //     if (!result.includes(str)) {
+    //       result.push(str);
+    //     }
+    //   }
+
+    //   return result;
+    // }
+
+
+
+    //  let result = productosElegidos.filter(prod => {
+    //   idsArray.includes(prod.id)? setCountClick(countClick+ 1):setCountClick(countClick);
+    // console.log(countClick);
+
+    // });

@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { getProductos } from "../service.auth.js";
-
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt, FaPlus, FaMinus, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { logOut } from "../service.auth.js";
+// import { logOut } from "../service.auth.js";
 import "./css-pages/taking-order.css"
 
 function ProductTypeRow({ type }) {
@@ -24,40 +23,44 @@ function ProductRow({ product, clickChild }) {//crearé un useState para guardar
       <tr onClick={() => clickChild(product)}>
         <td>{name}</td>
         <td>${product.price}</td>
+        <td><img className="product-imagen" src={product.image} alt=""/></td>
+
       </tr>
     </>
   );
 }
 
-function ProductRowOrder({ product, clickChild, cantidad }) {//crearé un useState para guardar los productos de mi orden(click, almaceno)
+function ProductRowOrder({ product, cantidad }) {//crearé un useState para guardar los productos de mi orden(click, almaceno)
   const name = product.name;
+  
 
   return (
     <>
-      <tr onClick={() => clickChild(product)}>
+      <tr>
+        <td><FaPlus className="flow-icon" color="#318aac" size={"1rem"} /></td>
+
         <td>{cantidad}</td>
+        <td><FaMinus className="flow-icon" color="#318aac" size={"1rem"} /></td>
+
         <td>{name}</td>
         <td>${product.price}</td>
-        {/* botones + y - */}
+        <td>${product.price * cantidad}</td>
+
+        <td><FaTrash className="flow-icon" color="#318aac" size={"1rem"} /></td>
+
 
       </tr>
+
     </>
   );
 }
 
-
-var productosElegidos = [];
-var productosElegidosQty = [];
-var PRODUCTOSELEGIDOS = [];
-
-var idsArray = [];
 
 function ProductTable({ products }) {
   const rows = [];
   let lastType = null; //para que se muestre solo 1 vez  al inicio de la tabla el type de los productos
 
   const [PRODUCTOSORDEN, setPRODUCTOSORDEN] = useState([]);
-  const [countClick, setCountClick] = useState(1);
   console.log(PRODUCTOSORDEN);
 
   const clickChild = (product) => {
@@ -82,28 +85,8 @@ function ProductTable({ products }) {
       setPRODUCTOSORDEN(nuevoArray);
     }
 
-
-    // function unique(arr) {
-    //   let result = [];
-
-    //   for (let str of arr) {
-    //     if (!result.includes(str)) {
-    //       result.push(str);
-    //     }
-    //   }
-
-    //   return result;
-    // }
-
-
-
-    //  let result = productosElegidos.filter(prod => {
-    //   idsArray.includes(prod.id)? setCountClick(countClick+ 1):setCountClick(countClick);
-    // console.log(countClick);
-
-    // });
-
   }
+
 
 
   products.forEach((product) => {
@@ -125,39 +108,60 @@ function ProductTable({ products }) {
 
   return (
     <>
-      <h3>PRODUCTOS</h3>
+      <h3 className="productos">PRODUCTOS</h3>
       <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Price</th>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th className="titulo-imagen">Imagen</th>
+
           </tr>
         </thead>
         <tbody>{rows}</tbody>
       </table>
 
-
       <br></br>
 
-      <h3>PEDIDO</h3>
-      <table id='table-workers' className="tabla-pedido">
-        <thead>{
+      <h3 className="pedido">PEDIDO</h3>
+      <input type="text" className="nombre-cliente" placeholder="   clientx..."></input>
 
+      <table id='table-workers' className="tabla-pedido">
+        {PRODUCTOSORDEN.length == 0 ? <thead></thead> : <thead>
+
+          <tr>
+            <th><FaPlus className="flow-icon" color="black" size={"1rem"} /></th>
+            <th>Cantidad</th>
+            <th><FaMinus className="flow-icon" color="black" size={"1rem"} /></th>
+            <th>Producto</th>
+            <th>Precio/u</th>
+            <th>Precio</th>
+            <th><FaTrash className="flow-icon" color="black" size={"1rem"} /></th>
+
+          </tr>
+
+        </thead>}
+
+        <tbody>{
           PRODUCTOSORDEN.map(product => <ProductRowOrder
             key={product.product.id}
             product={product.product}
-            cantidad={product.qty} />)
+            cantidad={product.qty}
+          />
+          )
         }
-        </thead>
+       
+        </tbody>
+
       </table>
+{/* <h5>{precioTotal}</h5> */}
+
     </>
   );
 }
 
 
-
 export default function TakingOrder() {
-
 
   const [PRODUCTOS, setPRODUCTOS] = useState([]);
 
@@ -171,7 +175,6 @@ export default function TakingOrder() {
     }
 
   }
-
 
   const getProductsByTypes = async (tipo) => {
     const user = JSON.parse(localStorage.getItem('user'))
@@ -195,19 +198,11 @@ export default function TakingOrder() {
     setIsChecked(false)
   }
 
-  const [PRODUCTOSORDEN, setPRODUCTOSORDEN] = useState([]);
-  let arrayProductos = [];
-  // let productoElegido=arrayProductos.push(clickChild);
-  // console.log(productoElegido);
-  // setPRODUCTOSORDEN(JSON.parse(localStorage.getItem('productosElegidos')))
-  // console.log(PRODUCTOSORDEN);
 
   useEffect(() => {
     getProductsByTypes('Desayuno')
 
   }, []); //después del primer render y solo 1 vez ejecutará mi función traerProductos
-
-
 
 
   return (
@@ -236,9 +231,6 @@ export default function TakingOrder() {
       <ProductTable products={PRODUCTOS} />
 
       {/* TOMA DE ORDEN */}
-      <input type="text" className="nombre-cliente" placeholder="   clientx..."></input>
-      {/* <ProductTable products={JSON.parse(localStorage.getItem('productosElegidos'))} /> */}
-
     </div>
   );
 }

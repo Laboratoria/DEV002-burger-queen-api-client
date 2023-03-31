@@ -105,13 +105,19 @@ margin-left: 35px;
 font-size: 20px;
 color:#318aac
 }
+.titulo-imagen{
+  width: 150px;
+}
 
+.product-imagen{
+  width: 20%;
+}
 
 /*toma de orden*/
 .nombre-cliente{
   margin: 2px 10px 2px 10px;
   font-size: 0.8rem;
-  border: black solid 1px;
+  border: #318aac solid 3px;
   margin-left: 40%;
   margin-top: 20px;
   width: 150px;
@@ -125,5 +131,17 @@ td{
 /* tabla de pedido */
 
 .tabla-pedido{
-  margin-top: 30%;
+  margin-top: 35%;
+  margin-left:-2%
+}
+
+.pedido{
+  color:#318aac
+}
+.productos{
+  color:#318aac !important
+}
+
+.total-table{
+  margin-top:40%
 }
