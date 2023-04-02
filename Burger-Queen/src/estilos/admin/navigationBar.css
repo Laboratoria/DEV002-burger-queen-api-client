@@ -133,6 +133,7 @@ body {
 .edit,
 .exitIcon {
     width: 20px;
+    cursor: pointer;
 }
 
 ::-webkit-scrollbar {
@@ -242,7 +243,9 @@ body {
 
 .messageError {
     color: #232324;
-    margin-top: -10px;
+    margin-top: -7px;
+    font-size: small;
+    /* margin-left: 30%; */
 }
 
 .buttonAddModal {
@@ -269,4 +272,14 @@ body {
 
 .buttonsOfCategory, .buttonAddModal {
     cursor: pointer;
+    font-family: 'Inknut Antiqua', serif;
+    padding: 3px;
+}
+
+#breakfast {
+    background-color: #EA11FC;
+}
+
+#lunch {
+    background-color: #44BDCD;
 }

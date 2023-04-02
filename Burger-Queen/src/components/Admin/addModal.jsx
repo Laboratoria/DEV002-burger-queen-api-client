@@ -25,8 +25,8 @@ const AddModal = () => {
                         <div className="formAddProduct">
                             <label className='label-form'>
                                 Categoría
-                                <button className="buttonsOfCategory">Desayuno</button>
-                                <button className="buttonsOfCategory">Almuerzo</button>
+                                <button id="breakfast" className="buttonsOfCategory">Desayuno</button>
+                                <button id="lunch" className="buttonsOfCategory">Almuerzo</button>
                             </label>
                         </div>
                         <div className="formAddProduct">
@@ -44,8 +44,6 @@ const AddModal = () => {
         </div>
 
     )
-
-
-}
+};
 
 export default AddModal;
