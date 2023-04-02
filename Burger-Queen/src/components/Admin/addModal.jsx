@@ -1,6 +1,6 @@
 import exitIcon from "../img/exitIcon.png"
 
-const AddModal = () => {
+const AddModal = ({children}) => {
     return (
         <div>
             <div className="overlay">
@@ -16,7 +16,8 @@ const AddModal = () => {
                                 <input type="" placeholder="Nombre" className="inputModalProduct" name=""></input>
                             </label>
                         </div>
-                        <div className="formAddProduct">
+                            {children}
+                        {/* <div className="formAddProduct">
                             <label className='label-form'>
                                 Precio
                                 <input type="" placeholder="Precio" className="inputModalProduct" name=""></input>
@@ -28,7 +29,7 @@ const AddModal = () => {
                                 <button id="breakfast" className="buttonsOfCategory">Desayuno</button>
                                 <button id="lunch" className="buttonsOfCategory">Almuerzo</button>
                             </label>
-                        </div>
+                        </div> */}
                         <div className="formAddProduct">
                             <label className='label-form'>
                                 Imagen

@@ -45,7 +45,21 @@ const Admin = () => {
               {/* <ProductList products={products} /> */}
             </div>
             <div>
-              <AddModal />
+              <AddModal>
+              <div className="formAddProduct">
+                            <label className='label-form'>
+                                Precio
+                                <input type="" placeholder="Precio" className="inputModalProduct" name=""></input>
+                            </label>
+                        </div>
+                        <div className="formAddProduct">
+                            <label className='label-form'>
+                                Categoría
+                                <button id="breakfast" className="buttonsOfCategory">Desayuno</button>
+                                <button id="lunch" className="buttonsOfCategory">Almuerzo</button>
+                            </label>
+                        </div>
+              </AddModal>
             </div>
           </div>
         </div>
