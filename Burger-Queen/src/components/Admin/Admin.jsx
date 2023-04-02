@@ -45,7 +45,7 @@ const Admin = () => {
               </div>
             </div>
             <div className="bar">
-              <ProductList products={products} />
+              {/* <ProductList products={products} /> */}
             </div>
           </div>
         </div>
