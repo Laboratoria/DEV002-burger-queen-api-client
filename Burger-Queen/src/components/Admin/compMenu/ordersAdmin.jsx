@@ -1,4 +1,3 @@
-import '../../../estilos/admin/ordersAdmin.css'
 
 const OrdersAdmin = () => {
     return (

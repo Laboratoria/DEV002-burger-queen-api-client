@@ -130,7 +130,8 @@ body {
 }
 
 .trash,
-.edit {
+.edit,
+.exitIcon {
     width: 20px;
 }
 
@@ -153,7 +154,7 @@ body {
     justify-content: space-evenly;
 }
 
-.row {
+.rowFilter {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -201,4 +202,71 @@ body {
     font-size: small;
     margin: 0px 0px;
 
+}
+
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* padding: 40px; */
+}
+
+.headOfModal {
+    width: 500px;
+    height: 20px;
+    background-color: #ffffff;
+    border-radius: 5px 5px 0px 0px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.bodyOfModal {
+    width: 500px;
+    min-height: 100px;
+    background: #ff1414;
+    position: relative;
+    border-radius: 0px 0px 5px 5px;
+    box-shadow: rgba(100, 100, 111, 0.2);
+    padding: 20px;
+}
+
+.messageError {
+    color: #232324;
+    margin-top: -10px;
+}
+
+.buttonAddModal {
+    font-size:medium;
+    border-radius: 5px;
+    background-color: #F8FD03;
+    border: none;
+    width: 300px;
+    font-family: 'Inknut Antiqua', serif;
+}
+
+.formAddProduct {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.inputModalProduct, .buttonsOfCategory {
+    border-radius: 15px;
+    border: none;
+    margin: 10px;
+    padding: 10px;
+}
+
+.buttonsOfCategory, .buttonAddModal {
+    cursor: pointer;
 }

@@ -1,13 +1,10 @@
 import Logotype from "./logotype.jsx";
 import NavigationBar from "./navigationBar.jsx";
 import BotonsFilter from "../botonsFilter.jsx";
-// import Cards from "../cards.jsx"
-// import Products from "../pueba.jsx";
-// import FilterButtons from "../onlyBotton.jsx";
 import { GetProducts } from "../../request.js";
 import { useState, useEffect } from "react";
-// import FilterButtons f.rom "../onlyBotton.jsx";
-import ProductList from "../listProducts.jsx";
+// import ProductList from "../listProducts.jsx";
+import AddModal from "./addModal.jsx";
 
 const Admin = () => {
   const [products, setProducts] = useState([]);
@@ -46,6 +43,9 @@ const Admin = () => {
             </div>
             <div className="bar">
               {/* <ProductList products={products} /> */}
+            </div>
+            <div>
+              <AddModal />
             </div>
           </div>
         </div>

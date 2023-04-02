@@ -2,7 +2,7 @@ import add from "./img/add.png"
 
 const FilterButtons = ({ onBreakfastClick, onLunchClick }) => {
   return (
-    <div className="row">
+    <div className="rowFilter">
       <div className="onlyButtons">
        <button onClick={onBreakfastClick} className="breakFast">
         Desayuno
