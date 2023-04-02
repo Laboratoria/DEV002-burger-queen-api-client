@@ -13,7 +13,7 @@ const auth = async ({ email, password }) => {
 const GetProducts = async () => {
     const token = localStorage.getItem("token");
     const urlBurguerApi = "http://localhost:8080/products";
-
+    console.log('getProducts')
     try {
         const response = await axios.get(urlBurguerApi, {
             headers: {
@@ -27,25 +27,6 @@ const GetProducts = async () => {
         console.error(error);
     }
 };
-
-// GetProducts()  
-
-
-// const GetProducts = async () => {
-//     const token = localStorage.getItem("token");
-
-//     const urlBurguerApi = "http://localhost:8080/products";
-
-//     await axios.get(urlBurguerApi, {
-//         headers: {
-//           Authorization: 'Bearer ' + token //the token is a variable which holds the token
-//         }
-//     })
-//         .then((response) => {
-//         const data = response.data;
-//         console.log(data);
-//     });
-// };
 
 export {
     auth,

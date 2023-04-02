@@ -79,7 +79,10 @@ body {
     width: 40px;
 }
 
-.iconsOrders, .lunch, .breakFast, .botonsFilter {
+.iconsOrders,
+.lunch,
+.breakFast,
+.botonsFilter {
     margin: 10px;
 }
 
@@ -141,12 +144,20 @@ body {
 
 ::-webkit-scrollbar-thumb {
     background: #888;
-    border-radius: 20px; /* Agrega un borde redondeado a la barra de scroll */
+    border-radius: 20px;
+    /* Agrega un borde redondeado a la barra de scroll */
 }
 
 .buttonsProducts {
     display: flex;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .addProduct {
@@ -154,6 +165,7 @@ body {
     flex-direction: row;
     align-items: flex-start;
     margin-top: 15px;
+    align-items: center;
 }
 
 .add {
@@ -164,10 +176,12 @@ body {
 .textButtonAdd {
     color: #e2d7d7;
 }
-.breakFast, .lunch {
+
+.breakFast,
+.lunch {
     border-radius: 20px;
     border: none;
-    font-size:medium;
+    font-size: medium;
     font-family: 'Inknut Antiqua', serif;
     color: #D9D9D9;
     cursor: pointer;
