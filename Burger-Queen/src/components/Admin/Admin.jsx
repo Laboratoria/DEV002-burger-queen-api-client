@@ -7,6 +7,9 @@ import { useState, useEffect } from "react";
 import AddModal from "./addModal.jsx";
 
 const Admin = () => {
+  // Lógica para abrir y cerrar el modal------------------------------------------------------------------
+  const [estadoModal, cambiarEstadoModal1] = useState(false);
+  // Lógica para  traer los productos-------------------------------------------
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -45,20 +48,23 @@ const Admin = () => {
               {/* <ProductList products={products} /> */}
             </div>
             <div>
-              <AddModal>
-              <div className="formAddProduct">
-                            <label className='label-form'>
-                                Precio
-                                <input type="" placeholder="Precio" className="inputModalProduct" name=""></input>
-                            </label>
-                        </div>
-                        <div className="formAddProduct">
-                            <label className='label-form'>
-                                Categoría
-                                <button id="breakfast" className="buttonsOfCategory">Desayuno</button>
-                                <button id="lunch" className="buttonsOfCategory">Almuerzo</button>
-                            </label>
-                        </div>
+              <AddModal
+              estado={estadoModal}
+              cambiarEstado={cambiarEstadoModal1}
+              >
+                <div className="formAddProduct">
+                  <label className='label-form'>
+                    Precio
+                    <input type="" placeholder="Precio" className="inputModalProduct" name=""></input>
+                  </label>
+                </div>
+                <div className="formAddProduct">
+                  <label className='label-form'>
+                    Categoría
+                    <button id="breakfast" className="buttonsOfCategory">Desayuno</button>
+                    <button id="lunch" className="buttonsOfCategory">Almuerzo</button>
+                  </label>
+                </div>
               </AddModal>
             </div>
           </div>

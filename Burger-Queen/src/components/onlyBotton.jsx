@@ -12,7 +12,7 @@ const FilterButtons = ({ onBreakfastClick, onLunchClick }) => {
       </button> 
       </div>
       
-      <div className="addProduct">
+      <div className="addProduct" onClick={() => cambiarEstadoModal1(!estadoModal1)}>
         <img className="add" src={add} alt="Agregar" />
         <p className="textButtonAdd">Agregar producto</p>
       </div>
