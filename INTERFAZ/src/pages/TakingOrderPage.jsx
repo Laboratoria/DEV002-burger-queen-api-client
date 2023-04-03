@@ -30,14 +30,14 @@ function ProductRow({ product, clickChild }) {//crearé un useState para guardar
   );
 }
 
-function ProductRowOrder({ product, cantidad }) {//crearé un useState para guardar los productos de mi orden(click, almaceno)
+function ProductRowOrder({ product, cantidad, onIncrease }) {//crearé un useState para guardar los productos de mi orden(click, almaceno)
   const name = product.name;
   
 
   return (
     <>
       <tr>
-        <td><FaPlus className="flow-icon" color="#318aac" size={"1rem"} /></td>
+        <td><FaPlus className="flow-icon" color="#318aac" size={"1rem"}  onClick={() =>onIncrease}/></td>
 
         <td>{cantidad}</td>
         <td><FaMinus className="flow-icon" color="#318aac" size={"1rem"} /></td>
@@ -147,6 +147,7 @@ function ProductTable({ products }) {
             key={product.product.id}
             product={product.product}
             cantidad={product.qty}
+            onIncrease={()=>console.log("aumentar")}
           />
           )
         }

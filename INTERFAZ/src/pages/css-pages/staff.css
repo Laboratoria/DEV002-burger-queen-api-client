@@ -118,6 +118,26 @@ button:hover {
   z-index: 1;
 }
 
+#table-products {
+  border-collapse: separate;
+  border-spacing: 2px;
+  background: #318aac bottom left repeat-x;
+  color: #fff;
+  position: absolute;
+  top: 15%;
+  right: 15%;
+  z-index: 1;
+
+}
+
+.product-imagen-container {
+  width: 10%;
+}
+
+.product-imagen {
+  width: 40%;
+}
+
 td,
 th {
   background: #fff;
@@ -164,17 +184,17 @@ th {
   transition: all .5s;
 } */
 
-.input-nuevo-trabajador{
+.input-nuevo-trabajador {
   /* background: #fff; */
   margin-bottom: 10px;
 
 }
 
-label{
+label {
   margin-left: 40px;
   margin-bottom: -20px;
-    font-size: 25px;
-    
+  font-size: 25px;
+
 }
 
 .input-add-worker {

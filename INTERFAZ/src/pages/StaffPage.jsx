@@ -2,22 +2,29 @@ import "./css-pages/staff.css"
 import { Link } from "react-router-dom";
 import { FaSignOutAlt, FaPlusSquare, FaTrash, FaEdit } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { addNuevoTrabajador, deleteTrabajador } from "../service.auth";
+import { addNuevoTrabajador, deleteTrabajador, getTrabajador } from "../service.auth";
 
 
 const Worker = (props) => {
 
-const EliminarTrabajador = async(idUser)=>{
-    const user = JSON.parse(localStorage.getItem('user'))
+    const EliminarTrabajador = async (idUser) => {
+        const user = JSON.parse(localStorage.getItem('user'))
         const token = user.accessToken;
-        const resp=await deleteTrabajador(token, idUser);
-        
+        const resp = await deleteTrabajador(token, idUser);
 
-}
 
-const ActualizarTrabajador = (props) =>{
-    console.log("actualizando al trabajador")
-}
+    }
+
+    const ActualizarTrabajador = (idUser) => {
+        console.log("actualizando al trabajador")
+
+        //al dar click al botón actualizar abra el modal traiga la información existente del trabajador
+        //modificar el/los campos
+        //darle a botón actualizar
+        //hacer la petición patch con los nuevos valores de los inputs
+
+
+    }
 
 
     return (
@@ -35,8 +42,8 @@ const ActualizarTrabajador = (props) =>{
             <td className="worker-email">{props.correo}</td>
             <td className="worker-contraseña">{props.rol}</td>
             <td className="worker-rol">{props.contraseña}</td>
-            <td><FaTrash className="flow-icon" size={"1rem"} color="black"  onClick={()=>EliminarTrabajador(props.id)}/></td>
-            <td><FaEdit className="flow-icon" size={"1rem"} color="black" onClick={()=>ActualizarTrabajador(props.id)}/></td>
+            <td><FaTrash className="flow-icon" size={"1rem"} color="black" onClick={() => EliminarTrabajador(props.id)} /></td>
+            <td><FaEdit className="flow-icon" size={"1rem"} color="black" onClick={() => props.ActualizarTrabajador(props.id)} /></td>
 
 
         </tr>
@@ -52,6 +59,8 @@ const ActualizarTrabajador = (props) =>{
 export default function Staff() {
     const [trabajadores, setTrabajadores] = useState([]);
     const [addTrabajador, setAddTrabajador] = useState(false);
+    const [updateTrabajador, setUpdateTrabajador] = useState(false);
+
 
     const [email, setEmail] = useState('');
     const handleEmailChange = ({ target }) => {
@@ -108,13 +117,33 @@ export default function Staff() {
         setPassword("");
         setRole("")
     };
-    const createWorker =async()=>{
-    const user = JSON.parse(localStorage.getItem('user'))
-    const token = user.accessToken;
-    const resp =await addNuevoTrabajador(token, email, password, role);
-    console.log(resp);
-    setAddTrabajador(false);
-}
+    const createWorker = async () => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        const token = user.accessToken;
+        const resp = await addNuevoTrabajador(token, email, password, role);
+        console.log(resp);
+        setAddTrabajador(false);
+    }
+    const ActualizarTrabajadorHandler = async(id) => {
+        setAddTrabajador(true);
+        setUpdateTrabajador(true);
+        console.log("holi trabajador on id: ", id);
+        // trayendo la información del trabajador usando su id
+        const user = JSON.parse(localStorage.getItem('user'))
+        const token = user.accessToken;
+        const resp = await getTrabajador(token, id);
+
+        setEmail(resp.email);
+         setPassword(resp.password);
+        setRole(resp.role);
+
+    }
+
+    const updateWorker =()=>{
+        console.log("actualizar");
+    }
+
+
     return (
         <div className="staff-page">
             <div className="staff-h2">
@@ -173,13 +202,20 @@ export default function Staff() {
                             ></input>
                         </label>
                     </div>
+                    {updateTrabajador?<button
+                        type="button"
+                        className="btn-save-worker"
+                        onClick={() => updateWorker()}
+                    >
+                        Actualizar
+                    </button>:
                     <button
                         type="button"
                         className="btn-save-worker"
-                     onClick={() => createWorker()}
+                        onClick={() => createWorker()}
                     >
                         Guardar
-                    </button>
+                    </button>}
                     <button
                         onClick={closeModal}
                         type="button"
@@ -193,7 +229,7 @@ export default function Staff() {
                 <p></p>
             )}
 
-            {/*------------ tabla de trabjadores---------------------- */}
+            {/*------------ tabla de trabajadores---------------------- */}
             <table id='table-workers'>
                 <thead>
                     <tr>
@@ -208,14 +244,14 @@ export default function Staff() {
                 </thead>
                 <tbody>
                     {trabajadores.map((trabajador) => {
-                        
+
                         return (
                             <Worker key={trabajador.id}
                                 correo={trabajador.email}
                                 rol={trabajador.role}
                                 id={trabajador.id}
                                 contraseña='******'
-
+                                ActualizarTrabajador={() => { ActualizarTrabajadorHandler(trabajador.id) }}
                             />
                         )
                     })}

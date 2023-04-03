@@ -71,7 +71,7 @@ export const getProductos = async (token) => { //mi componente tiene que esperar
     })
     .then(res => {
       respuesta = res;
-      //console.log('res', res)
+      console.log('res', res)
     })
     .catch(error => {
       console.log(error, error.response, "Error al traer los productos")
@@ -184,15 +184,36 @@ export const deleteTrabajador = async (token, idUser) => {
 
 }
 
+//---------------------------para obtener info de un trabajador a aprtir de su id-----------------------------------------------------------------
+
+export const getTrabajador = async(token, idUser) => {
+  let respuesta = null;
+
+  await fetch('http://localhost:8080/users' + "/" + idUser, {
+    method: 'GET', //no lleva body
+    headers: {
+      "Content-Type": "application/json",
+
+      "Authorization": "Bearer " + token   //sin paréntesisis. Para tener acceso para el resto de rutas
+    },
+
+  })
+  .then(response => response.json())
+  .then(data => {console.log(data);
+  respuesta=data}) // Manipulate the data retrieved back, if we want to do something with it (hacer getTrabajdores)
+  .catch(err => console.log(err)) 
+  return respuesta;
+}
+
 //---------------------------actualizando el trabajador-----------------------------------------------------------------
 
 export const updateTrabajador = async (token, idUser, mail, pass, rol) => {
   fetch('http://localhost:8080/users' + "/" + idUser, {
     method: 'PATCH',
     body: JSON.stringify({
-      email: 'mail',
-      password: 'pass',
-      role: 'rol'
+      email: mail,
+      password: pass,
+      role: rol
 
     }),
     headers: {
