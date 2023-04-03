@@ -23,7 +23,7 @@ function ProductRow({ product, clickChild }) {//crearé un useState para guardar
       <tr onClick={() => clickChild(product)}>
         <td>{name}</td>
         <td>${product.price}</td>
-        <td><img className="product-imagen" src={product.image} alt=""/></td>
+        <td><img className="product-image" src={product.image} alt=""/></td>
 
       </tr>
     </>
@@ -37,7 +37,7 @@ function ProductRowOrder({ product, cantidad, onIncrease }) {//crearé un useSta
   return (
     <>
       <tr>
-        <td><FaPlus className="flow-icon" color="#318aac" size={"1rem"}  onClick={() =>onIncrease}/></td>
+        <td><FaPlus className="flow-icon" color="#318aac" size={"1rem"}  onClick={onIncrease}/></td>
 
         <td>{cantidad}</td>
         <td><FaMinus className="flow-icon" color="#318aac" size={"1rem"} /></td>
@@ -64,6 +64,7 @@ function ProductTable({ products }) {
   console.log(PRODUCTOSORDEN);
 
   const clickChild = (product) => {
+    console.log(product);
     //1ºpaso: validar si el producto existe en el array de PRODUCTOSORDEN
     //2ªpaso: si no está creo un nuevo objeto con el campo cantidad inicializado con 1 y el product
     //3ºpaso: si ya está que encuentre el objeto y modifique su cantidad
@@ -147,7 +148,7 @@ function ProductTable({ products }) {
             key={product.product.id}
             product={product.product}
             cantidad={product.qty}
-            onIncrease={()=>console.log("aumentar")}
+            onIncrease={()=>clickChild(product.product)}
           />
           )
         }
