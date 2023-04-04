@@ -271,6 +271,12 @@ body {
     padding: 10px;
 }
 
+#inputImage {
+    border: none;
+    background-color: #ffffff;
+    color: #232324;
+}
+
 .buttonsOfCategory, .buttonAddModal {
     cursor: pointer;
     font-family: 'Inknut Antiqua', serif;

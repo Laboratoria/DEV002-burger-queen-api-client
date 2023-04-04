@@ -20,6 +20,4 @@ const FilterButtons = ({ onBreakfastClick, onLunchClick, onAddProductClick}) => 
   );
 };
 
-
 export default FilterButtons;
-
