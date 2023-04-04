@@ -1,6 +1,6 @@
 import exitIcon from "../img/exitIcon.png"
 
-const AddModal = ({ children, estado, cambiarEstado }) => {
+const AddModal = ({ children, estado, cambiarEstado1 }) => {
     return (
         <div>
             {estado &&

@@ -13,7 +13,7 @@ const auth = async ({ email, password }) => {
 const GetProducts = async () => {
     const token = localStorage.getItem("token");
     const urlBurguerApi = "http://localhost:8080/products";
-    console.log('getProducts')
+    // console.log('getProducts')
     try {
         const response = await axios.get(urlBurguerApi, {
             headers: {
@@ -21,7 +21,7 @@ const GetProducts = async () => {
             },
         });
         const data = response.data;
-        console.log(data)
+        // console.log(data)
         return data;
     } catch (error) {
         console.error(error);

@@ -1,6 +1,6 @@
 import add from "./img/add.png"
 
-const FilterButtons = ({ onBreakfastClick, onLunchClick }) => {
+const FilterButtons = ({ onBreakfastClick, onLunchClick, modal1}) => {
   return (
     <div className="rowFilter">
       <div className="onlyButtons">
@@ -13,11 +13,13 @@ const FilterButtons = ({ onBreakfastClick, onLunchClick }) => {
       </div>
       
       <div className="addProduct" onClick={() => cambiarEstadoModal1(!estadoModal1)}>
-        <img className="add" src={add} alt="Agregar" />
+        <img className="add" onClick={modal1} src={add} alt="Agregar" />
         <p className="textButtonAdd">Agregar producto</p>
       </div>
     </div>
   );
 };
 
+
 export default FilterButtons;
+

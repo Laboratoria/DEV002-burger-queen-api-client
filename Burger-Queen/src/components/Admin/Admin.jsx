@@ -8,7 +8,7 @@ import AddModal from "./addModal.jsx";
 
 const Admin = () => {
   // Lógica para abrir y cerrar el modal------------------------------------------------------------------
-  const [estadoModal, cambiarEstadoModal1] = useState(false);
+  const [estadoModal1, cambiarEstadoModal1] = useState(false);
   // Lógica para  traer los productos-------------------------------------------
   const [products, setProducts] = useState([]);
 
@@ -43,13 +43,14 @@ const Admin = () => {
                   }
                 />
               </div>
+              <button onClick={()=> cambiarEstadoModal1(!estadoModal1)} >click</button>
             </div>
             <div className="bar">
               {/* <ProductList products={products} /> */}
             </div>
             <div>
               <AddModal
-              estado={estadoModal}
+              estado={estadoModal1}
               cambiarEstado={cambiarEstadoModal1}
               >
                 <div className="formAddProduct">

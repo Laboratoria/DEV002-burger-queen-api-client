@@ -1,9 +1,6 @@
 import React from "react";
 import { GetProducts } from "../request";
 import { useState } from "react";
-// import trash from "./img/basura.png";
-// import edit from "./img/editar.png";
-
 import ProductList from "./listProducts";
 import FilterButtons from "./onlyBotton";
 

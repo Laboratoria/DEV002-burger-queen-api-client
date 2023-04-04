@@ -131,7 +131,8 @@ body {
 
 .trash,
 .edit,
-.exitIcon {
+.exitIcon,
+.add {
     width: 20px;
     cursor: pointer;
 }
