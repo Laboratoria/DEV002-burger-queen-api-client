@@ -9,6 +9,7 @@ import AddModal from "./addModal.jsx";
 const Admin = () => {
   // Lógica para abrir y cerrar el modal------------------------------------------------------------------
   const [estadoModal1, cambiarEstadoModal1] = useState(false);
+
   // Lógica para  traer los productos-------------------------------------------
   const [products, setProducts] = useState([]);
 
@@ -41,17 +42,17 @@ const Admin = () => {
                   onLunchClick={() =>
                     setProducts(products.filter((p) => p.type === "Almuerzo"))
                   }
+                  onAddProductClick={() => cambiarEstadoModal1(!estadoModal1)}
                 />
               </div>
-              <button onClick={()=> cambiarEstadoModal1(!estadoModal1)} >click</button>
             </div>
             <div className="bar">
               {/* <ProductList products={products} /> */}
             </div>
             <div>
               <AddModal
-              estado={estadoModal1}
-              cambiarEstado={cambiarEstadoModal1}
+                estado={estadoModal1}
+                cambiarEstado={cambiarEstadoModal1}
               >
                 <div className="formAddProduct">
                   <label className='label-form'>
