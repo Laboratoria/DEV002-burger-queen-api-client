@@ -30,7 +30,7 @@ function ProductRow({ product, clickChild }) {//crearé un useState para guardar
   );
 }
 
-function ProductRowOrder({ product, cantidad, onIncrease, onDecrease }) {//crearé un useState para guardar los productos de mi orden(click, almaceno)
+function ProductRowOrder({ product, cantidad, onIncrease, onDecrease, onRemove }) {//crearé un useState para guardar los productos de mi orden(click, almaceno)
   const name = product.name;
 
 
@@ -46,7 +46,7 @@ function ProductRowOrder({ product, cantidad, onIncrease, onDecrease }) {//crear
         <td>${product.price}</td>
         <td>${product.price * cantidad}</td>
 
-        <td><FaTrash className="flow-icon" color="#318aac" size={"1rem"} /></td>
+        <td><FaTrash className="flow-icon" color="#318aac" size={"1rem"} onClick={onRemove} /></td>
 
 
       </tr>
@@ -93,20 +93,32 @@ function ProductTable({ products }) {
       if (element.product.id !== product.id) {
         return element;
       }
-      else 
-      if((element.product.id == product.id) && (element.qty > 1)) {
-        element.qty -= 1;
-        return element;
-      }
+      else
+        if ((element.product.id == product.id) && (element.qty > 1)) {
+          element.qty -= 1;
+          return element;
+        }
     })
     const resultado = nuevoArray.filter(producto => producto != undefined);
 
     console.log(resultado)
-     setPRODUCTOSORDEN(resultado)
+    setPRODUCTOSORDEN(resultado)
   }
-  
-  
 
+  const clickChildRemove = (product) => {
+    console.log("quitar producto")
+    const nuevoArray = PRODUCTOSORDEN.map(element => {
+      if (element.product.id == product.id) {
+        return 0;
+      }
+      else {return element};
+    })
+    console.log(nuevoArray);
+    const arrayResultado=nuevoArray.filter(producto=>producto!==0);
+    console.log(arrayResultado)
+    setPRODUCTOSORDEN(arrayResultado);
+
+  }
 
 
   products.forEach((product) => {
@@ -170,6 +182,8 @@ function ProductTable({ products }) {
             cantidad={producto.qty}
             onIncrease={() => clickChild(producto.product)}
             onDecrease={() => clickChildMinus(producto.product)}
+            onRemove={() => clickChildRemove(producto.product)}
+
 
           />
           )
