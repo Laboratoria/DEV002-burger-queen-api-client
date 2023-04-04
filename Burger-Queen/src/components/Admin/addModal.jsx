@@ -1,13 +1,13 @@
 import exitIcon from "../img/exitIcon.png"
 
-const AddModal = ({ children, estado, cambiarEstado1 }) => {
+const AddModal = ({ children, estado, cambiarEstado }) => {
     return (
         <div>
             {estado &&
                 <div className="overlay">
                     <div className="headOfModal">
                         <p className="messageError">Texto de Error</p>
-                        <img className="exitIcon" src={exitIcon} />
+                        <img onClick={() => cambiarEstado(false)} className="exitIcon" src={exitIcon} />
                     </div>
                     <div className="bodyOfModal">
                         <form>
