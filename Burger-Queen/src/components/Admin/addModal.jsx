@@ -39,7 +39,6 @@ const AddModal = ({ children, estado, cambiarEstado }) => {
 
                             <button type="submit" className="buttonAddModal">Añadir un nuevo producto</button>
                         </form>
-
                     </div>
                 </div>
             }
