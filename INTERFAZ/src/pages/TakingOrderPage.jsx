@@ -23,24 +23,24 @@ function ProductRow({ product, clickChild }) {//crearé un useState para guardar
       <tr onClick={() => clickChild(product)}>
         <td>{name}</td>
         <td>${product.price}</td>
-        <td><img className="product-image" src={product.image} alt=""/></td>
+        <td><img className="product-image" src={product.image} alt="" /></td>
 
       </tr>
     </>
   );
 }
 
-function ProductRowOrder({ product, cantidad, onIncrease }) {//crearé un useState para guardar los productos de mi orden(click, almaceno)
+function ProductRowOrder({ product, cantidad, onIncrease, onDecrease }) {//crearé un useState para guardar los productos de mi orden(click, almaceno)
   const name = product.name;
-  
+
 
   return (
     <>
       <tr>
-        <td><FaPlus className="flow-icon" color="#318aac" size={"1rem"}  onClick={onIncrease}/></td>
+        <td><FaPlus className="flow-icon" color="#318aac" size={"1rem"} onClick={onIncrease} /></td>
 
         <td>{cantidad}</td>
-        <td><FaMinus className="flow-icon" color="#318aac" size={"1rem"} /></td>
+        <td><FaMinus className="flow-icon" color="#318aac" size={"1rem"} onClick={onDecrease} /></td>
 
         <td>{name}</td>
         <td>${product.price}</td>
@@ -61,32 +61,51 @@ function ProductTable({ products }) {
   let lastType = null; //para que se muestre solo 1 vez  al inicio de la tabla el type de los productos
 
   const [PRODUCTOSORDEN, setPRODUCTOSORDEN] = useState([]);
-  console.log(PRODUCTOSORDEN);
 
   const clickChild = (product) => {
     console.log(product);
     //1ºpaso: validar si el producto existe en el array de PRODUCTOSORDEN
     //2ªpaso: si no está creo un nuevo objeto con el campo cantidad inicializado con 1 y el product
-    //3ºpaso: si ya está que encuentre el objeto y modifique su cantidad
+    //3ºpaso: si ya está, que encuentre el objeto y modifique su cantidad
 
-    if (PRODUCTOSORDEN.find(elemento => elemento.product.id == product.id) === undefined) {
+    if (PRODUCTOSORDEN.find(elemento => elemento.product.id == product.id) === undefined) { //si no existe agrégale
       const newProduct = { qty: 1, product }
       const productosElegidos = [...PRODUCTOSORDEN];
       productosElegidos.push(newProduct);
       setPRODUCTOSORDEN(productosElegidos);
     }
     else {
-      const nuevoArray = PRODUCTOSORDEN.map((element) => {
+      const nuevoArray = PRODUCTOSORDEN.map((element) => { //si el producto no existe que lo coloque como está
         if (element.product.id !== product.id) {
           return element;
         }
-        element.qty += 1;
+        element.qty += 1; //si existe en el arreglo que aumente su cantidad
         return element;
       })
       setPRODUCTOSORDEN(nuevoArray);
     }
-
   }
+  const clickChildMinus = (product) => {
+    //si la cantidad es mayor a 1 que disminuya la cantidad en 1
+    // console.log(product);
+
+    const nuevoArray = PRODUCTOSORDEN.map(element => {
+      if (element.product.id !== product.id) {
+        return element;
+      }
+      else 
+      if((element.product.id == product.id) && (element.qty > 1)) {
+        element.qty -= 1;
+        return element;
+      }
+    })
+    const resultado = nuevoArray.filter(producto => producto != undefined);
+
+    console.log(resultado)
+     setPRODUCTOSORDEN(resultado)
+  }
+  
+  
 
 
 
@@ -102,7 +121,8 @@ function ProductTable({ products }) {
       <ProductRow
         product={product}
         key={product.name}
-        clickChild={clickChild} />
+        clickChild={clickChild}
+      />
     );
     lastType = product.type;
   });
@@ -144,19 +164,21 @@ function ProductTable({ products }) {
         </thead>}
 
         <tbody>{
-          PRODUCTOSORDEN.map(product => <ProductRowOrder
-            key={product.product.id}
-            product={product.product}
-            cantidad={product.qty}
-            onIncrease={()=>clickChild(product.product)}
+          PRODUCTOSORDEN.map(producto => <ProductRowOrder
+            key={producto.product.id}
+            product={producto.product}
+            cantidad={producto.qty}
+            onIncrease={() => clickChild(producto.product)}
+            onDecrease={() => clickChildMinus(producto.product)}
+
           />
           )
         }
-       
+
         </tbody>
 
       </table>
-{/* <h5>{precioTotal}</h5> */}
+      {/* <h5>{precioTotal}</h5> */}
 
     </>
   );

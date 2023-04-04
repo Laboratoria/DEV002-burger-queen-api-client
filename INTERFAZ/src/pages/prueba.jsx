@@ -286,3 +286,48 @@ export default function App() {
     // console.log(countClick);
 
     // });
+
+
+
+
+    //INCREASE Y DECREASE
+    // if (PRODUCTOSORDEN.product.id.includes(product.id) && (product.qty == 1)) {
+    //   const productosElegidos = PRODUCTOSORDEN.filter(elemento => elemento.product.id != product.id)
+    //   setPRODUCTOSORDEN(productosElegidos);
+    // }
+    // else {
+    //   const nuevoArray = PRODUCTOSORDEN.map((element) => {
+    //     if (element.product.id == product.id) {
+    //       element.qty -= 1;
+    //       return element;
+    //     }
+    //   })
+    //   setPRODUCTOSORDEN(nuevoArray);
+
+    // }
+
+
+    // for(let i=0;i<PRODUCTOSORDEN.length;i++)
+    // { if ((PRODUCTOSORDEN[i].product.id==product.id)&&(PRODUCTOSORDEN[i].qty==1)){
+    //   return PRODUCTOSORDEN.splice(i,1)
+    // }
+    // }
+    // const nuevoArray = PRODUCTOSORDEN.map((element) => {
+    //       if (element.product.id == product.id) {
+    //         element.qty -= 1;
+    //         return element;
+    //       }
+    //     })
+    //     setPRODUCTOSORDEN(nuevoArray);
+
+
+
+
+     // if ((element.product.id == product.id)&&(element.qty==1)) {
+      //   // const resultado = productos.filter(elemento => elemento.product.id !=product.id );
+      //   // console.log(resultado)
+        
+      //         return 0;
+      //   }
+      // else{      // }
+    //si la cantidad es igual a 1 que lo quite del arreglo de PRODUCTOSORDEN
