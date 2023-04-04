@@ -61,9 +61,10 @@ function ProductTable({ products }) {
   let lastType = null; //para que se muestre solo 1 vez  al inicio de la tabla el type de los productos
 
   const [PRODUCTOSORDEN, setPRODUCTOSORDEN] = useState([]);
+  const [precioTotal, setPrecioTotal] = useState(0);
 
   const clickChild = (product) => {
-    console.log(product);
+    // console.log(product);
     //1ºpaso: validar si el producto existe en el array de PRODUCTOSORDEN
     //2ªpaso: si no está creo un nuevo objeto con el campo cantidad inicializado con 1 y el product
     //3ºpaso: si ya está, que encuentre el objeto y modifique su cantidad
@@ -111,14 +112,32 @@ function ProductTable({ products }) {
       if (element.product.id == product.id) {
         return 0;
       }
-      else {return element};
+      else { return element };
     })
     console.log(nuevoArray);
-    const arrayResultado=nuevoArray.filter(producto=>producto!==0);
+    const arrayResultado = nuevoArray.filter(producto => producto !== 0);
     console.log(arrayResultado)
     setPRODUCTOSORDEN(arrayResultado);
 
   }
+
+  const calcularPrecioTotal = () => {
+    let suma = 0;
+
+    PRODUCTOSORDEN.forEach(producto => {
+      suma += producto.qty * producto.product.price;
+      console.log(suma)
+    });
+    console.log(suma);
+    setPrecioTotal(suma)
+  }
+
+
+
+  useEffect(() => {
+    calcularPrecioTotal()
+
+  }, [PRODUCTOSORDEN]); //después del primer render y solo 1 vez ejecutará mi función traerProductos
 
 
   products.forEach((product) => {
@@ -159,7 +178,7 @@ function ProductTable({ products }) {
       <h3 className="pedido">PEDIDO</h3>
       <input type="text" className="nombre-cliente" placeholder="   clientx..."></input>
 
-      <table id='table-workers' className="tabla-pedido">
+      <table id='table-order' className="tabla-pedido">
         {PRODUCTOSORDEN.length == 0 ? <thead></thead> : <thead>
 
           <tr>
@@ -188,12 +207,9 @@ function ProductTable({ products }) {
           />
           )
         }
-
         </tbody>
-
       </table>
-      {/* <h5>{precioTotal}</h5> */}
-
+      <div id="precio-total">Precio total: $ <h5 className="precio">{precioTotal}</h5></div>
     </>
   );
 }

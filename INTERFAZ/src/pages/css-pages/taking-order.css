@@ -24,7 +24,6 @@ align-items: center;
 
 }
 
-
 h2 {
   /* margin-left: 45%; */
   /* margin-top: 20px; */
@@ -130,8 +129,8 @@ td{
 
 /* tabla de pedido */
 
-.tabla-pedido{
-  margin-top: 35%;
+#tabla-order{
+  margin-top: 40%;
   margin-left:-2%
 }
 
@@ -144,4 +143,17 @@ td{
 
 .total-table{
   margin-top:40%
+}
+
+ .precio{ 
+font: bold} 
+
+#precio-total{
+  margin-left: 40%;
+  margin-top: 1%;
+  border: #318aac solid 2px;
+  width: 20%;
+  background-color:white ;
+  display: flex;
+
 }

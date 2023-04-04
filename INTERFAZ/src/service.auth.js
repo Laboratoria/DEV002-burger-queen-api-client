@@ -71,7 +71,7 @@ export const getProductos = async (token) => { //mi componente tiene que esperar
     })
     .then(res => {
       respuesta = res;
-      console.log('res', res)
+       console.log('res', res)
     })
     .catch(error => {
       console.log(error, error.response, "Error al traer los productos")
