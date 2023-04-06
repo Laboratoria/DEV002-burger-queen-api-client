@@ -76,4 +76,6 @@ const Admin = () => {
   );
 };
 
+texto d eprueba
+
 export default Admin;
