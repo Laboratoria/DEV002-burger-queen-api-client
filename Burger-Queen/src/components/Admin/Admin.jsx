@@ -10,15 +10,19 @@ const Admin = () => {
   // Lógica para abrir y cerrar el modal------------------------------------------------------------------
   const [estadoModal1, cambiarEstadoModal1] = useState(false);
 
-  // Lógica para agregar nuevos productos con los inputs en este componente ----------------------------------------------------------------------------
+  // Lógica para agregar nuevos productos con los inputs de precio y tipo en este componente ----------------------------------------------------------------------------
   const [price, setPrice] = useState("");
+  const [type, setType] = useState(null);
+
 
   const handlePriceChange = (event) => {
     setPrice(event.target.value);
   };
 
   const handleTypeChange = (event) => {
-    setType(event.target.value);
+    event.preventDefault();
+    const value = event.target.id;
+    setType(value);
   };
 
   // Lógica para  traer los productos-------------------------------------------
@@ -64,7 +68,7 @@ const Admin = () => {
               <AddModal
                 estado={estadoModal1}
                 cambiarEstado={cambiarEstadoModal1}
-                props={{ price }}
+                props={{ price, type }}
               >
                 <div className="formAddProduct">
                   <label className='label-form'>
@@ -75,8 +79,8 @@ const Admin = () => {
                 <div className="formAddProduct">
                   <label className='label-form'>
                     Tipo
-                    <button id="breakfast" className="buttonsOfCategory">Desayuno</button>
-                    <button id="lunch" className="buttonsOfCategory">Almuerzo</button>
+                    <button id="Desayuno" value={type} onClick={handleTypeChange} className="buttonsOfCategory">Desayuno</button>
+                    <button id="Almuerzo" value={type} onClick={handleTypeChange} className="buttonsOfCategory">Almuerzo</button>
                   </label>
                 </div>
               </AddModal>
