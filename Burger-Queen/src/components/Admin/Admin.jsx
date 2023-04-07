@@ -10,6 +10,17 @@ const Admin = () => {
   // Lógica para abrir y cerrar el modal------------------------------------------------------------------
   const [estadoModal1, cambiarEstadoModal1] = useState(false);
 
+  // Lógica para agregar nuevos productos con los inputs en este componente ----------------------------------------------------------------------------
+  const [price, setPrice] = useState("");
+
+  const handlePriceChange = (event) => {
+    setPrice(event.target.value);
+  };
+
+  const handleTypeChange = (event) => {
+    setType(event.target.value);
+  };
+
   // Lógica para  traer los productos-------------------------------------------
   const [products, setProducts] = useState([]);
 
@@ -53,16 +64,17 @@ const Admin = () => {
               <AddModal
                 estado={estadoModal1}
                 cambiarEstado={cambiarEstadoModal1}
+                props={{ price }}
               >
                 <div className="formAddProduct">
                   <label className='label-form'>
                     Precio
-                    <input type="" placeholder="Precio" className="inputModalProduct" name=""></input>
+                    <input type="text" value={price} onChange={handlePriceChange} placeholder="Precio" className="inputModalProduct" name=""></input>
                   </label>
                 </div>
                 <div className="formAddProduct">
                   <label className='label-form'>
-                    Categoría
+                    Tipo
                     <button id="breakfast" className="buttonsOfCategory">Desayuno</button>
                     <button id="lunch" className="buttonsOfCategory">Almuerzo</button>
                   </label>

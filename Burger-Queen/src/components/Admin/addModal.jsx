@@ -2,7 +2,10 @@ import exitIcon from "../img/exitIcon.png"
 import { postProducts } from "../../request";
 import { useState } from "react";
 
-const AddModal = ({ children, estado, cambiarEstado }) => {
+const AddModal = ({ children, estado, cambiarEstado, props }) => {
+
+    const { price } = props;
+
     const [formValues, setFormValues] = useState({
         name: "",
         imagen: "",
@@ -25,7 +28,7 @@ const AddModal = ({ children, estado, cambiarEstado }) => {
       const sendData = async (event) => {
         event.preventDefault();
         const { name, imagen } = formValues;
-        await postProducts({ name, imagen });
+        await postProducts({ name, imagen, price });
         // Aquí puedes agregar cualquier otra acción después de enviar los datos.
       };
     return (
