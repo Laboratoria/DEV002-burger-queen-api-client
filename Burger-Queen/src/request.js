@@ -10,6 +10,26 @@ const auth = async ({ email, password }) => {
     })
 };
 
+const postProducts = async ({ name, imagen }) => {
+    const token = localStorage.getItem("token");
+    const urlBurguerApi = "http://localhost:8080/products";
+    console.log('postProducts')
+    try {
+        const response = await axios.post(urlBurguerApi, { name, imagen }, {
+            method: 'POST',
+            headers: {
+                Authorization: "Bearer " + token,
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = response.data;
+        console.log(data)
+        return data;
+    } catch (error) {
+        console.log('error', error)
+    }
+}
+
 const GetProducts = async () => {
     const token = localStorage.getItem("token");
     const urlBurguerApi = "http://localhost:8080/products";
@@ -30,5 +50,6 @@ const GetProducts = async () => {
 
 export {
     auth,
+    postProducts,
     GetProducts,
 }

@@ -1,7 +1,12 @@
+import Logotype from "../logotype";
+import React from "react";
 
 const OrdersAdmin = () => {
     return (
-        <h1>Orders of Admin</h1>
+        <>
+            <Logotype />
+            <h1>Orders of Admin</h1>
+        </>
     )
 }
 export default OrdersAdmin;
