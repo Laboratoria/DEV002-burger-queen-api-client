@@ -8,7 +8,7 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
 
     const [formValues, setFormValues] = useState({
         name: "",
-        imagen: "",
+        image: "",
       });
       
       const handleInputChange = (event) => {
@@ -21,16 +21,18 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-          setFormValues({ ...formValues, imagen: reader.result });
+          setFormValues({ ...formValues, image: reader.result });
         };
       };
       
       const sendData = async (event) => {
         event.preventDefault();
-        const { name, imagen } = formValues;
+        const { name, image } = formValues;
         
-        if (imagen ) {
-          await postProducts({ name, price, imagen, type });  
+        if (image ) {
+          const a = await postProducts({ name, price, image, type }); 
+          console.log(a) 
+          console.log(image)
         }
       };
     return (
@@ -63,15 +65,18 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
                                     type="file" 
                                     id="inputImage" 
                                     className="inputModalProduct" 
-                                    name="imagen" 
+                                    name="image" 
                                     onChange={(e) => {
                                         handleImageChange(e);
                                         const file = e.target.files[0];
                                         const reader = new FileReader();
-                                        reader.readAsDataURL(file);
+                                        console.log('reader', reader)
+                                        const b = reader.readAsDataURL(file);
+                                        console.log(b)
                                         reader.onload = () => {
                                             const imgPreview = document.getElementById("img-preview");
                                             imgPreview.src = reader.result;
+                                            // console.log('see', see)
                                             imgPreview.style.display = "block";
                                         };
                                     }}
@@ -80,7 +85,7 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
                                 </label>
                             </div>
                             <div className="formAddProduct">
-                                <img id="img-preview" style={{ display: "none", maxWidth: "20%", alignSelf: "center", marginBottom: "10px" }} />
+                            <img id="img-preview" src={formValues.image} alt="Preview de imagen" style={{ display: "block", maxWidth: "100%" }} />
                             </div>
 
                             <button type="submit" className="buttonAddModal">Añadir un nuevo producto</button>
@@ -93,4 +98,6 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
     )
 };
 
+
 export default AddModal;
+
