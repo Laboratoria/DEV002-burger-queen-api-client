@@ -4,7 +4,7 @@ import { useState } from "react";
 import ProductList from "./listProducts";
 import FilterButtons from "./onlyBotton";
 
-const BotonsFilter = ({onAddProductClick}) => {
+const BotonsFilter = ({onAddProductClick, onClickDeleteProduct}) => {
     const [products, setProducts] = useState([]);
 
     const handleBreakfastClick = async () => {
@@ -30,7 +30,7 @@ const BotonsFilter = ({onAddProductClick}) => {
                 onLunchClick={handleLunchClick}
                 onAddProductClick={onAddProductClick}
             />
-            <ProductList products={products} />
+            <ProductList products={products} onClickDeleteProduct={onClickDeleteProduct} />
         </div>
     );
 };

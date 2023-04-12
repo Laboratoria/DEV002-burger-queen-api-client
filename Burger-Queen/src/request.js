@@ -34,7 +34,18 @@ const deleteProduct = async () => {
     const token = localStorage.getItem("token");
     const urlBurguerApi = "http://localhost:8080/products";
     try {
-        const response = await axios.delete
+        const response = await axios.delete(urlBurguerApi, {
+            method: 'DELETE',
+            headers: {
+                Authorization: "Bearer " + token,
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = response.data;
+        console.log(data)
+        return data;
+    } catch (error) {
+        console.log('error', error)
     }
 }
 
@@ -59,5 +70,6 @@ const GetProducts = async () => {
 export {
     auth,
     postProducts,
+    deleteProduct,
     GetProducts,
 }

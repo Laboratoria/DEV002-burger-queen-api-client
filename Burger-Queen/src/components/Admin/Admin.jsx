@@ -5,10 +5,14 @@ import { GetProducts } from "../../request.js";
 import { useState, useEffect } from "react";
 // import ProductList from "../listProducts.jsx";
 import AddModal from "./addModal.jsx";
+import ModalDelete from "./modalDelete.jsx";
 
 const Admin = () => {
-  // Lógica para abrir y cerrar el modal------------------------------------------------------------------
+  // Lógica para abrir y cerrar el modal para agregar un nuevo producto------------------------------------------------------------------
   const [estadoModal1, cambiarEstadoModal1] = useState(false);
+
+  // Lógica para abrir y cerrar el modal de eliminar producto----------------------------------------
+  const [estadoModalDelete, cambiarEstadoModalDelete] = useState(false);
 
   // Lógica para agregar nuevos productos con los inputs de precio y tipo en este componente ----------------------------------------------------------------------------
   const [price, setPrice] = useState("");
@@ -58,8 +62,15 @@ const Admin = () => {
                     setProducts(products.filter((p) => p.type === "Almuerzo"))
                   }
                   onAddProductClick={() => cambiarEstadoModal1(!estadoModal1)}
+                  onClickDeleteProduct={() => cambiarEstadoModalDelete(!estadoModalDelete)}
                 />
               </div>
+            </div>
+            <div>
+                  <ModalDelete 
+                  estado={estadoModalDelete} 
+                  cambiarEstado={cambiarEstadoModalDelete}
+                  />
             </div>
             <div className="bar">
               {/* <ProductList products={products} /> */}
