@@ -10,12 +10,12 @@ const auth = async ({ email, password }) => {
     })
 };
 
-const postProducts = async ({ name, price, imagen, type }) => {
+const postProducts = async ({ name, price, image, type }) => {
     const token = localStorage.getItem("token");
     const urlBurguerApi = "http://localhost:8080/products";
     console.log('postProducts')
     try {
-        const response = await axios.post(urlBurguerApi, { name, price, imagen, type }, {
+        const response = await axios.post(urlBurguerApi, { name, price, image, type }, {
             method: 'POST',
             headers: {
                 Authorization: "Bearer " + token,

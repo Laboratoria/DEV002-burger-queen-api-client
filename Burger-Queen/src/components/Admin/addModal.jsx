@@ -30,11 +30,10 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
         const { name, image } = formValues;
         
         if (image ) {
-          const a = await postProducts({ name, price, image, type }); 
-          console.log(a) 
-          console.log(image)
+          await postProducts({ name, price, image, type }); 
         }
       };
+    
     return (
         <div>
             {estado &&
@@ -69,14 +68,15 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
                                     onChange={(e) => {
                                         handleImageChange(e);
                                         const file = e.target.files[0];
+                                        console.log('file' , file)
                                         const reader = new FileReader();
                                         console.log('reader', reader)
-                                        const b = reader.readAsDataURL(file);
-                                        console.log(b)
+                                        reader.readAsDataURL(file);
+                                        // console.log('b', b)
                                         reader.onload = () => {
                                             const imgPreview = document.getElementById("img-preview");
-                                            imgPreview.src = reader.result;
-                                            // console.log('see', see)
+                                             const src = imgPreview.src = reader.result;
+                                            console.log('src', src)
                                             imgPreview.style.display = "block";
                                         };
                                     }}
@@ -94,7 +94,6 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
                 </div>
             }
         </div>
-
     )
 };
 
