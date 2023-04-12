@@ -68,7 +68,7 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
                                     onChange={(e) => {
                                         handleImageChange(e);
                                         const file = e.target.files[0];
-                                        console.log('file' , file)
+                                        // console.log('file' , file)
                                         const reader = new FileReader();
                                         console.log('reader', reader)
                                         reader.readAsDataURL(file);
@@ -76,7 +76,7 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
                                         reader.onload = () => {
                                             const imgPreview = document.getElementById("img-preview");
                                              const src = imgPreview.src = reader.result;
-                                            console.log('src', src)
+                                            // console.log('src', src)
                                             imgPreview.style.display = "block";
                                         };
                                     }}
@@ -85,7 +85,7 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
                                 </label>
                             </div>
                             <div className="formAddProduct">
-                            <img id="img-preview" src={formValues.image} alt="Preview de imagen" style={{ display: "block", maxWidth: "100%" }} />
+                            <img id="img-preview" src={formValues.image} alt="" style={{ display: "none", maxWidth: "100%" }} />
                             </div>
 
                             <button type="submit" className="buttonAddModal">Añadir un nuevo producto</button>

@@ -30,6 +30,14 @@ const postProducts = async ({ name, price, image, type }) => {
     }
 }
 
+const deleteProduct = async () => {
+    const token = localStorage.getItem("token");
+    const urlBurguerApi = "http://localhost:8080/products";
+    try {
+        const response = await axios.delete
+    }
+}
+
 const GetProducts = async () => {
     const token = localStorage.getItem("token");
     const urlBurguerApi = "http://localhost:8080/products";
