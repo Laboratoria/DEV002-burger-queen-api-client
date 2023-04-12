@@ -9,7 +9,7 @@ const ModalDelete = ({ estado, cambiarEstado }) => {
             <div className="bodyOfModal">
                 <img id="exit" onClick={() => cambiarEstado(false)} className="exitIcon" src={exitIcon} />
                 <p>¿Estás segura(o) que quieres eliminar este producto?</p>
-                <button type="submit">Eliminar producto</button>
+                <button className="buttonDeleteModal" type="submit">Eliminar producto</button>
             </div>
         </div>
             }

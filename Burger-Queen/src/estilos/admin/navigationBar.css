@@ -241,6 +241,8 @@ body {
     border-radius: 0px 0px 5px 5px;
     box-shadow: rgba(100, 100, 111, 0.2);
     padding: 20px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
 }
 
 .messageError {
@@ -250,7 +252,7 @@ body {
     /* margin-left: 30%; */
 }
 
-.buttonAddModal {
+.buttonAddModal, .buttonDeleteModal {
     font-size:medium;
     border-radius: 5px;
     background-color: #F8FD03;
