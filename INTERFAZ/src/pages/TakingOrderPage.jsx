@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { getProductos } from "../service.auth.js";
+import { getProductos, postOrden } from "../service.auth.js";
 import { FaSignOutAlt, FaPlus, FaMinus, FaTrash } from "react-icons/fa";
+import { GiCampCookingPot } from "react-icons/gi";
+import { BiDish } from "react-icons/bi";
 import { Link } from "react-router-dom";
 // import { logOut } from "../service.auth.js";
 import "./css-pages/taking-order.css"
@@ -63,6 +65,10 @@ function ProductTable({ products }) {
   const [PRODUCTOSORDEN, setPRODUCTOSORDEN] = useState([]);
   const [precioTotal, setPrecioTotal] = useState(0);
 
+  const [userName, setUserName] = useState("");
+  const onChangeUserName=({ target })=>{
+    setUserName(target.value)
+  }
   const clickChild = (product) => {
     // console.log(product);
     //1ºpaso: validar si el producto existe en el array de PRODUCTOSORDEN
@@ -132,13 +138,28 @@ function ProductTable({ products }) {
     setPrecioTotal(suma)
   }
 
-
-
   useEffect(() => {
     calcularPrecioTotal()
 
   }, [PRODUCTOSORDEN]); //después del primer render y solo 1 vez ejecutará mi función traerProductos
 
+
+  
+
+  //función para enviar una orden a cocina
+  const enviarOrden = async() => {
+    console.log('Enviar orden a cocina')
+    console.log(userName)
+    const user = JSON.parse(localStorage.getItem('user'))
+    console.log(user);
+    const token = user.accessToken;
+    const idWaiter = user.user.id;
+    await postOrden(token, idWaiter, userName, PRODUCTOSORDEN)
+    console.log("orden creada")
+    setPRODUCTOSORDEN([]);
+    setUserName("");
+
+  }
 
   products.forEach((product) => {
     if (product.type !== lastType) {
@@ -176,7 +197,7 @@ function ProductTable({ products }) {
       <br></br>
 
       <h3 className="pedido">PEDIDO</h3>
-      <input type="text" className="nombre-cliente" placeholder="   clientx..."></input>
+      <input type="text" className="nombre-cliente" placeholder="   clientx..." name="userName" value={userName} onChange={onChangeUserName}></input>
 
       <table id='table-order' className="tabla-pedido">
         {PRODUCTOSORDEN.length == 0 ? <thead></thead> : <thead>
@@ -209,7 +230,15 @@ function ProductTable({ products }) {
         }
         </tbody>
       </table>
-      <div id="precio-total">Precio total: $ <h5 className="precio">{precioTotal}</h5></div>
+      <div id="precio-total">Precio total: $... <h5 className="precio">{precioTotal}</h5></div>
+      <div className="botones-inferiores">
+        <button className="btn-enviar-orden" onClick={() => console.log("Ver pedidos")}>
+          <GiCampCookingPot className="icon-enviar-orden" size={"2rem"} />Ver Pedidos
+        </button>
+        <button className="btn-enviar-orden" onClick={() => enviarOrden()}>
+          <BiDish className="icon-enviar-orden" size={"2rem"} />Enviar Orden
+        </button>
+      </div>
     </>
   );
 }
@@ -285,6 +314,7 @@ export default function TakingOrder() {
       <ProductTable products={PRODUCTOS} />
 
       {/* TOMA DE ORDEN */}
+
     </div>
   );
 }

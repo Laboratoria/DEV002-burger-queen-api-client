@@ -49,6 +49,7 @@ export const autenticar = async ({ email, password }) => { //mi componente tiene
 
 export function logOut() {
   console.log('cerrando sesión')
+  //aquí destruiría el acces token
 }
 
 //------------------------para obtener los productos disponibles-----------------------------------
@@ -83,16 +84,23 @@ export const getProductos = async (token) => { //mi componente tiene que esperar
 
 //---------------------------para tomar pedido de cliente-----------------------------------------------------------------
 
-export const postOrden = async (token) => {
+export const postOrden = async (token, idWaiter, nameClient, arrayProductsQtys) => {
   let respuesta = null;
 
-  await fetch('http://localhost:8080/products', {
+  await fetch('http://localhost:8080/orders', {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
 
       "Authorization": "Bearer " + token   //sin paréntesisis. Para tener acceso para el resto de rutas
     },
+    body: JSON.stringify({ 
+      "userId": idWaiter,
+      "client": nameClient,
+      "products":arrayProductsQtys,
+      "status": "pending",
+      "dateEntry": (new Date()).toLocaleString(),   
+    }) //JSON a texto plano
 
   })
     .then(res => {
@@ -104,7 +112,7 @@ export const postOrden = async (token) => {
       //console.log('res', res)
     })
     .catch(error => {
-      console.log(error, error.response, "Error al traer los productos")
+      console.log(error, error.response, "Error al crear una nueva orden")
     });
   return respuesta;
 
