@@ -14,7 +14,7 @@ const ProductList = ({ products, onClickDeleteProduct }) => {
             <p className="price">{product.price}</p>
             <div className="card-Body">
               <img className="trash" src={trash} alt="Eliminar" onClick={onClickDeleteProduct} />
-              <img className="edit" src={edit} alt="Editar" />
+              <img className="edit" src={edit} alt="Editar"   onClick={() => onClickDeleteProduct(product.id)} />
             </div>
           </div>
         </div>

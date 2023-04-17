@@ -30,12 +30,11 @@ const postProducts = async ({ name, price, image, type }) => {
     }
 }
 
-const deleteProduct = async () => {
+const deleteProduct = async (productId) => {
     const token = localStorage.getItem("token");
-    const urlBurguerApi = "http://localhost:8080/products";
+    const urlBurguerApi = `http://localhost:8080/products/${productId}`; // Agregar el ID del producto a la URL
     try {
         const response = await axios.delete(urlBurguerApi, {
-            method: 'DELETE',
             headers: {
                 Authorization: "Bearer " + token,
                 'Content-Type': 'application/json',
@@ -48,6 +47,30 @@ const deleteProduct = async () => {
         console.log('error', error)
     }
 }
+
+// Llamada a la función deleteProduct con el ID del producto a eliminar
+// const productId = 10;
+deleteProduct();
+
+
+// const deleteProduct = async () => {
+//     const token = localStorage.getItem("token");
+//     const urlBurguerApi = "http://localhost:8080/products";
+//     try {
+//         const response = await axios.delete(urlBurguerApi, {
+//             method: 'DELETE',
+//             headers: {
+//                 Authorization: "Bearer " + token,
+//                 'Content-Type': 'application/json',
+//             },
+//         });
+//         const data = response.data;
+//         console.log(data)
+//         return data;
+//     } catch (error) {
+//         console.log('error', error)
+//     }
+// }
 
 const GetProducts = async () => {
     const token = localStorage.getItem("token");

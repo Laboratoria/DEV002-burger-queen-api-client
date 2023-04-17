@@ -7,6 +7,8 @@ import lyricsLogo from "./img/lyricsLogo.jpg";
 import referenceFood from "./img/referenceFood.png";
 
 const Login = () => {
+
+
   const onNavigate = useNavigate();
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
@@ -23,7 +25,7 @@ const Login = () => {
     try {
       const response = await auth({ email, password });
       console.log('token', response);
-      
+
       if (response.data.user.role == 'admin') {
         console.log('response', response)
         localStorage.setItem('token', response.data.accessToken);
@@ -48,14 +50,14 @@ const Login = () => {
           <form className="row" onSubmit={enviarDatos}>
             <div className="col-md-3">
               <label className='label-form'>
-                Email  
+                Email
                 <input type="email" placeholder="Email" className="form-control" onChange={handleInputChange} value={email} name="email"></input>
               </label>
             </div>
             <div className="col-md-3">
               <label className='label-form'>
-                Password  
-                <input type="password" placeholder="Password" className="form-control" onChange={handleInputChange}value={password} name="password"></input>
+                Password
+                <input type="password" placeholder="Password" className="form-control" onChange={handleInputChange} value={password} name="password"></input>
               </label>
             </div>
             <button type="submit" className="loginbtn">Login</button>
