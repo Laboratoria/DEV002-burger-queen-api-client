@@ -1,10 +1,11 @@
 import React from "react";
 import { GetProducts } from "../request";
+import { deleteProduct } from "../request";
 import { useState } from "react";
 import ProductList from "./listProducts";
 import FilterButtons from "./onlyBotton";
 
-const BotonsFilter = ({onAddProductClick, onClickDeleteProduct}) => {
+const BotonsFilter = ({onAddProductClick, handleDeleteProduct}) => {
     const [products, setProducts] = useState([]);
 
     const handleBreakfastClick = async () => {
@@ -23,6 +24,11 @@ const BotonsFilter = ({onAddProductClick, onClickDeleteProduct}) => {
         setProducts(filteredProducts);
     };
 
+    // const handleDeleteProduct = async (id) => {
+    //     await deleteProduct(id);
+    //     setProducts(products.filter((product) => product.id !== id));
+    //   };
+
     return (
         <div>
             <FilterButtons
@@ -30,7 +36,8 @@ const BotonsFilter = ({onAddProductClick, onClickDeleteProduct}) => {
                 onLunchClick={handleLunchClick}
                 onAddProductClick={onAddProductClick}
             />
-            <ProductList products={products} onClickDeleteProduct={onClickDeleteProduct} />
+            <ProductList products={products} 
+            onClickDeleteProduct={handleDeleteProduct} />
         </div>
     );
 };
