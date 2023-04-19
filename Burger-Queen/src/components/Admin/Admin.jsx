@@ -1,7 +1,7 @@
 import Logotype from "./logotype.jsx";
 import NavigationBar from "./navigationBar.jsx";
 import BotonsFilter from "../botonsFilter.jsx";
-import { GetProducts } from "../../request.js";
+import { GetProducts, deleteProduct } from "../../request.js";
 import { useState, useEffect } from "react";
 // import ProductList from "../listProducts.jsx";
 import AddModal from "./addModal.jsx";
@@ -13,9 +13,12 @@ const Admin = () => {
 
   // Lógica para abrir y cerrar el modal de eliminar producto----------------------------------------
   const [estadoModalDelete, cambiarEstadoModalDelete] = useState(false);
+
+  
+
   // // Estado para guardar el id del producto a eliminar
   // const [idDelProducto, setIdDelProducto] = useState(null);
-   // Función para eliminar un producto
+  // Función para eliminar un producto
 
   //  const handleDeleteProduct = (id) => {
   //   setIdDelProducto(id);
@@ -49,6 +52,19 @@ const Admin = () => {
     setProducts(data);
   };
 
+  const handleDeleteProduct = async () => {
+    const id = localStorage.getItem("productIdToDelete");
+    await deleteProduct(id);
+    cambiarEstadoModalDelete(false);
+    await handleProducts()
+  };
+  
+  // const handleDeleteProduct = async (id) => {
+  //   await DeleteProduct(id);
+  //   cambiarEstadoModalDelete(false);
+  //   handleProducts();
+  // };
+
   return (
     <>
       <div className="container">
@@ -71,7 +87,7 @@ const Admin = () => {
                   }
                   onAddProductClick={() => cambiarEstadoModal1(!estadoModal1)}
                   onClickDeleteProduct={() => cambiarEstadoModalDelete(!estadoModalDelete)}
-                  // onClickDeleteProduct={() => handleDeleteProduct(id)}
+                // onClickDeleteProduct={() => handleDeleteProduct(id)}
                 />
               </div>
             </div>
@@ -79,8 +95,9 @@ const Admin = () => {
               <ModalDelete
                 estado={estadoModalDelete}
                 cambiarEstado={cambiarEstadoModalDelete}
-                // id={idDelProducto}
+                handleDeleteProduct={handleDeleteProduct}
               />
+
             </div>
             <div className="bar">
               {/* <ProductList products={products} /> */}

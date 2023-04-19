@@ -1,14 +1,24 @@
 import exitIcon from "../img/exitIcon.png"
 import { deleteProduct } from "../../request";
 
-const ModalDelete = ({ estado, cambiarEstado }) => {
+
+
+const ModalDelete = ({ estado, cambiarEstado, handleDeleteProduct }) => {
+
     const id = localStorage.getItem("productIdToDelete");
 
-    const handleDeleteProduct = async () => {
-        deleteProduct(id);
+    // const handleDeleteProduct = async () => {
+    //     deleteProduct(id);
+    //     cambiarEstado(false);
+    //     localStorage.removeItem("productIdToDelete");
+    // };
+
+
+    const handleDelete = async () => {
+        await handleDeleteProduct(id);
         cambiarEstado(false);
-        localStorage.removeItem("productIdToDelete");
-    };
+      };
+      
 
     return (
         <div>
@@ -20,7 +30,7 @@ const ModalDelete = ({ estado, cambiarEstado }) => {
                         <button
                             className="buttonDeleteModal"
                             type="button"
-                            onClick={handleDeleteProduct}
+                            onClick={handleDelete}
                         >Eliminar producto</button>
                     </div>
                 </div>
