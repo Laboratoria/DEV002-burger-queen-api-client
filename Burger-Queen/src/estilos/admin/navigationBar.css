@@ -259,6 +259,7 @@ body {
     border: none;
     width: 300px;
     font-family: 'Inknut Antiqua', serif;
+    cursor: pointer;
 }
 
 .formAddProduct {

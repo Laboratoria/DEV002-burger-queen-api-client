@@ -47,23 +47,44 @@ const Admin = () => {
     handleProducts();
   }, []);
 
-  const handleProducts = async () => {
-    const data = await GetProducts();
-    setProducts(data);
-  };
+  // const handleProducts = async () => {
+  //   const data = await GetProducts();
+  //   setProducts(data);
+  // };
 
-  const handleDeleteProduct = async () => {
-    const id = localStorage.getItem("productIdToDelete");
-    await deleteProduct(id);
-    cambiarEstadoModalDelete(false);
-    await handleProducts()
-  };
+  // const handleDeleteProduct = async () => {
+  //   const id = localStorage.getItem("productIdToDelete");
+  //   await deleteProduct(id);
+  //   cambiarEstadoModalDelete(false);
+  //   await handleProducts()
+  // };
   
   // const handleDeleteProduct = async (id) => {
   //   await DeleteProduct(id);
   //   cambiarEstadoModalDelete(false);
   //   handleProducts();
   // };
+
+  const handleDeleteProduct = async () => {
+    const id = localStorage.getItem("productIdToDelete");
+    await deleteProduct(id);
+    cambiarEstadoModalDelete(false);
+    handleProducts(() => {
+      const newProducts = products.filter((product) => product.id !== id);
+      setProducts(newProducts);
+    });
+  };
+  
+  const handleProducts = async (callback) => {
+    const data = await GetProducts();
+    setProducts(data);
+    if (callback) callback();
+  };
+  
+  useEffect(() => {
+    handleProducts();
+  }, []);
+  
 
   return (
     <>
