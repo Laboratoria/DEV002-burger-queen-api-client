@@ -3,7 +3,6 @@ import NavigationBar from "./navigationBar.jsx";
 import BotonsFilter from "../botonsFilter.jsx";
 import { GetProducts } from "../../request.js";
 import { useState, useEffect } from "react";
-import { deleteProduct } from "../../request.js";
 // import ProductList from "../listProducts.jsx";
 import AddModal from "./addModal.jsx";
 import ModalDelete from "./modalDelete.jsx";
@@ -14,20 +13,14 @@ const Admin = () => {
 
   // Lógica para abrir y cerrar el modal de eliminar producto----------------------------------------
   const [estadoModalDelete, cambiarEstadoModalDelete] = useState(false);
+  // // Estado para guardar el id del producto a eliminar
+  // const [idDelProducto, setIdDelProducto] = useState(null);
+   // Función para eliminar un producto
 
-  const [showModal, setShowModal] = useState(false);
-  const [productToDelete, setProductToDelete] = useState(null);
-
-  const handleDeleteProduct = async (id) => {
-    await deleteProduct(id);
-    setProducts(products.filter((product) => product.id !== id));
-  };
-
-  // Lógica para abrir el modal para eliminar un producto
-  const handleOpenModalDelete = (product) => {
-    setProductToDelete(product);
-    cambiarEstadoModalDelete(true);
-  };
+  //  const handleDeleteProduct = (id) => {
+  //   setIdDelProducto(id);
+  //   cambiarEstadoModalDelete(true);
+  // };
 
   // Lógica para agregar nuevos productos con los inputs de precio y tipo en este componente ----------------------------------------------------------------------------
   const [price, setPrice] = useState("");
@@ -78,8 +71,7 @@ const Admin = () => {
                   }
                   onAddProductClick={() => cambiarEstadoModal1(!estadoModal1)}
                   onClickDeleteProduct={() => cambiarEstadoModalDelete(!estadoModalDelete)}
-                  // onAddProductClick={() => setShowModal(true)}
-                  // handleDeleteProduct={handleDeleteProduct}
+                  // onClickDeleteProduct={() => handleDeleteProduct(id)}
                 />
               </div>
             </div>
@@ -87,9 +79,7 @@ const Admin = () => {
               <ModalDelete
                 estado={estadoModalDelete}
                 cambiarEstado={cambiarEstadoModalDelete}
-                onClickDeleteProduct={() => handleDeleteProduct(productToDelete.id)}
-                id={productToDelete?.id}
-
+                // id={idDelProducto}
               />
             </div>
             <div className="bar">

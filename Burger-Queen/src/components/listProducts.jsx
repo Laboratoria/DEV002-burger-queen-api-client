@@ -2,6 +2,12 @@ import trash from "./img/basura.png";
 import edit from "./img/editar.png";
 
 const ProductList = ({ products, onClickDeleteProduct }) => {
+  
+  const handleDeleteClick = (id) => {
+    onClickDeleteProduct(id);
+    localStorage.setItem("productIdToDelete", id);
+  }
+
   return (
     <div className="grid-cards">
       {products.map((product) => (
@@ -13,11 +19,8 @@ const ProductList = ({ products, onClickDeleteProduct }) => {
             <img className="img-card" src={product.image} alt={product.name} />
             <p className="price">{product.price}</p>
             <div className="card-Body">
-              <img className="trash" 
-              src={trash} alt="Eliminar" 
-              onClick={() => onClickDeleteProduct }
-              />
-              <img className="edit" src={edit} alt="Editar"   onClick={() => onClickDeleteProduct(product.id)} />
+              <img className="trash" src={trash} alt="Eliminar" onClick={() => handleDeleteClick(product.id)} />
+              <img className="edit" src={edit} alt="Editar"   />
             </div>
           </div>
         </div>
@@ -25,6 +28,5 @@ const ProductList = ({ products, onClickDeleteProduct }) => {
     </div>
   );
 };
-
 
 export default ProductList;

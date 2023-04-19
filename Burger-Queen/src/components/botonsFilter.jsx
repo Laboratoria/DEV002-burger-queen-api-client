@@ -1,15 +1,22 @@
 import React from "react";
 import { GetProducts } from "../request";
-import { deleteProduct } from "../request";
 import { useState } from "react";
 import ProductList from "./listProducts";
 import FilterButtons from "./onlyBotton";
 
-const BotonsFilter = ({onAddProductClick, handleDeleteProduct}) => {
+const BotonsFilter = ({onAddProductClick, onClickDeleteProduct}) => {
     const [products, setProducts] = useState([]);
+
+      // Estado para guardar el id del producto a eliminar
+  const [idDelProducto, setIdDelProducto] = useState(null);
+  const handleDeleteProduct = (id) => {
+    setIdDelProducto(id);
+    cambiarEstadoModalDelete(true);
+  };
 
     const handleBreakfastClick = async () => {
         const data = await GetProducts();
+        console.log('algo', data.id)
         const filteredProducts = data.filter(
             (product) => product.type === "Desayuno"
         );
@@ -24,11 +31,6 @@ const BotonsFilter = ({onAddProductClick, handleDeleteProduct}) => {
         setProducts(filteredProducts);
     };
 
-    // const handleDeleteProduct = async (id) => {
-    //     await deleteProduct(id);
-    //     setProducts(products.filter((product) => product.id !== id));
-    //   };
-
     return (
         <div>
             <FilterButtons
@@ -36,8 +38,7 @@ const BotonsFilter = ({onAddProductClick, handleDeleteProduct}) => {
                 onLunchClick={handleLunchClick}
                 onAddProductClick={onAddProductClick}
             />
-            <ProductList products={products} 
-            onClickDeleteProduct={handleDeleteProduct} />
+            <ProductList products={products} onClickDeleteProduct={onClickDeleteProduct} id={idDelProducto}  />
         </div>
     );
 };

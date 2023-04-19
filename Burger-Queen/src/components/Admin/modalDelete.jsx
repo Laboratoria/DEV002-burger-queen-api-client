@@ -1,34 +1,31 @@
 import exitIcon from "../img/exitIcon.png"
-import React, { useState } from 'react';
-import axios from 'axios';
 import { deleteProduct } from "../../request";
 
-const ModalDelete = ({ estado, cambiarEstado,onClickDeleteProduct, id,setShowModal }) => {
+const ModalDelete = ({ estado, cambiarEstado }) => {
+    const id = localStorage.getItem("productIdToDelete");
 
-
-    const handleDelete = async () => {
-        await onClickDeleteProduct(id);
-        setShowModal(false);
+    const handleDeleteProduct = async () => {
+        deleteProduct(id);
         cambiarEstado(false);
-      };
+        localStorage.removeItem("productIdToDelete");
+    };
 
-    
     return (
         <div>
-            {estado && 
-            <div className="overlay" >
-            <div className="bodyOfModal">
-                <img id="exit" onClick={() => cambiarEstado(false)} className="exitIcon" src={exitIcon} />
-                <p>¿Estás segura(o) que quieres eliminar este producto?</p>
-                <button className="buttonDeleteModal" 
-                type="button"  
-                onClick={handleDelete}
-                >Eliminar producto</button>
-            </div>
-        </div>
+            {estado &&
+                <div className="overlay" >
+                    <div className="bodyOfModal">
+                        <img id="exit" onClick={() => cambiarEstado(false)} className="exitIcon" src={exitIcon} />
+                        <p>¿Estás segura(o) que quieres eliminar este producto del inventario?</p>
+                        <button
+                            className="buttonDeleteModal"
+                            type="button"
+                            onClick={handleDeleteProduct}
+                        >Eliminar producto</button>
+                    </div>
+                </div>
             }
         </div>
-        
     )
 }
 
