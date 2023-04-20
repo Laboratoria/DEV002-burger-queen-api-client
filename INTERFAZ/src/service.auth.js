@@ -119,7 +119,34 @@ export const postOrden = async (token, idWaiter, nameClient, arrayProductsQtys) 
 
 }
 
+//---------------------------para que el jefe de cocina vea las órdenes existentes que debe preparar-----------------------------------------------------------------
 
+export const getOrdenes = async (token) => { //mi componente tiene que esperar a que mi servicio se ejecute por completo para que el token no me lo devuelva en blanco
+  //console.log(token);
+  let respuesta = null;
+  await fetch('http://localhost:8080/orders', {
+    method: 'GET', //no lleva body
+    headers: {
+      "Content-Type": "application/json",
+
+      "Authorization": "Bearer " + token   //sin paréntesisis. Para tener acceso para el resto de rutas
+    },
+
+  })
+    .then(res => {
+      //console.log(res)
+      return res.json()
+    })
+    .then(res => {
+      respuesta = res;
+       console.log('res', res)
+    })
+    .catch(error => {
+      console.log(error, error.response, "Error al traer las órdenes")
+    });
+  return respuesta;
+
+}
 
 
 //---------------------------para obtener a los trabajadores-----------------------------------------------------------------

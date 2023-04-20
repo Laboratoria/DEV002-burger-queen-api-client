@@ -5,6 +5,9 @@ import LoginPage from './pages/LoginPage.jsx';
 //import './App.css';
 import './index.css'
 import TakingOrder from './pages/TakingOrderPage.jsx';
+import Kitchen from './pages/Kitchen.jsx';
+import KitchenServed from './pages/KitchenServed.jsx';
+
 import Staff from './pages/StaffPage.jsx';
 import Products from './pages/ProductsPage.jsx';
 import NotFound from './pages/NotFoundPage.jsx';
@@ -17,6 +20,8 @@ export default function App(){
 
       <Route path='/take-order' element = {<TakingOrder/>}></Route>
 
+      <Route path='/kitchen' element = {<Kitchen/>}></Route>
+      <Route path='/kitchen-served' element = {<KitchenServed/>}></Route>
 
       <Route path='/staff' element = {<Staff/>}></Route>
       <Route path='/products' element = {<Products/>}></Route>
