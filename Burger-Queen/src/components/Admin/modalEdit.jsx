@@ -2,7 +2,8 @@ import exitIcon from "../img/exitIcon.png"
 import { postProducts } from "../../request";
 import { useState } from "react";
 
-const AddModal = ({ children, estado, cambiarEstado, props }) => {
+
+const ModalEdit = ({ children, estado, cambiarEstado, props }) => {
 
     const { price, type } = props;
 
@@ -25,13 +26,12 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
         };
       };
       
-      const sendData = async (event) => {
+      const editData = async (event) => {
         event.preventDefault();
         const { name, image } = formValues;
         
         if (image ) {
           await postProducts({ name, price, image, type }); 
-          cambiarEstado(false)
         }
       };
     
@@ -44,7 +44,7 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
                         <img onClick={() => cambiarEstado(false)} className="exitIcon" src={exitIcon} />
                     </div>
                     <div className="bodyOfModal">
-                        <form onSubmit={sendData}>
+                        <form onSubmit={editData}>
                             <div className="formAddProduct">
                                 <label className='label-form'>
                                     Nombre
@@ -98,6 +98,4 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
     )
 };
 
-
-export default AddModal;
-
+export default ModalEdit;

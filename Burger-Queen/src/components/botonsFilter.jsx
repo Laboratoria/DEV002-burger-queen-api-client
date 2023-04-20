@@ -4,19 +4,18 @@ import { useState } from "react";
 import ProductList from "./listProducts";
 import FilterButtons from "./onlyBotton";
 
-const BotonsFilter = ({onAddProductClick, onClickDeleteProduct}) => {
+const BotonsFilter = ({ onAddProductClick, onClickDeleteProduct, onClickEditProduct }) => {
     const [products, setProducts] = useState([]);
 
-      // Estado para guardar el id del producto a eliminar
-  const [idDelProducto, setIdDelProducto] = useState(null);
-  const handleDeleteProduct = (id) => {
-    setIdDelProducto(id);
-    cambiarEstadoModalDelete(true);
-  };
+    // Estado para guardar el id del producto a eliminar
+    const [idDelProducto, setIdDelProducto] = useState(null);
+    const handleDeleteProduct = (id) => {
+        setIdDelProducto(id);
+        cambiarEstadoModalDelete(true);
+    };
 
     const handleBreakfastClick = async () => {
         const data = await GetProducts();
-        console.log('algo', data.id)
         const filteredProducts = data.filter(
             (product) => product.type === "Desayuno"
         );
@@ -38,7 +37,12 @@ const BotonsFilter = ({onAddProductClick, onClickDeleteProduct}) => {
                 onLunchClick={handleLunchClick}
                 onAddProductClick={onAddProductClick}
             />
-            <ProductList products={products} onClickDeleteProduct={onClickDeleteProduct} id={idDelProducto}  />
+            <ProductList
+                products={products}
+                onClickDeleteProduct={onClickDeleteProduct}
+                onClickEditProduct={onClickEditProduct}
+                id={idDelProducto}
+            />
         </div>
     );
 };

@@ -6,15 +6,20 @@ import { useState, useEffect } from "react";
 // import ProductList from "../listProducts.jsx";
 import AddModal from "./addModal.jsx";
 import ModalDelete from "./modalDelete.jsx";
+import ModalEdit from "./modalEdit.jsx";
 
 const Admin = () => {
-  // Lógica para abrir y cerrar el modal para agregar un nuevo producto------------------------------------------------------------------
+  // Lógica para abrir y cerrar el modal para agregar un nuevo producto------------------------------
   const [estadoModal1, cambiarEstadoModal1] = useState(false);
+
+  //  Lógica para abrir y cerrar el modal de editar un producto--------------------------------------
+  const [showEditModal, setShowEditModal] = useState(false);
+
 
   // Lógica para abrir y cerrar el modal de eliminar producto----------------------------------------
   const [estadoModalDelete, cambiarEstadoModalDelete] = useState(false);
 
-  
+
 
   // // Estado para guardar el id del producto a eliminar
   // const [idDelProducto, setIdDelProducto] = useState(null);
@@ -25,7 +30,7 @@ const Admin = () => {
   //   cambiarEstadoModalDelete(true);
   // };
 
-  // Lógica para agregar nuevos productos con los inputs de precio y tipo en este componente ----------------------------------------------------------------------------
+  // Lógica para agregar nuevos productos con los inputs de precio y tipo en este componente --------
   const [price, setPrice] = useState("");
   const [type, setType] = useState(null);
 
@@ -40,7 +45,7 @@ const Admin = () => {
     setType(value);
   };
 
-  // Lógica para  traer los productos-------------------------------------------
+  // Lógica para  traer los productos----------------------------------------------------------------
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -58,7 +63,7 @@ const Admin = () => {
   //   cambiarEstadoModalDelete(false);
   //   await handleProducts()
   // };
-  
+
   // const handleDeleteProduct = async (id) => {
   //   await DeleteProduct(id);
   //   cambiarEstadoModalDelete(false);
@@ -74,17 +79,17 @@ const Admin = () => {
       setProducts(newProducts);
     });
   };
-  
+
   const handleProducts = async (callback) => {
     const data = await GetProducts();
     setProducts(data);
     if (callback) callback();
   };
-  
+
   useEffect(() => {
     handleProducts();
   }, []);
-  
+
 
   return (
     <>
@@ -108,20 +113,44 @@ const Admin = () => {
                   }
                   onAddProductClick={() => cambiarEstadoModal1(!estadoModal1)}
                   onClickDeleteProduct={() => cambiarEstadoModalDelete(!estadoModalDelete)}
+                  onClickEditProduct={() => setShowEditModal(!showEditModal)}
                 // onClickDeleteProduct={() => handleDeleteProduct(id)}
                 />
               </div>
             </div>
+          
             <div>
               <ModalDelete
                 estado={estadoModalDelete}
                 cambiarEstado={cambiarEstadoModalDelete}
                 handleDeleteProduct={handleDeleteProduct}
+                // props={{ price, type }}
               />
-
             </div>
             <div className="bar">
               {/* <ProductList products={products} /> */}
+            </div>
+            <div>
+              {/* Aquí tendría que reutilizar el modal AddModal para editar o actualizar los datos del producto de mi api rest */}
+                  <ModalEdit
+                  estado={showEditModal}
+                  cambiarEstado={setShowEditModal}
+                  props={{ price, type }}
+                  >
+                    <div className="formAddProduct">
+                  <label className='label-form'>
+                    Precio
+                    <input type="text" value={price} onChange={handlePriceChange} placeholder="Precio" className="inputModalProduct" name=""></input>
+                  </label>
+                </div>
+                <div className="formAddProduct">
+                  <label className='label-form'>
+                    Tipo
+                    <button id="Desayuno" value={type} onClick={handleTypeChange} className="buttonsOfCategory">Desayuno</button>
+                    <button id="Almuerzo" value={type} onClick={handleTypeChange} className="buttonsOfCategory">Almuerzo</button>
+                  </label>
+                </div>
+                  </ModalEdit>
             </div>
             <div>
               <AddModal

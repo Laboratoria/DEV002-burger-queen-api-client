@@ -1,11 +1,11 @@
 import trash from "./img/basura.png";
 import edit from "./img/editar.png";
 
-const ProductList = ({ products, onClickDeleteProduct }) => {
+const ProductList = ({ products, onClickDeleteProduct, onClickEditProduct }) => {
   
   const handleDeleteClick = (id) => {
     onClickDeleteProduct(id);
-    localStorage.setItem("productIdToDelete", id);
+    localStorage.setItem("productIdT", id);
   }
 
   return (
@@ -17,10 +17,10 @@ const ProductList = ({ products, onClickDeleteProduct }) => {
               {product.name}
             </h2>
             <img className="img-card" src={product.image} alt={product.name} />
-            <p className="price">{product.price}</p>
+            <p className="price">{product.price} soles</p>
             <div className="card-Body">
               <img className="trash" src={trash} alt="Eliminar" onClick={() => handleDeleteClick(product.id)} />
-              <img className="edit" src={edit} alt="Editar"   />
+              <img className="edit" src={edit} alt="Editar" onClick={onClickEditProduct} />
             </div>
           </div>
         </div>

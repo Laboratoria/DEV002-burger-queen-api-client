@@ -30,6 +30,28 @@ const postProducts = async ({ name, price, image, type }) => {
     }
 }
 
+const editProduct = async (id) => {
+    const token = localStorage.getItem("token");
+    const urlBurguerApi = `http://localhost:8080/products/${id}`;
+    const headers = {
+      Authorization: "Bearer " + token,
+      'Content-Type': 'application/json',
+    };
+    const data = {
+        name:"",
+        price:"",
+        image:"",
+        type:"",
+    }
+    try {
+      await axios.put(urlBurguerApi, data, { headers });
+      console.log('El producto ha sido actualizado con éxito');
+    } catch (error) {
+      console.error('Error al actualizar el producto:', error);
+    }
+  };
+
+
 const deleteProduct = async (id) => {
     const token = localStorage.getItem("token");
     const urlBurguerApi = `http://localhost:8080/products/${id}`; // Agregar el ID del producto a la URL
@@ -45,6 +67,8 @@ const deleteProduct = async (id) => {
         console.log('error', error)
     }
 }
+
+
 
 // Llamada a la función deleteProduct con el ID del producto a eliminar
 // const productId = 10;
@@ -93,4 +117,5 @@ export {
     postProducts,
     deleteProduct,
     GetProducts,
+    editProduct,
 }
