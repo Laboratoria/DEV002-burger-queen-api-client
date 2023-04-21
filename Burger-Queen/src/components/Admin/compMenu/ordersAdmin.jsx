@@ -1,12 +1,19 @@
 import Logotype from "../logotype";
 import React from "react";
+import NavigationBar from "../navigationBar";
 
 const OrdersAdmin = () => {
     return (
-        <>
-            <Logotype />
-            <h1>Orders of Admin</h1>
-        </>
+        <div className="container">
+            <div className="logotype">
+                <Logotype />
+            </div>
+            <div className="admiContainer">
+                <div className="navigationBar">
+                    <NavigationBar />
+                </div>
+            </div>
+        </div>
     )
 }
 export default OrdersAdmin;

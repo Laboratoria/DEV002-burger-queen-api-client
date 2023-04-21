@@ -1,24 +1,24 @@
 import exitIcon from "../img/exitIcon.png"
-import { deleteProduct } from "../../request";
+import { deleteProduct, GetProducts } from "../../request";
 
 
-
-const ModalDelete = ({ estado, cambiarEstado }) => {
+const ModalDelete = ({ estado, cambiarEstado, onUpdateProducts }) => {
 
     const id = localStorage.getItem("productId");
 
     const handleDeleteProduct = async () => {
-        deleteProduct(id);
+        await deleteProduct(id);
         cambiarEstado(false);
         localStorage.removeItem("productId");
     };
 
-
     const handleDelete = async () => {
-        await handleDeleteProduct(id);
+        await handleDeleteProduct();
         cambiarEstado(false);
-      };
-      
+        const data = await GetProducts();
+        const newProducts = data.filter((product) => product.id !== id);
+        await onUpdateProducts(newProducts);
+    };
 
     return (
         <div>

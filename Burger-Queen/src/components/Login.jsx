@@ -30,7 +30,7 @@ const Login = () => {
         console.log('response', response)
         localStorage.setItem('token', response.data.accessToken);
         // redirigir a la página principal
-        onNavigate('/admin')
+        onNavigate('/menuAdmin')
       }
     } catch (error) {
       setError(error.response.data.message);

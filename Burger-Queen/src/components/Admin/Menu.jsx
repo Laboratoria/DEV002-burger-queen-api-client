@@ -8,7 +8,7 @@ import AddModal from "./addModal.jsx";
 import ModalDelete from "./modalDelete.jsx";
 import ModalEdit from "./modalEdit.jsx";
 
-const Admin = () => {
+const Menu = () => {
   // Lógica para abrir y cerrar el modal para agregar un nuevo producto------------------------------
   const [estadoModal1, cambiarEstadoModal1] = useState(false);
 
@@ -19,21 +19,9 @@ const Admin = () => {
   // Lógica para abrir y cerrar el modal de eliminar producto----------------------------------------
   const [estadoModalDelete, cambiarEstadoModalDelete] = useState(false);
 
-
-
-  // // Estado para guardar el id del producto a eliminar
-  // const [idDelProducto, setIdDelProducto] = useState(null);
-  // Función para eliminar un producto
-
-  //  const handleDeleteProduct = (id) => {
-  //   setIdDelProducto(id);
-  //   cambiarEstadoModalDelete(true);
-  // };
-
   // Lógica para agregar nuevos productos con los inputs de precio y tipo en este componente --------
   const [price, setPrice] = useState("");
   const [type, setType] = useState(null);
-
 
   const handlePriceChange = (event) => {
     setPrice(event.target.value);
@@ -49,26 +37,9 @@ const Admin = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    handleProducts();
+    // handleProducts();
+    handleUpdateProducts()
   }, []);
-
-  // const handleProducts = async () => {
-  //   const data = await GetProducts();
-  //   setProducts(data);
-  // };
-
-  // const handleDeleteProduct = async () => {
-  //   const id = localStorage.getItem("productIdToDelete");
-  //   await deleteProduct(id);
-  //   cambiarEstadoModalDelete(false);
-  //   await handleProducts()
-  // };
-
-  // const handleDeleteProduct = async (id) => {
-  //   await DeleteProduct(id);
-  //   cambiarEstadoModalDelete(false);
-  //   handleProducts();
-  // };
 
   const handleDeleteProduct = async () => {
     const id = localStorage.getItem("productIdToDelete");
@@ -86,10 +57,11 @@ const Admin = () => {
     if (callback) callback();
   };
 
-  useEffect(() => {
-    handleProducts();
-  }, []);
-
+  const handleUpdateProducts = async() => {
+    const response = await GetProducts();
+    setProducts(response);
+  };
+  
 
   return (
     <>
@@ -124,6 +96,8 @@ const Admin = () => {
                 estado={estadoModalDelete}
                 cambiarEstado={cambiarEstadoModalDelete}
                 handleDeleteProduct={handleDeleteProduct}
+                onUpdateProducts={handleUpdateProducts}
+
                 // props={{ price, type }}
               />
             </div>
@@ -136,6 +110,8 @@ const Admin = () => {
                   estado={showEditModal}
                   cambiarEstado={setShowEditModal}
                   props={{ price, type }}
+                  onUpdateProducts={handleUpdateProducts}
+
                   >
                     <div className="formAddProduct">
                   <label className='label-form'>
@@ -157,6 +133,8 @@ const Admin = () => {
                 estado={estadoModal1}
                 cambiarEstado={cambiarEstadoModal1}
                 props={{ price, type }}
+                onUpdateProducts={handleUpdateProducts}
+
               >
                 <div className="formAddProduct">
                   <label className='label-form'>
@@ -180,4 +158,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default Menu;

@@ -26,6 +26,17 @@ const ModalEdit = ({ children, estado, cambiarEstado, props }) => {
         };
     };
 
+    
+
+    const editProduct = async (id, updatedProduct) => {
+        try {
+            const response = await putProducts(id, updatedProduct);
+            console.log(response); // aquí puedo mostrar algo para confirmar al usuario su acción.
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const editData = async (event) => {
         event.preventDefault();
         const { name, image } = formValues;
@@ -38,19 +49,10 @@ const ModalEdit = ({ children, estado, cambiarEstado, props }) => {
                 type: type,
             };
             await editProduct(id, updatedProduct);
-            
+            cambiarEstado(false)
         }
     };
-
-    const editProduct = async (id, updatedProduct) => {
-        try {
-            const response = await putProducts(id, updatedProduct);
-            console.log(response); // aquí puedo mostrar algo para confirmar al usuario su acción.
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
+    
     return (
         <div>
             {estado &&
@@ -90,7 +92,7 @@ const ModalEdit = ({ children, estado, cambiarEstado, props }) => {
                             <div className="formAddProduct">
                                 <img id="img-preview" src={formValues.image} alt="" style={{ display: "block", maxWidth: "100%" }} />
                             </div>
-                            <button type="submit" className="buttonAddModal">Añadir un nuevo producto</button>
+                            <button type="submit" className="buttonAddModal">Actualizar producto</button>
                         </form>
                     </div>
                 </div>
