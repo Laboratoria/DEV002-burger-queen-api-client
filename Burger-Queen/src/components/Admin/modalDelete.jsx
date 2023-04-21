@@ -3,15 +3,15 @@ import { deleteProduct } from "../../request";
 
 
 
-const ModalDelete = ({ estado, cambiarEstado, handleDeleteProduct }) => {
+const ModalDelete = ({ estado, cambiarEstado }) => {
 
-    const id = localStorage.getItem("productIdToDelete");
+    const id = localStorage.getItem("productId");
 
-    // const handleDeleteProduct = async () => {
-    //     deleteProduct(id);
-    //     cambiarEstado(false);
-    //     localStorage.removeItem("productIdToDelete");
-    // };
+    const handleDeleteProduct = async () => {
+        deleteProduct(id);
+        cambiarEstado(false);
+        localStorage.removeItem("productId");
+    };
 
 
     const handleDelete = async () => {

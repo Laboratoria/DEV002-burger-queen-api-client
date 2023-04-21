@@ -30,26 +30,43 @@ const postProducts = async ({ name, price, image, type }) => {
     }
 }
 
-const editProduct = async (id) => {
-    const token = localStorage.getItem("token");
-    const urlBurguerApi = `http://localhost:8080/products/${id}`;
-    const headers = {
-      Authorization: "Bearer " + token,
-      'Content-Type': 'application/json',
-    };
-    const data = {
-        name:"",
-        price:"",
-        image:"",
-        type:"",
-    }
-    try {
-      await axios.put(urlBurguerApi, data, { headers });
-      console.log('El producto ha sido actualizado con éxito');
-    } catch (error) {
-      console.error('Error al actualizar el producto:', error);
-    }
+const putProducts = async (id, object) => {
+  const token = localStorage.getItem("token");
+  const urlBurguerApi = `http://localhost:8080/products/${id}`;
+  const headers = {
+    Authorization: "Bearer " + token,
+    'Content-Type': 'application/json',
   };
+  try {
+    await axios.put(urlBurguerApi, object, { headers });
+    console.log('El producto ha sido actualizado con éxito');
+  } catch (error) {
+    console.error('Error al actualizar el producto:', error);
+  }
+};
+
+
+
+// const editProduct = async (id) => {
+//     const token = localStorage.getItem("token");
+//     const urlBurguerApi = `http://localhost:8080/products/${id}`;
+//     const headers = {
+//       Authorization: "Bearer " + token,
+//       'Content-Type': 'application/json',
+//     };
+//     const data = {
+//         name:"",
+//         price:"",
+//         image:"",
+//         type:"",
+//     }
+//     try {
+//       await axios.put(urlBurguerApi, data, { headers });
+//       console.log('El producto ha sido actualizado con éxito');
+//     } catch (error) {
+//       console.error('Error al actualizar el producto:', error);
+//     }
+//   };
 
 
 const deleteProduct = async (id) => {
@@ -117,5 +134,5 @@ export {
     postProducts,
     deleteProduct,
     GetProducts,
-    editProduct,
+    putProducts,
 }

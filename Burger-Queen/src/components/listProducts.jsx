@@ -5,7 +5,12 @@ const ProductList = ({ products, onClickDeleteProduct, onClickEditProduct }) => 
   
   const handleDeleteClick = (id) => {
     onClickDeleteProduct(id);
-    localStorage.setItem("productIdT", id);
+    localStorage.setItem("productId", id);
+  }
+
+  const handleEditClick = (id) => {
+    onClickEditProduct(id);
+    localStorage.setItem("productId", id)
   }
 
   return (
@@ -20,7 +25,7 @@ const ProductList = ({ products, onClickDeleteProduct, onClickEditProduct }) => 
             <p className="price">{product.price} soles</p>
             <div className="card-Body">
               <img className="trash" src={trash} alt="Eliminar" onClick={() => handleDeleteClick(product.id)} />
-              <img className="edit" src={edit} alt="Editar" onClick={onClickEditProduct} />
+              <img className="edit" src={edit} alt="Editar" onClick={() => handleEditClick(product.id)} />
             </div>
           </div>
         </div>
