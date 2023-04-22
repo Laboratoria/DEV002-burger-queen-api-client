@@ -12,6 +12,9 @@ const OrdersAdmin = () => {
                 <div className="navigationBar">
                     <NavigationBar />
                 </div>
+                <div className="cards">
+                    <div className="buttonsProducts"></div>
+                </div>
             </div>
         </div>
     )

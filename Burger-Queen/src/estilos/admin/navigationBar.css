@@ -157,7 +157,9 @@ body {
 .trash,
 .edit,
 .exitIcon,
-.add {
+.add,
+.editEmployeeImg,
+.deleteEmployeeImg {
     width: 20px;
     cursor: pointer;
 }
@@ -325,3 +327,6 @@ body {
 #img-preview {
     width: 50px;
 }
+
+/* Employees  */
+
