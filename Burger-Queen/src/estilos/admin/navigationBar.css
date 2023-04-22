@@ -26,7 +26,7 @@ body {
     position: relative;
     margin-right: 15px;
     margin-left: 15px;
-    padding: 0;    
+    padding: 0;
 }
 
 .navigation__item {
@@ -107,7 +107,9 @@ body {
 .iconsOrders,
 .lunch,
 .breakFast,
-.botonsFilter {
+.botonsFilter,
+.waiters,
+.cooks {
     margin: 10px;
 }
 
@@ -208,13 +210,16 @@ body {
 }
 
 .breakFast,
-.lunch {
+.lunch,
+.waiters,
+.cooks {
     border-radius: 20px;
     border: none;
     font-size: medium;
     font-family: 'Inknut Antiqua', serif;
     color: #D9D9D9;
     cursor: pointer;
+    color: black;
 }
 
 .breakFast {
@@ -316,13 +321,6 @@ body {
     padding: 3px;
 }
 
-#Desayuno {
-    background-color: #EA11FC;
-}
-
-#Almuerzo {
-    background-color: #44BDCD;
-}
 
 #img-preview {
     width: 50px;
@@ -330,3 +328,118 @@ body {
 
 /* Employees  */
 
+.waiters {
+    background-color: #58f254;
+}
+
+.cooks {
+    background-color: #EA11FC;
+}
+
+.containEmployee {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    margin: 0 20px;
+    width: 50vw;
+}
+
+.containerDataButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #EA11FC;
+    width: 60vw;
+    border-radius: 10px;
+    /* padding-bottom: 0px; */
+}
+
+.dataEmployees {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left !important;
+    font-size: 10px;
+    /* font-size: 2em; */
+    font-family: 'Inknut Antiqua', serif;
+}
+
+.containImgEmployee {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    flex-direction: column;
+    position: relative;
+}
+
+.nameEmployee {
+    color: #EA11FC;
+}
+
+.containerIcons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px ;
+}
+
+.imgEmployee {
+    width: 8vw;
+}
+
+.deleteEmployeeImg,
+.editEmployeeImg {
+    width: 30px;
+}
+
+@media (max-width: 800px) {
+    .containEmployee {
+        display: flex;
+        flex-direction: row;
+        border-radius: 10px;
+        margin: 0 20px;
+        width: 70vw;
+    }
+    
+    .containerDataButtons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #EA11FC;
+        width: 50vw;
+        border-radius: 10px;
+        /* padding-bottom: 0px; */
+    }
+    
+    
+}
+
+@media (min-width: 800px) {
+    .containEmployee {
+        display: flex;
+        flex-direction: row;
+        border-radius: 10px;
+        margin: 0 20px;
+        width: 60vw;
+        padding-left: 10% ;
+    }
+    
+    .containerDataButtons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #EA11FC;
+        width: 40vw;
+        border-radius: 10px;
+        /* padding-bottom: 0px; */
+    }
+
+    .imgEmployee {
+        width: 5vw;
+    }
+
+}

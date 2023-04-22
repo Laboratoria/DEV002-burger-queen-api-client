@@ -4,10 +4,10 @@ const EmployeeButtons = () => {
     return (
         <div className="rowFilter">
       <div className="onlyButtons">
-       <button  className="breakFast">
+       <button  className="cooks">
         Cocineros
       </button>
-      <button  className="lunch">
+      <button  className="waiters">
         Meseros
       </button> 
       </div>
