@@ -273,7 +273,7 @@ body {
     box-shadow: rgba(100, 100, 111, 0.2);
     padding: 20px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-
+    text-align: left !important;
 }
 
 .messageError {
@@ -328,11 +328,11 @@ body {
 
 /* Employees  */
 
-.waiters {
+.waiters, #waiters {
     background-color: #58f254;
 }
 
-.cooks {
+.cooks, #cooks {
     background-color: #EA11FC;
 }
 
@@ -349,7 +349,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* background-color: #EA11FC; */
     width: 70vw;
     border-radius: 10px;
 }
@@ -361,7 +360,6 @@ body {
     text-align: left !important;
     font-size: 10px;
     font-family: 'Inknut Antiqua', serif;
-    
 }
 
 .dataEmployees p:nth-child(3) {
@@ -403,6 +401,11 @@ body {
     display: flex;
     flex-direction: column;
 
+}
+
+#buttonModal {
+    display: flex;
+    justify-content: center;
 }
 
 @media (max-width: 800px) {

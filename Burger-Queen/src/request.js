@@ -81,9 +81,11 @@ const getUsers = async () => {
 
 const addEmployee = async() => {
     const object = {
+        name:"",
         email:"",
         password:"",
         role:"",
+        image:"",
     }
     const token = localStorage.getItem("token");
     const urlBurguerApi = "http://localhost:8080/users";

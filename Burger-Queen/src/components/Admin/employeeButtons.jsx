@@ -1,6 +1,6 @@
 import add from "../img/add.png"
 
-const EmployeeButtons = ({ onhandleWaiterClick, onhandleCooksClick }) => {
+const EmployeeButtons = ({ onhandleWaiterClick, onhandleCooksClick, onhandleAddClick }) => {
   return (
     <div className="rowFilter">
       <div className="onlyButtons">
@@ -12,7 +12,7 @@ const EmployeeButtons = ({ onhandleWaiterClick, onhandleCooksClick }) => {
         </button>
       </div>
 
-      <div className="addProduct">
+      <div className="addProduct" onClick={onhandleAddClick}>
         <img className="add" src={add} alt="Agregar" />
         <p className="textButtonAdd">Añadir personal</p>
       </div>

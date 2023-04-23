@@ -1,9 +1,9 @@
 import EmployeeButtons from "./Admin/employeeButtons"
 import ListEmployees from "./Admin/ListEmployees";
 import { useState } from "react";
-import { getUsers } from "../request";
+import { addEmployee, getUsers } from "../request";
 
-const ContainerBottonsAndList = () => {
+const ContainerBottonsAndList = ({handleAddClick}) => {
     const [users, setUsers] = useState([]);
 
     const handleWaiterClick = async () => {
@@ -31,6 +31,7 @@ const ContainerBottonsAndList = () => {
                 <EmployeeButtons
                     onhandleWaiterClick={handleWaiterClick}
                     onhandleCooksClick={handleCooksClicks}
+                    onhandleAddClick={handleAddClick}
                 />
             </div>
             <div>
