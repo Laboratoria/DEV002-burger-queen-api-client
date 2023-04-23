@@ -45,6 +45,6 @@ const BotonsFilter = ({ onAddProductClick, onClickDeleteProduct, onClickEditProd
             />
         </div>
     );
-};
+};  
 
 export default BotonsFilter;

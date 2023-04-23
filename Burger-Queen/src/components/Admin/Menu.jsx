@@ -15,7 +15,6 @@ const Menu = () => {
   //  Lógica para abrir y cerrar el modal de editar un producto--------------------------------------
   const [showEditModal, setShowEditModal] = useState(false);
 
-
   // Lógica para abrir y cerrar el modal de eliminar producto----------------------------------------
   const [estadoModalDelete, cambiarEstadoModalDelete] = useState(false);
 

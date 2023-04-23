@@ -349,10 +349,9 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #EA11FC;
-    width: 60vw;
+    /* background-color: #EA11FC; */
+    width: 70vw;
     border-radius: 10px;
-    /* padding-bottom: 0px; */
 }
 
 .dataEmployees {
@@ -361,15 +360,21 @@ body {
     align-items: center;
     text-align: left !important;
     font-size: 10px;
-    /* font-size: 2em; */
     font-family: 'Inknut Antiqua', serif;
+    
 }
+
+.dataEmployees p:nth-child(3) {
+    width: 200px;
+    word-wrap: break-word;
+  }
+  
 
 .containImgEmployee {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40vw;
+    width: 30vw;
     flex-direction: column;
     position: relative;
 }
@@ -392,6 +397,12 @@ body {
 .deleteEmployeeImg,
 .editEmployeeImg {
     width: 30px;
+}
+
+.containerBottonsList {
+    display: flex;
+    flex-direction: column;
+
 }
 
 @media (max-width: 800px) {
@@ -423,7 +434,7 @@ body {
         flex-direction: row;
         border-radius: 10px;
         margin: 0 20px;
-        width: 60vw;
+        width: 80vw;
         padding-left: 10% ;
     }
     
@@ -433,9 +444,8 @@ body {
         align-items: center;
         justify-content: center;
         background-color: #EA11FC;
-        width: 40vw;
+        width: 30vw;
         border-radius: 10px;
-        /* padding-bottom: 0px; */
     }
 
     .imgEmployee {

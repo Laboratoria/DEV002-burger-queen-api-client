@@ -30,44 +30,21 @@ const postProducts = async ({ name, price, image, type }) => {
     }
 }
 
+// editar un producto existente en API REST
 const putProducts = async (id, object) => {
-  const token = localStorage.getItem("token");
-  const urlBurguerApi = `http://localhost:8080/products/${id}`;
-  const headers = {
-    Authorization: "Bearer " + token,
-    'Content-Type': 'application/json',
-  };
-  try {
-    await axios.put(urlBurguerApi, object, { headers });
-    console.log('El producto ha sido actualizado con éxito');
-  } catch (error) {
-    console.error('Error al actualizar el producto:', error);
-  }
+    const token = localStorage.getItem("token");
+    const urlBurguerApi = `http://localhost:8080/products/${id}`;
+    const headers = {
+        Authorization: "Bearer " + token,
+        'Content-Type': 'application/json',
+    };
+    try {
+        await axios.put(urlBurguerApi, object, { headers });
+        console.log('El producto ha sido actualizado con éxito');
+    } catch (error) {
+        console.error('Error al actualizar el producto:', error);
+    }
 };
-
-
-
-// const editProduct = async (id) => {
-//     const token = localStorage.getItem("token");
-//     const urlBurguerApi = `http://localhost:8080/products/${id}`;
-//     const headers = {
-//       Authorization: "Bearer " + token,
-//       'Content-Type': 'application/json',
-//     };
-//     const data = {
-//         name:"",
-//         price:"",
-//         image:"",
-//         type:"",
-//     }
-//     try {
-//       await axios.put(urlBurguerApi, data, { headers });
-//       console.log('El producto ha sido actualizado con éxito');
-//     } catch (error) {
-//       console.error('Error al actualizar el producto:', error);
-//     }
-//   };
-
 
 const deleteProduct = async (id) => {
     const token = localStorage.getItem("token");
@@ -85,31 +62,51 @@ const deleteProduct = async (id) => {
     }
 }
 
+const getUsers = async () => {
+    const token = localStorage.getItem("token");
+    const urlBurguerApi = "http://localhost:8080/users";
+    try {
+        const response = await axios.get(urlBurguerApi, {
+            headers: {
+                Authorization: "Bearer " + token,
+            },
+        });
+        const data = response.data;
+        console.log('data', data)
+        return data;
+    } catch (error) {
+        console.log('error', error)
+    }
+}
+
+const addEmployee = async() => {
+    const object = {
+        email:"",
+        password:"",
+        role:"",
+    }
+    const token = localStorage.getItem("token");
+    const urlBurguerApi = "http://localhost:8080/users";
+    console.log('postProducts')
+    try {
+        const response = await axios.post(urlBurguerApi, object, {
+            method: 'POST',
+            headers: {
+                Authorization: "Bearer " + token,
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = response.data;
+        console.log(data)
+        return data;
+    } catch (error) {
+        console.log('error', error)
+    }
+}
+
+// addEmployee()
 
 
-// Llamada a la función deleteProduct con el ID del producto a eliminar
-// const productId = 10;
-// deleteProduct();
-
-
-// const deleteProduct = async () => {
-//     const token = localStorage.getItem("token");
-//     const urlBurguerApi = "http://localhost:8080/products";
-//     try {
-//         const response = await axios.delete(urlBurguerApi, {
-//             method: 'DELETE',
-//             headers: {
-//                 Authorization: "Bearer " + token,
-//                 'Content-Type': 'application/json',
-//             },
-//         });
-//         const data = response.data;
-//         console.log(data)
-//         return data;
-//     } catch (error) {
-//         console.log('error', error)
-//     }
-// }
 
 const GetProducts = async () => {
     const token = localStorage.getItem("token");
@@ -135,4 +132,6 @@ export {
     deleteProduct,
     GetProducts,
     putProducts,
+    getUsers,
+    addEmployee,
 }
