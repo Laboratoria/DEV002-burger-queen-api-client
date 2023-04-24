@@ -2,7 +2,7 @@ import exitIcon from "../img/exitIcon.png"
 import { addEmployee } from "../../request";
 import { useState } from "react";
 
-const ModalAddUsers = ({ estado, cambiarEstado }) => {
+const ModalEditUser = ({ estado, cambiarEstado }) => {
 
     const [role, setRole] = useState(null);
 
@@ -146,4 +146,4 @@ const ModalAddUsers = ({ estado, cambiarEstado }) => {
     )
 }
 
-export default ModalAddUsers;
+export default ModalEditUser;

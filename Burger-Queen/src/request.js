@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const token = localStorage.getItem("token");
+
 // Usuario hace login 
 const auth = async ({ email, password }) => {
     return await axios.post('http://127.0.0.1:8080/login', { email, password }, {
@@ -49,6 +51,20 @@ const addEmployee = async({name, email, password, role, image}) => {
         console.log('error de request', error)
     }
 };
+
+const editUser = async({ name, email, password, role, image }) => {
+    const urlBurguerApi = `http://localhost:8080/products/${id}`;
+    const headers = {
+        Authorization: "Bearer " + token,
+        'Content-Type': 'application/json',
+    };
+    try {
+        await axios.put(urlBurguerApi, object, { headers });
+        console.log('El usuario ha sido actualizado con éxito');
+    } catch (error) {
+        console.log('Error al actualizar el producto:', error)
+    }
+}
 
 // Añadir un nuevo producto
 const postProducts = async ({ name, price, image, type }) => {
@@ -133,4 +149,5 @@ export {
     putProducts,
     getUsers,
     addEmployee,
+    editUser,
 }
