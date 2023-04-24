@@ -40,10 +40,10 @@ const ModalAddUsers = ({ estado, cambiarEstado }) => {
 
     const sendData = async (event) => {
         event.preventDefault();
-        const { email, password, role, image } = formValues;
+        const { name, email, password, role, image } = formValues;
       
         if (email && password && role) {
-          await addEmployee({ email, password, role, image });
+          await addEmployee({ name, email, password, role, image });
           cambiarEstado(false);
         }
       };
@@ -60,7 +60,7 @@ const ModalAddUsers = ({ estado, cambiarEstado }) => {
                     </div>
                     <div className="bodyOfModal">
                         <form onSubmit={sendData}>
-                            {/* <div className="formAddProduct">
+                            <div className="formAddProduct">
                                 <label className='label-form'>
                                     Nombre
                                     <input
@@ -71,7 +71,7 @@ const ModalAddUsers = ({ estado, cambiarEstado }) => {
                                         onChange={handleInputChange}
                                     ></input>
                                 </label>
-                            </div> */}
+                            </div>
                             {/*  */}
                             <div className="formAddProduct">
                                 <label className='label-form'>

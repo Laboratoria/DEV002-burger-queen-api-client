@@ -29,13 +29,13 @@ const getUsers = async () => {
 };
 
 //Añadir a un nuevo usuario
-const addEmployee = async({email, password, role, image}) => {
+const addEmployee = async({name, email, password, role, image}) => {
     
     const token = localStorage.getItem("token");
     const urlBurguerApi = "http://localhost:8080/users";
     console.log('postProducts')
     try {
-        const response = await axios.post(urlBurguerApi, {email, password, role, image}, {
+        const response = await axios.post(urlBurguerApi, {name, email, password, role, image}, {
             method: 'POST',
             headers: {
                 Authorization: "Bearer " + token,

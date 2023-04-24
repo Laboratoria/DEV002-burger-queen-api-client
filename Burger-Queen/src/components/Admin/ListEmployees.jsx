@@ -26,7 +26,7 @@ const ListEmployees = ({users}) => {
 
                     <div className="containImgEmployee">
                         <img className="imgEmployee" src={user.image}></img>
-                        <p className="nameEmployee" style={{ color: user.role === "waiter" ? "#58f254" : "" }}>Jin</p>
+                        <p className="nameEmployee" style={{ color: user.role === "waiter" ? "#58f254" : "" }}>{user.name}</p>
                     </div>
 
                 </div>
