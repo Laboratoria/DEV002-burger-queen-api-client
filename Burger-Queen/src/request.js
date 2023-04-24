@@ -52,8 +52,10 @@ const addEmployee = async({name, email, password, role, image}) => {
     }
 };
 
-const editUser = async({ name, email, password, role, image }) => {
-    const urlBurguerApi = `http://localhost:8080/products/${id}`;
+const editUser = async(id, object) => {
+    const urlBurguerApi = `http://localhost:8080/users/${id}`;
+    console.log('urlBurguerApi', urlBurguerApi)
+    const token = localStorage.getItem("token");
     const headers = {
         Authorization: "Bearer " + token,
         'Content-Type': 'application/json',
@@ -64,7 +66,7 @@ const editUser = async({ name, email, password, role, image }) => {
     } catch (error) {
         console.log('Error al actualizar el producto:', error)
     }
-}
+};
 
 // Añadir un nuevo producto
 const postProducts = async ({ name, price, image, type }) => {

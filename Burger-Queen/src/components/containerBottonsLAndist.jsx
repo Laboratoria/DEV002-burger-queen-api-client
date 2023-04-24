@@ -3,7 +3,7 @@ import ListEmployees from "./Admin/ListEmployees";
 import { useState } from "react";
 import { addEmployee, getUsers } from "../request";
 
-const ContainerBottonsAndList = ({handleAddClick}) => {
+const ContainerBottonsAndList = ({handleAddClick, onClickEditUser}) => {
     const [users, setUsers] = useState([]);
 
     const handleWaiterClick = async () => {
@@ -37,6 +37,7 @@ const ContainerBottonsAndList = ({handleAddClick}) => {
             <div>
                 <ListEmployees
                     users={users}
+                    onClickEditUser={onClickEditUser}
                 />
             </div>
         </div>

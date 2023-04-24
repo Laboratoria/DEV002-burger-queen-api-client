@@ -1,18 +1,19 @@
 import exitIcon from "../img/exitIcon.png"
-import { addEmployee } from "../../request";
+import { editUser } from "../../request";
 import { useState } from "react";
 
-const ModalEditUser = ({ estado, cambiarEstado }) => {
+const ModalEditUsers = ({ estado, cambiarEstado }) => {
 
     const [role, setRole] = useState(null);
+     const id = localStorage.getItem("userId");
 
-  const handleTypeChange = (event) => {
-    event.preventDefault();
-    const value = event.target.id;
-    console.log('value', value)
-    setRole(value);
-    setFormValues({ ...formValues, role: value });
-  };
+    const handleTypeChange = (event) => {
+        event.preventDefault();
+        const value = event.target.id;
+        console.log('value', value)
+        setRole(value);
+        setFormValues({ ...formValues, role: value });
+    };
 
     const [formValues, setFormValues] = useState({
         email: "",
@@ -26,7 +27,7 @@ const ModalEditUser = ({ estado, cambiarEstado }) => {
 
     const handlePasswordChange = (event) => {
         const { name, value } = event.target;
-        setFormValues({...formValues, [name]: value });
+        setFormValues({ ...formValues, [name]: value });
     }
 
     const handleImageChange = (event) => {
@@ -38,15 +39,23 @@ const ModalEditUser = ({ estado, cambiarEstado }) => {
         };
     };
 
-    const sendData = async (event) => {
+    const editData = async (event) => {
         event.preventDefault();
         const { name, email, password, role, image } = formValues;
-      
+
         if (email && password && role) {
-          await addEmployee({ name, email, password, role, image });
-          cambiarEstado(false);
+            const object = {
+                name: name,
+                email: email,
+                password: password,
+                role: role,
+                image: image,
+            }
+            await editUser(id, object);
+            cambiarEstado(false);
+            localStorage.removeItem("userId");
         }
-      };
+    };
 
     return (
         <div>
@@ -57,7 +66,7 @@ const ModalEditUser = ({ estado, cambiarEstado }) => {
                         <img onClick={() => cambiarEstado(false)} className="exitIcon" src={exitIcon} />
                     </div>
                     <div className="bodyOfModal">
-                        <form onSubmit={sendData}>
+                        <form onSubmit={editData}>
                             <div className="formAddProduct">
                                 <label className='label-form'>
                                     Nombre
@@ -79,7 +88,7 @@ const ModalEditUser = ({ estado, cambiarEstado }) => {
                                         placeholder="Correo"
                                         className="inputModalProduct"
                                         name="email"
-                                    onChange={handleInputChange}
+                                        onChange={handleInputChange}
                                     ></input>
                                 </label>
                             </div>
@@ -91,7 +100,7 @@ const ModalEditUser = ({ estado, cambiarEstado }) => {
                                         placeholder="Contraseña"
                                         className="inputModalProduct"
                                         name="password"
-                                    onChange={handlePasswordChange}
+                                        onChange={handlePasswordChange}
                                     ></input>
                                 </label>
                             </div>
@@ -134,10 +143,10 @@ const ModalEditUser = ({ estado, cambiarEstado }) => {
                                 <img id="img-preview" src={formValues.image} alt="" style={{ display: "none", maxWidth: "100%" }} />
                             </div>
                             <div id="buttonModal">
-                              <button id="buttonModal" type="submit" className="buttonAddModal">Añadir un nuevo producto</button>  
+                                <button id="buttonModal" type="submit" className="buttonAddModal">Añadir un nuevo producto</button>
                             </div>
 
-                            
+
                         </form>
                     </div>
                 </div>
@@ -146,4 +155,4 @@ const ModalEditUser = ({ estado, cambiarEstado }) => {
     )
 }
 
-export default ModalEditUser;
+export default ModalEditUsers;

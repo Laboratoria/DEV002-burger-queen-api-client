@@ -1,8 +1,13 @@
 import deleteEmployee from "../img/deleteEmployee.png"
 import editar from "../img/editar.png"
-import employee from "../img/employee.jpg"
 
-const ListEmployees = ({users}) => {
+const ListEmployees = ({users, onClickEditUser}) => {
+
+    const handleEditClick = (id) => {
+        onClickEditUser(id);
+        localStorage.setItem("userId", id)
+    }
+
     return (
         <>
             {users.map((user) => (
@@ -19,7 +24,7 @@ const ListEmployees = ({users}) => {
 
                         <div className="containerIcons">
                             <img className="deleteEmployeeImg" src={deleteEmployee}></img>
-                            <img className="editEmployeeImg" src={editar}></img>
+                            <img className="editEmployeeImg" src={editar} onClick={() => handleEditClick(user.id)}></img>
                         </div>
 
                     </div>
