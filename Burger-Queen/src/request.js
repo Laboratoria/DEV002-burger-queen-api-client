@@ -1,7 +1,7 @@
 import axios from "axios";
 
+// Usuario hace login 
 const auth = async ({ email, password }) => {
-    let token = null;
     return await axios.post('http://127.0.0.1:8080/login', { email, password }, {
         method: 'POST',
         headers: {
@@ -10,6 +10,47 @@ const auth = async ({ email, password }) => {
     })
 };
 
+// Traer a todos los usuarios
+const getUsers = async () => {
+    const token = localStorage.getItem("token");
+    const urlBurguerApi = "http://localhost:8080/users";
+    try {
+        const response = await axios.get(urlBurguerApi, {
+            headers: {
+                Authorization: "Bearer " + token,
+            },
+        });
+        const data = response.data;
+        console.log('data', data)
+        return data;
+    } catch (error) {
+        console.log('error', error)
+    }
+};
+
+//Añadir a un nuevo usuario
+const addEmployee = async({email, password, role, image}) => {
+    
+    const token = localStorage.getItem("token");
+    const urlBurguerApi = "http://localhost:8080/users";
+    console.log('postProducts')
+    try {
+        const response = await axios.post(urlBurguerApi, {email, password, role, image}, {
+            method: 'POST',
+            headers: {
+                Authorization: "Bearer " + token,
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = response.data;
+        console.log(data)
+        return data;
+    } catch (error) {
+        console.log('error de request', error)
+    }
+};
+
+// Añadir un nuevo producto
 const postProducts = async ({ name, price, image, type }) => {
     const token = localStorage.getItem("token");
     const urlBurguerApi = "http://localhost:8080/products";
@@ -28,9 +69,9 @@ const postProducts = async ({ name, price, image, type }) => {
     } catch (error) {
         console.log('error', error)
     }
-}
+};
 
-// editar un producto existente en API REST
+// Editar un producto existente en API REST
 const putProducts = async (id, object) => {
     const token = localStorage.getItem("token");
     const urlBurguerApi = `http://localhost:8080/products/${id}`;
@@ -46,6 +87,7 @@ const putProducts = async (id, object) => {
     }
 };
 
+// Eliminar un producto
 const deleteProduct = async (id) => {
     const token = localStorage.getItem("token");
     const urlBurguerApi = `http://localhost:8080/products/${id}`; // Agregar el ID del producto a la URL
@@ -60,60 +102,12 @@ const deleteProduct = async (id) => {
     } catch (error) {
         console.log('error', error)
     }
-}
+};
 
-const getUsers = async () => {
-    const token = localStorage.getItem("token");
-    const urlBurguerApi = "http://localhost:8080/users";
-    try {
-        const response = await axios.get(urlBurguerApi, {
-            headers: {
-                Authorization: "Bearer " + token,
-            },
-        });
-        const data = response.data;
-        console.log('data', data)
-        return data;
-    } catch (error) {
-        console.log('error', error)
-    }
-}
-
-const addEmployee = async() => {
-    const object = {
-        name:"",
-        email:"",
-        password:"",
-        role:"",
-        image:"",
-    }
-    const token = localStorage.getItem("token");
-    const urlBurguerApi = "http://localhost:8080/users";
-    console.log('postProducts')
-    try {
-        const response = await axios.post(urlBurguerApi, object, {
-            method: 'POST',
-            headers: {
-                Authorization: "Bearer " + token,
-                'Content-Type': 'application/json',
-            },
-        });
-        const data = response.data;
-        console.log(data)
-        return data;
-    } catch (error) {
-        console.log('error', error)
-    }
-}
-
-// addEmployee()
-
-
-
+// Traer a todos los productos
 const GetProducts = async () => {
     const token = localStorage.getItem("token");
     const urlBurguerApi = "http://localhost:8080/products";
-    // console.log('getProducts')
     try {
         const response = await axios.get(urlBurguerApi, {
             headers: {
@@ -121,12 +115,15 @@ const GetProducts = async () => {
             },
         });
         const data = response.data;
-        console.log(data)
         return data;
     } catch (error) {
         console.error(error);
     }
 };
+
+
+
+
 
 export {
     auth,

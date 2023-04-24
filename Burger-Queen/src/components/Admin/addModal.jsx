@@ -85,9 +85,9 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
                                     ></input>
                                 </label>
                             </div>
-                            <div className="formAddProduct">
+                            {/* <div className="formAddProduct">
                             <img id="img-preview" src={formValues.image} alt="" style={{ display: "none", maxWidth: "100%" }} />
-                            </div>
+                            </div> */}
 
                             <button type="submit" className="buttonAddModal">Añadir un nuevo producto</button>
                         </form>

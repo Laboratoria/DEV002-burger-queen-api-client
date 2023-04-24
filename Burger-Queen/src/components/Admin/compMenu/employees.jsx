@@ -6,8 +6,8 @@ import ModalAddUsers from "../modalAddUser";
 import { useState } from "react";
 
 const Employees = () => {
-     // Lógica para abrir y cerrar el modal para agregar un nuevo usuario------------------------------
-  const [estadoModalAdd, cambiarEstadoModalAdd] = useState(false);
+    // Lógica para abrir y cerrar el modal para agregar un nuevo usuario------------------------------
+    const [estadoModalAdd, cambiarEstadoModalAdd] = useState(false);
 
     return (
         <div className="container">
@@ -23,15 +23,15 @@ const Employees = () => {
 
                 <div className="cards">
                     <div className="buttonsProducts">
-                        <ContainerBottonsAndList  
-                        handleAddClick={() => cambiarEstadoModalAdd(!estadoModalAdd)}
+                        <ContainerBottonsAndList
+                            handleAddClick={() => cambiarEstadoModalAdd(!estadoModalAdd)}
                         />
                     </div>
-                        <ModalAddUsers
+                    <ModalAddUsers
                         estado={estadoModalAdd}
                         cambiarEstado={cambiarEstadoModalAdd}
-                        />                      
-                    
+                    />
+
                 </div>
 
             </div>

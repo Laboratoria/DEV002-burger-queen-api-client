@@ -4,25 +4,30 @@ import { useState } from "react";
 
 const ModalAddUsers = ({ estado, cambiarEstado }) => {
 
-    const [type, setType] = useState(null);
+    const [role, setRole] = useState(null);
 
   const handleTypeChange = (event) => {
     event.preventDefault();
     const value = event.target.id;
-    setType(value);
+    console.log('value', value)
+    setRole(value);
+    setFormValues({ ...formValues, role: value });
   };
 
     const [formValues, setFormValues] = useState({
-        name: "",
         email: "",
         password: "",
-        image: "",
     });
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormValues({ ...formValues, [name]: value });
     };
+
+    const handlePasswordChange = (event) => {
+        const { name, value } = event.target;
+        setFormValues({...formValues, [name]: value });
+    }
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -35,13 +40,15 @@ const ModalAddUsers = ({ estado, cambiarEstado }) => {
 
     const sendData = async (event) => {
         event.preventDefault();
-        const { name, image } = formValues;
-
-        if (image) {
-            await addEmployee({ name, image });
-            cambiarEstado(false)
+        const { email, password, role, image } = formValues;
+      
+        if (email && password && role) {
+          await addEmployee({ email, password, role, image });
+          cambiarEstado(false);
         }
-    };
+      };
+      
+    
 
     return (
         <div>
@@ -53,7 +60,7 @@ const ModalAddUsers = ({ estado, cambiarEstado }) => {
                     </div>
                     <div className="bodyOfModal">
                         <form onSubmit={sendData}>
-                            <div className="formAddProduct">
+                            {/* <div className="formAddProduct">
                                 <label className='label-form'>
                                     Nombre
                                     <input
@@ -64,7 +71,7 @@ const ModalAddUsers = ({ estado, cambiarEstado }) => {
                                         onChange={handleInputChange}
                                     ></input>
                                 </label>
-                            </div>
+                            </div> */}
                             {/*  */}
                             <div className="formAddProduct">
                                 <label className='label-form'>
@@ -74,7 +81,7 @@ const ModalAddUsers = ({ estado, cambiarEstado }) => {
                                         placeholder="Correo"
                                         className="inputModalProduct"
                                         name="email"
-                                    // onChange={handleInputChange}
+                                    onChange={handleInputChange}
                                     ></input>
                                 </label>
                             </div>
@@ -86,15 +93,15 @@ const ModalAddUsers = ({ estado, cambiarEstado }) => {
                                         placeholder="Contraseña"
                                         className="inputModalProduct"
                                         name="password"
-                                    // onChange={handleInputChange}
+                                    onChange={handlePasswordChange}
                                     ></input>
                                 </label>
                             </div>
                             <div className="formAddProduct">
                                 <label className='label-form'>
                                     Tipo
-                                    <button id="cooks" value={type} onClick={handleTypeChange} className="buttonsOfCategory">Cocinera(o)</button>
-                                    <button id="waiters" value={type} onClick={handleTypeChange} className="buttonsOfCategory">Mesera(o)</button>
+                                    <button id="cooks" value={role} onClick={handleTypeChange} className="buttonsOfCategory">Cocinera(o)</button>
+                                    <button id="waiters" value={role} onClick={handleTypeChange} className="buttonsOfCategory">Mesera(o)</button>
                                 </label>
                             </div>
                             {/*  */}
