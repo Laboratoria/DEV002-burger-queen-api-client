@@ -52,6 +52,7 @@ const addEmployee = async({name, email, password, role, image}) => {
     }
 };
 
+// Editar a un usuario existente
 const editUser = async(id, object) => {
     const urlBurguerApi = `http://localhost:8080/users/${id}`;
     console.log('urlBurguerApi', urlBurguerApi)
@@ -67,6 +68,26 @@ const editUser = async(id, object) => {
         console.log('Error al actualizar el producto:', error)
     }
 };
+
+// Eliminar a un usuario
+const deleteUser = async(id) => {
+    const urlBurguerApi = `http://localhost:8080/users/${id}`;
+    const token = localStorage.getItem("token");
+    const headers = {
+        Authorization: "Bearer " + token,
+        'Content-Type': 'application/json',
+    };
+
+    try {
+        await axios.delete(urlBurguerApi, {
+            headers: headers
+        });
+        console.log('Se eliminó al usuario')
+    } catch(error) {
+        console.log('error', error);
+    }
+};
+
 
 // Añadir un nuevo producto
 const postProducts = async ({ name, price, image, type }) => {
@@ -152,4 +173,5 @@ export {
     getUsers,
     addEmployee,
     editUser,
+    deleteUser,
 }

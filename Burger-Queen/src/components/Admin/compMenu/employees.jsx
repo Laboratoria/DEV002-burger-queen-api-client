@@ -4,6 +4,7 @@ import '../../../estilos/admin/navigationBar.css'
 import ContainerBottonsAndList from "../../containerBottonsLAndist";
 import ModalAddUsers from "../modalAddUser";
 import ModalEditUsers from "../ModalEditUser";
+import ModalDeleteUser from "../ModalDeleteUser";
 import { useState } from "react";
 
 const Employees = () => {
@@ -11,6 +12,8 @@ const Employees = () => {
     const [estadoModalAdd, cambiarEstadoModalAdd] = useState(false);
     // Lógica para abrir y cerrar el modal para editar a un usuario
     const [modalEditing, setmodalEditing ] = useState(false);
+    // Lógica para abrir y cerrar el modal para eliminar a un usuario
+    const [modalDelete, setModalDelete] = useState(false);
 
     return (
         <div className="container">
@@ -29,6 +32,7 @@ const Employees = () => {
                         <ContainerBottonsAndList
                             handleAddClick={() => cambiarEstadoModalAdd(!estadoModalAdd)}
                             onClickEditUser={() => setmodalEditing(!modalEditing)}
+                            onClickDeleteUser={() => setModalDelete(!modalDelete)}
                         />
                     </div>
                     <ModalAddUsers
@@ -39,6 +43,12 @@ const Employees = () => {
                     estado={modalEditing}
                     cambiarEstado={setmodalEditing}
                     />
+                    <ModalDeleteUser
+                    estado={modalDelete}
+                    cambiarEstado={setModalDelete}
+                    />
+
+                    
                 </div>
 
             </div>

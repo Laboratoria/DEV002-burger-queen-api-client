@@ -1,12 +1,17 @@
 import deleteEmployee from "../img/deleteEmployee.png"
 import editar from "../img/editar.png"
 
-const ListEmployees = ({users, onClickEditUser}) => {
+const ListEmployees = ({users, onClickEditUser, onClickDeleteUser}) => {
 
     const handleEditClick = (id) => {
         onClickEditUser(id);
         localStorage.setItem("userId", id)
-    }
+    };
+
+    const handleDeleteClick = (id) => {
+        onClickDeleteUser(id);
+        localStorage.setItem("userId", id)
+    };
 
     return (
         <>
@@ -23,7 +28,7 @@ const ListEmployees = ({users, onClickEditUser}) => {
                         </div>
 
                         <div className="containerIcons">
-                            <img className="deleteEmployeeImg" src={deleteEmployee}></img>
+                            <img className="deleteEmployeeImg" src={deleteEmployee} onClick={() => {handleDeleteClick(user.id)}}></img>
                             <img className="editEmployeeImg" src={editar} onClick={() => handleEditClick(user.id)}></img>
                         </div>
 
