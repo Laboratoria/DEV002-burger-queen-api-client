@@ -1,4 +1,4 @@
-import deleteEmployee from "../img/deleteEmployee.png"
+import deleteEmployee from "../img/delete-user.png"
 import editar from "../img/editar.png"
 
 const ListEmployees = ({users, onClickEditUser, onClickDeleteUser}) => {
