@@ -124,7 +124,7 @@ export const postOrden = async (token, idWaiter, nameClient, arrayProductsQtys) 
 export const getOrdenes = async (token) => { //mi componente tiene que esperar a que mi servicio se ejecute por completo para que el token no me lo devuelva en blanco
   //console.log(token);
   let respuesta = null;
-  await fetch('http://localhost:8080/orders', {
+  return await fetch('http://localhost:8080/orders', {
     method: 'GET', //no lleva body
     headers: {
       "Content-Type": "application/json",
@@ -139,15 +139,36 @@ export const getOrdenes = async (token) => { //mi componente tiene que esperar a
     })
     .then(res => {
       respuesta = res;
-       console.log('res', res)
+      console.log('res', res)
+
+      return res;
     })
     .catch(error => {
       console.log(error, error.response, "Error al traer las órdenes")
     });
-  return respuesta;
+  // return respuesta;
 
 }
 
+
+//---------------------------para eliminar una orden-----------------------------------------------------------------
+
+export const deleteOrder = async (token, idUser) => {
+  // console.log("borrando usuario "+idUser)
+  await fetch('http://localhost:8080/orders' + "/" + idUser, {
+    method: 'DELETE',
+    headers: {
+      "Content-Type": "application/json",
+
+      "Authorization": "Bearer " + token    //sin paréntesisis. Para tener acceso para el resto de rutas
+    },
+    // No need to have body, because we don't send nothing to the server.
+  })
+    .then(response => response.json())
+    .then(data => console.log(data)) // Manipulate the data retrieved back, if we want to do something with it (hacer getTrabajdores)
+    .catch(err => console.log(err)) // Do something with the error
+
+}
 
 //---------------------------para obtener a los trabajadores-----------------------------------------------------------------
 

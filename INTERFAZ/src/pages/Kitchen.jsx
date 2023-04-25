@@ -1,24 +1,41 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getOrdenes } from "../service.auth.js";
-import {FaSignOutAlt} from "react-icons/fa"
-const Order = (props) => {
+import { FaSignOutAlt } from "react-icons/fa"
+import "./css-pages/kitchen.css"
 
+const Order = (props) => {
+    const { nombre, cantidad, hora, productos } = props;
     return (
         <>
-            <div className="hora-pedido">hora de pedido:{props.hora}</div>
+            <div className="hora-pedido">hora de pedido:{hora}</div>
             <table>
                 <thead>
+                    <tr>
+                        <th>{nombre}</th> 
+                         <th><input type="checkbox"
+                            className="checkbox"
+                        /></th>
+
+                    </tr>
                     <tr>
                         <th>Producto</th>
                         <th>Cantidad</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{props.nombre}</td>
-                        <td>{props.cantidad}</td>
-                    </tr>
+                    {
+                        productos.map(producto => {
+                            console.log(producto)
+                            return (
+                                <tr key={producto.product.id}>
+                                    <td>{producto.product.name}</td>
+                                    <td>{producto.qty}</td>
+                                </tr>
+                            )
+                        })
+                    }
+
                 </tbody>
             </table>
         </>
@@ -31,6 +48,7 @@ const Order = (props) => {
 export default function Kitchen() {
     const [orders, setOrders] = useState([]);
 
+
     const getOrdersKitchen = async () => {
         const user = JSON.parse(localStorage.getItem('user'))
         const token = user.accessToken;
@@ -38,6 +56,10 @@ export default function Kitchen() {
         const ordenes = await getOrdenes(token);
         setOrders(ordenes);
         console.log(orders);
+
+        // const productos = ordenes.map(orden => orden.products)
+        // console.log(productos)
+
     }
     useEffect(() => {
         getOrdersKitchen();
@@ -47,8 +69,8 @@ export default function Kitchen() {
 
 
     return (
-        <div className="take-order-page">
-             <div className="staff-h2">
+        <div className="kitchen-page">
+            <div className="staff-h2">
                 <h2>Pedidos</h2>
                 <div className="log-out">
                     <Link to="/" >
@@ -62,21 +84,21 @@ export default function Kitchen() {
             </div>
 
 
+
             {
-            orders.map((order) => {
-                // order.products.map(product=>console.log(product))
+                orders.map((order) => {
 
-                return (
-                    <Order key={order.id}
-                        // nombre={order.products.product.name}
-                        // cantidad={order.products.qty}
+                    return (
+                        <Order key={order.id}
+                            // nombre={order.products.product.name}
+                            // cantidad={order.products.qty}
+                            productos={order.products}
+                            hora={order.dateEntry}
+                            nombre={order.client}
+                        />
+                    )
 
-                        hora={order.dateEntry}
-                        nombre={order.client}
-                    />
-                )
-
-            })}
+                })}
 
 
         </div>);

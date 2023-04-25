@@ -230,7 +230,8 @@ function ProductTable({ products }) {
         }
         </tbody>
       </table>
-      <div id="precio-total">Precio total: $... <h5 className="precio">{precioTotal}</h5></div>
+      {precioTotal==0?<></>:
+      <div id="precio-total">Precio total: $... <h5 className="precio">{precioTotal}</h5></div>}
       <div className="botones-inferiores">
         <button className="btn-enviar-orden" onClick={() => console.log("Ver pedidos")}>
           <GiCampCookingPot className="icon-enviar-orden" size={"2rem"} />Ver Pedidos

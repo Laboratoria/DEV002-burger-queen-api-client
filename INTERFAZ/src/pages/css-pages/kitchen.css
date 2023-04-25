@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+.kitchen-page {
+    background: #efe389;
+    width: auto;
+    height: 1024px;
+    /* overflow: scroll; */
+    /* position: relative; */
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+}
