@@ -1,6 +1,8 @@
 import Logotype from "../logotype";
 import React from "react";
 import NavigationBar from "../navigationBar";
+import IconsOrdes from "../IconsOrders";
+import OrderList from "../orderList";
 
 const OrdersAdmin = () => {
     return (
@@ -13,7 +15,12 @@ const OrdersAdmin = () => {
                     <NavigationBar />
                 </div>
                 <div className="cards">
-                    <div className="buttonsProducts"></div>
+                    <div className="buttonsOrders">
+                        <IconsOrdes />
+                    </div>
+                    <div>
+                        <OrderList />
+                    </div>
                 </div>
             </div>
         </div>

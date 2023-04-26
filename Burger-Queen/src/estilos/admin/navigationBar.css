@@ -85,6 +85,7 @@ body {
     height: 100%;
     background-color: #232324;
     overflow-y: scroll;
+    padding-top: 10px;
 }
 
 .admiContainer {
@@ -167,7 +168,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 20px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -175,7 +176,8 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    /* background: #888; */
+    background: white;
     border-radius: 20px;
     /* Agrega un borde redondeado a la barra de scroll */
 }
@@ -407,6 +409,52 @@ body {
 #buttonModal {
     display: flex;
     justify-content: center;
+}
+
+#buttonsOrders {
+    margin: 20px;
+}
+
+/* Pedidos del Administrador */
+.bodyList{
+    width: 200px;
+    height: 210px;
+    background-color: #e2d7d7;
+    border-radius: 3px;
+    padding: 10px;
+    font-size: 10px;
+}
+
+.TopBodyListoOrder {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    line-height: 1;
+}
+
+.toClient {
+    display: flex;
+    align-self: flex-start;
+    line-height: 1;
+}
+
+.dataOfOrder {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    line-height: 1;
+}
+
+.BodyOrder {
+    overflow-y: scroll;
+    overflow-x: scroll;
+    height: 110px;
+}
+
+.BodyOrder::-webkit-scrollbar {
+    width: 5px;
+    padding-right: 10px;
 }
 
 @media (max-width: 800px) {
