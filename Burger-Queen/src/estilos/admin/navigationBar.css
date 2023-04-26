@@ -455,8 +455,13 @@ body {
 
 .BodyOrder::-webkit-scrollbar {
     width: 5px;
-    /* padding-right: 10px; */
 }
+
+/* Oculta el thumb de la barra de scroll
+::-webkit-scrollbar-thumb {
+    display: none;
+  } */
+  
 
 .gridOrders {
     display: grid;
