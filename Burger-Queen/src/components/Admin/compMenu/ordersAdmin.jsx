@@ -18,12 +18,14 @@ const OrdersAdmin = () => {
                     <div className="buttonsOrders">
                         <IconsOrdes />
                     </div>
-                    <div>
+                    <div className="gridOrders">
                         <OrderList />
+                        
                     </div>
                 </div>
             </div>
         </div>
     )
-}
+};
+
 export default OrdersAdmin;

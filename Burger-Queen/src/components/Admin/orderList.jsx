@@ -13,6 +13,12 @@ const OrderList = () => {
                 <OnlyOrder />
                 <OnlyOrder />
                 <OnlyOrder />
+                <OnlyOrder />
+                <OnlyOrder />
+                <OnlyOrder />
+                <OnlyOrder />
+                <OnlyOrder />
+                <OnlyOrder />
             </div>
             <img width="40px" src={iconReady}></img>
         </div>

@@ -423,6 +423,7 @@ body {
     border-radius: 3px;
     padding: 10px;
     font-size: 10px;
+    margin-left: 30px;
 }
 
 .TopBodyListoOrder {
@@ -454,8 +455,16 @@ body {
 
 .BodyOrder::-webkit-scrollbar {
     width: 5px;
-    padding-right: 10px;
+    /* padding-right: 10px; */
 }
+
+.gridOrders {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+  }
 
 @media (max-width: 800px) {
     .containEmployee {
