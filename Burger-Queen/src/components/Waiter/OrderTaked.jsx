@@ -11,16 +11,27 @@ const OrderTaked = ({ selectedProducts }) => {
                 <div className="orderTaked">
                     <div className="descriptionProduct">
 
-                        <div className="orderTaked" key={product.id}>
+                        {/* <div className="orderTaked" key={product.id}>
                             <p className="nameProductOrder">{product.name}</p>
                             <p className="price">S/ {product.price}</p>
+                        </div> */}
+
+                        <div
+                            id="iconOrderTaked"
+                            className="CardProductWaiter"
+                            key={product.id}
+                            onClick={() => handleClick(product)}
+                        >
+                            <p>{product.name}</p>
+                            <img width={'40px'} src={product.image} alt="product" />
+                            <p>s/ {product.price}</p>
                         </div>
 
                     </div>
 
                     <div>
-                        <p className="nameProductOrder">Taco</p>
-                        <p className="price">S/ 8</p>
+                        <p className="nameProductOrder">{product.name}</p>
+                        <p className="price">S/ {product.price}</p>
                     </div>
                     <div>
                         <img className="iconOrderTaked" width={'25px'} src={decrease}></img>
@@ -32,7 +43,7 @@ const OrderTaked = ({ selectedProducts }) => {
                     </div>
                 </div>
             ))}
-            
+
         </>
     )
 };
