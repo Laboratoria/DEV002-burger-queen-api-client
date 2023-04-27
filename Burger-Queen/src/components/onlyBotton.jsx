@@ -13,7 +13,7 @@ const FilterButtons = ({ onBreakfastClick, onLunchClick, onAddProductClick}) => 
       </div>
       
       <div className="addProduct" onClick={onAddProductClick}>
-        <img className="add"  src={add} alt="Agregar" />
+        <img className="add"  src={add} alt="Agregar"/>
         <p className="textButtonAdd">Agregar producto</p>
       </div>
     </div>

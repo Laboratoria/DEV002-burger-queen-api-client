@@ -28,7 +28,7 @@ const BotonsFilter = ({ onAddProductClick, onClickDeleteProduct, onClickEditProd
             (product) => product.type === "Almuerzo"
         );
         setProducts(filteredProducts);
-    };
+    }; 
 
     return (
         <div>

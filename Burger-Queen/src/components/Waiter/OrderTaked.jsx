@@ -1,17 +1,14 @@
 import decrease from "../img/decrease.png"
 import increase from "../img/increase.png"
 import cancel from "../img/cancel.png"
-import taco from "../img/tacos.png"
-import CardProductWaiter from "./CardProductWaiter"
+import CardProductWaiter from "./CardProductWaiter.jsx"
 
 const OrderTaked = () => {
     return( 
         <div className="orderTaked">
             <div className="descriptionProduct">
-                {/* <p>Taco</p>
-                <img width={'40px'} src={taco}></img>
-                <p>S/ 8</p> */}
                 <CardProductWaiter />
+                {/* Aquí va la carta que se eligió */}
             </div>
             <div>
                 <p className="nameProductOrder">Taco</p>

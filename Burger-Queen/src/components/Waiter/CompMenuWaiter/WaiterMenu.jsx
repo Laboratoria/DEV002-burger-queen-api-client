@@ -1,13 +1,35 @@
 import React from "react";
 import NavigationBarWaiter from "../NavigationBarWaiter";
 import "../../../estilos/admin/navigationBar.css";
+import { useState } from "react";
 import Logotype from "../../../components/Admin/logotype.jsx"
 import OnlyButtonsWaiter from "../OnlyButtonsWaiter";
 import trash from "../../img/trash.png"
 import CardProductWaiter from "../CardProductWaiter";
 import OrderTaked from "../OrderTaked";
+import { GetProducts } from "../../../request";
 
 const Waiter = () => {
+
+    const [productsWaiter, setProductsWaiter] = useState([]);
+
+    const handleBreakfastClickWaiter = async () => {
+        const data = await GetProducts();
+        const filteredProducts = data.filter(
+            (product) => product.type === "Desayuno"
+        );
+        console.log('filteredProducts', filteredProducts)
+        setProductsWaiter(filteredProducts);
+    };
+
+    const handleLunchClickWaiter = async () => {
+        const data = await GetProducts();
+        const filteredProducts = data.filter(
+            (product) => product.type === "Almuerzo"
+        );
+        setProductsWaiter(filteredProducts);
+    }; 
+
     return (
         <div className="container">
             <div className="logotype">
@@ -21,12 +43,17 @@ const Waiter = () => {
                     <div className="leftAndRigthWaiter">
                         <div className="buttonsAndCardsWaiter">
                             <div className="buttonsOrders">
-                                <OnlyButtonsWaiter />
+                                <OnlyButtonsWaiter 
+                                onBreakfastClickWaiter={handleBreakfastClickWaiter}
+                                onLunchClickWaiter={handleLunchClickWaiter}
+                                />
                             </div>
                             <div className="overflowCardProductWaiter">
                                 {/* renderiza las cartas de los productos */}
                                 <p style={{ color: 'white' }}>productos</p>
-                                <CardProductWaiter />
+                                <CardProductWaiter 
+                                products={productsWaiter}
+                                />
                             </div>
                         </div>
                         <div className="rightSideListOrder">

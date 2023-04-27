@@ -614,6 +614,12 @@ body {
 
 }
 
+.gridCardsProductsWaiter {
+    display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Define una fila de 4 columnas con el mismo ancho */
+  grid-gap: 20px;
+}
+
 @media (max-width: 800px) {
     .containEmployee {
         display: flex;

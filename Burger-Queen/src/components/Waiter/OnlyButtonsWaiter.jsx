@@ -1,12 +1,11 @@
-
-const OnlyButtonsWaiter = ({ onBreakfastClick, onLunchClick }) => {
+const OnlyButtonsWaiter = ({ onBreakfastClickWaiter, onLunchClickWaiter }) => {
     return (
         <div className="rowFilter">
             <div className="onlyButtons">
-                <button onClick={onBreakfastClick} className="breakFast">
+                <button onClick={onBreakfastClickWaiter} className="breakFast">
                     Desayuno
                 </button>
-                <button onClick={onLunchClick} className="lunch">
+                <button onClick={onLunchClickWaiter} className="lunch">
                     Almuerzo
                 </button>
             </div>
