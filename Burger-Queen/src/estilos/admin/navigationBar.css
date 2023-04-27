@@ -167,6 +167,12 @@ body {
     cursor: pointer;
 }
 
+.inputWaiter,
+.iconOrderTaked,
+#iconOrderTaked {
+    cursor: pointer;
+}
+
 ::-webkit-scrollbar {
     width: 5px;
 }
@@ -470,6 +476,143 @@ body {
     overflow-y: scroll;
     overflow-x: scroll;
   }
+
+  /* WaiterMenu */
+
+.buttonsAndCardsWaiter {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    padding: 20px;
+
+}
+
+.leftAndRigthWaiter {
+    display: flex;
+    flex-direction: row;
+}
+
+.topOrderListWaiter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ListOrdersWaiter {
+    width: 40vw;
+    height: 40vh;
+    /* background-color: #58f254; */
+    padding: 20px;
+    /* overflow-y: scroll; */
+    overflow-x: scroll;
+}
+
+.rightSideListOrder {
+    width: 40vw;
+    line-height: 2;
+    /* padding: 30px; */
+}
+
+.order {
+    color: #ff1414;
+}
+
+.inputWaiter {
+    background-color: #5D5858;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.labelNameWaiter {
+    width: 250px;
+    /* margin-left: 90px; */
+}
+
+.labelTableWaiter {
+    width: 150px;
+    /* margin-left: 90px; */
+}
+
+.labelWaiter {
+ color: #ffffff;
+ font-size: 10px;
+ 
+}
+
+.cost {
+    color: #fcfcfc;
+}
+
+.inputWaiter,
+.inputWaiter {
+ background-color: #D9D9D9;
+}
+
+#inputSaveWaiter {
+    background-image: url('../../components/img/save.png');
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 20px 20px; /* Mitad del tamaño original */
+    padding-right: 20px; /* Espacio para la imagen */
+    width: 120px;
+    /* margin-left: -10px; */
+}
+
+#inputSendWaiter {
+    background-image: url('../../components/img/aprobado.png');
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 20px 20px; /* Mitad del tamaño original */
+    padding-right: 20px; /* Espacio para la imagen */
+    width: 120px;
+}
+
+.CardProductWaiter {
+    background-color: #e2d7d7;
+    width: 80px;
+    line-height: 1;
+    padding: 5px;
+    font-size: 10px;
+    border-radius: 10px;
+}
+
+.overflowCardProductWaiter {
+    overflow-y: scroll;
+    overflow-x: scroll;
+    height: 60vh;
+}
+
+.orderTaked{
+    display: flex;
+    flex-direction: row;
+    width: 40vw;
+    height: 100px;
+    /* background-color: #ff1414; */
+    line-height: 1;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.price {
+    color: white;
+}
+
+.nameProductOrder {
+    color: #EA11FC;
+}
+
+.descriptionProduct {
+    line-height: 1;
+
+}
 
 @media (max-width: 800px) {
     .containEmployee {

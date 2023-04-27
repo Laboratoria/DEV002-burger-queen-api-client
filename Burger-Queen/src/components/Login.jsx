@@ -31,6 +31,11 @@ const Login = () => {
         localStorage.setItem('token', response.data.accessToken);
         // redirigir a la página principal
         onNavigate('/menuAdmin')
+      } else if (response.data.user.role == 'waiter') {
+        console.log('LOGIN WAITER', response)
+        localStorage.setItem('token', response.data.accessToken);
+        // redirigir a la página principal
+        onNavigate('/WaiterMenu')
       }
     } catch (error) {
       setError(error.response.data.message);

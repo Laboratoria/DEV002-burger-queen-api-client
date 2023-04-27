@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const token = localStorage.getItem("token");
+// const token = localStorage.getItem("token");
 
 // Usuario hace login 
 const auth = async ({ email, password }) => {
@@ -11,6 +11,37 @@ const auth = async ({ email, password }) => {
         }
     })
 };
+
+// Función para cerrar sesión
+// const logout = async () => {
+//     try {
+//         const token = localStorage.getItem('token');
+
+//         // Si no hay token, no hacemos la petición de cierre de sesión
+//         if (!token) {
+//             console.log('no hay token')
+//             return;
+//         }
+
+//         // Enviamos la petición de cierre de sesión al servidor
+//         const response = await axios.post('http://127.0.0.1:8080/logout', null, {
+//             headers: {
+//                 Authorization: `Bearer ${token}` // Agregamos el token en la cabecera de la petición
+//             }
+//         });
+
+//         // Si la petición se procesó correctamente, eliminamos el token del almacenamiento local y redirigimos al usuario a la página de inicio de sesión
+//         localStorage.removeItem('token');
+//         window.location.replace('/');
+//         console.log('se cerro')
+//     } catch (error) {
+//         console.error(error);
+//     }
+// };
+
+
+// logout()
+
 
 // Traer a todos los usuarios
 const getUsers = async () => {
@@ -31,13 +62,13 @@ const getUsers = async () => {
 };
 
 //Añadir a un nuevo usuario
-const addEmployee = async({name, email, password, role, image}) => {
-    
+const addEmployee = async ({ name, email, password, role, image }) => {
+
     const token = localStorage.getItem("token");
     const urlBurguerApi = "http://localhost:8080/users";
     console.log('postProducts')
     try {
-        const response = await axios.post(urlBurguerApi, {name, email, password, role, image}, {
+        const response = await axios.post(urlBurguerApi, { name, email, password, role, image }, {
             method: 'POST',
             headers: {
                 Authorization: "Bearer " + token,
@@ -53,7 +84,7 @@ const addEmployee = async({name, email, password, role, image}) => {
 };
 
 // Editar a un usuario existente
-const editUser = async(id, object) => {
+const editUser = async (id, object) => {
     const urlBurguerApi = `http://localhost:8080/users/${id}`;
     console.log('urlBurguerApi', urlBurguerApi)
     const token = localStorage.getItem("token");
@@ -70,7 +101,7 @@ const editUser = async(id, object) => {
 };
 
 // Eliminar a un usuario
-const deleteUser = async(id) => {
+const deleteUser = async (id) => {
     const urlBurguerApi = `http://localhost:8080/users/${id}`;
     const token = localStorage.getItem("token");
     const headers = {
@@ -83,7 +114,7 @@ const deleteUser = async(id) => {
             headers: headers
         });
         console.log('Se eliminó al usuario')
-    } catch(error) {
+    } catch (error) {
         console.log('error', error);
     }
 };
@@ -166,6 +197,7 @@ const GetProducts = async () => {
 
 export {
     auth,
+    // logout,
     postProducts,
     deleteProduct,
     GetProducts,
