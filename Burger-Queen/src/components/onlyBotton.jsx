@@ -1,6 +1,7 @@
 import add from "./img/add.png"
 
-const FilterButtons = ({ onBreakfastClick, onLunchClick, onAddProductClick}) => {
+const FilterButtons = ({ onBreakfastClick, onLunchClick, onAddProductClick }) => {
+  
   return (
     <div className="rowFilter">
       <div className="onlyButtons">

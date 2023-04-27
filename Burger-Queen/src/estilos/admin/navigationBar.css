@@ -511,8 +511,8 @@ body {
     height: 40vh;
     /* background-color: #58f254; */
     padding: 20px;
-    /* overflow-y: scroll; */
-    overflow-x: scroll;
+    overflow-y: scroll;
+    /* overflow-x: scroll; */
 }
 
 .rightSideListOrder {
@@ -595,10 +595,11 @@ body {
     flex-direction: row;
     width: 40vw;
     height: 100px;
-    /* background-color: #ff1414; */
     line-height: 1;
     justify-content: space-around;
     align-items: center;
+    width: 35vw;
+    margin-top: 30px;
 }
 
 .price {

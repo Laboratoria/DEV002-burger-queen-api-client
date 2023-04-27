@@ -11,6 +11,14 @@ import { GetProducts } from "../../../request";
 
 const Waiter = () => {
 
+    const [selectedProducts, setSelectedProducts] = useState([]);
+
+    const handleProductClick = (product) => {
+        setSelectedProducts((prevProducts) => [...prevProducts, product]);
+    };
+
+    // -------------------------
+
     const [productsWaiter, setProductsWaiter] = useState([]);
 
     const handleBreakfastClickWaiter = async () => {
@@ -28,7 +36,7 @@ const Waiter = () => {
             (product) => product.type === "Almuerzo"
         );
         setProductsWaiter(filteredProducts);
-    }; 
+    };
 
     return (
         <div className="container">
@@ -43,17 +51,20 @@ const Waiter = () => {
                     <div className="leftAndRigthWaiter">
                         <div className="buttonsAndCardsWaiter">
                             <div className="buttonsOrders">
-                                <OnlyButtonsWaiter 
-                                onBreakfastClickWaiter={handleBreakfastClickWaiter}
-                                onLunchClickWaiter={handleLunchClickWaiter}
+                                <OnlyButtonsWaiter
+                                    onBreakfastClickWaiter={handleBreakfastClickWaiter}
+                                    onLunchClickWaiter={handleLunchClickWaiter}
                                 />
                             </div>
                             <div className="overflowCardProductWaiter">
                                 {/* renderiza las cartas de los productos */}
                                 <p style={{ color: 'white' }}>productos</p>
-                                <CardProductWaiter 
-                                products={productsWaiter}
+
+                                <CardProductWaiter
+                                    products={productsWaiter}
+                                    onProductClick={handleProductClick}
                                 />
+
                             </div>
                         </div>
                         <div className="rightSideListOrder">
@@ -72,19 +83,20 @@ const Waiter = () => {
                                     <div className="labelTableWaiter">
                                         <label className='labelWaiter'>
                                             N° de mesa
-                                            <select className="inputWaiter">
-                                                <option value="" disabled selected>N° de mesa</option>
+                                            <select className="inputWaiter" defaultValue="">
+                                                <option value="" disabled>N° de mesa</option>
                                                 <option value="mesa1">mesa 1</option>
                                                 <option value="mesa2">mesa 2</option>
                                                 <option value="mesa3">mesa 3</option>
                                                 <option value="mesa4">mesa 4</option>
                                             </select>
+
                                         </label>
                                     </div>
                                 </form>
                             </section>
                             <div className="ListOrdersWaiter">
-                                <OrderTaked />
+                                <OrderTaked selectedProducts={selectedProducts} />
                             </div>
                             <div>
                                 <p className="cost">Costo total: s/ 80</p>
@@ -92,7 +104,7 @@ const Waiter = () => {
                             <div>
                                 <button id="inputSendWaiter" className="inputWaiter">Enviar al chef</button>
                                 <button id="inputSaveWaiter" className="inputWaiter">Guardar</button>
-                                
+
                             </div>
                         </div>
                     </div>
