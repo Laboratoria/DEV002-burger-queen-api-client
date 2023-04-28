@@ -33,14 +33,17 @@ const OrderTaked = ({ selectedProducts }) => {
                         <p className="nameProductOrder">{product.name}</p>
                         <p className="price">S/ {product.price}</p>
                     </div>
-                    <div>
+                    <div className="iconosProductSelected">
+                      <div>
                         <img className="iconOrderTaked" width={'25px'} src={decrease}></img>
-                        <p>2</p>
+                        <p style={{color: "white"}}>2</p>
                         <img className="iconOrderTaked" width={'25px'} src={increase}></img>
                     </div>
                     <div>
                         <img className="iconOrderTaked" width={'25px'} src={cancel}></img>
+                    </div>  
                     </div>
+                    
                 </div>
             ))}
 

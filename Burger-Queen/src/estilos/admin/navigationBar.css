@@ -590,6 +590,12 @@ body {
     height: 60vh;
 }
 
+.iconosProductSelected {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .orderTaked{
     display: flex;
     flex-direction: row;
