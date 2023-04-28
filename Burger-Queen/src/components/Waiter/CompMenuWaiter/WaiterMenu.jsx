@@ -96,7 +96,7 @@ const Waiter = () => {
                                 </form>
                             </section>
                             <div className="ListOrdersWaiter">
-                                <OrderTaked selectedProducts={selectedProducts} />
+                                <OrderTaked selectedProducts={selectedProducts} setSelectedProducts={setSelectedProducts} />
                             </div>
                             <div>
                                 <p className="cost">Costo total: s/ 80</p>

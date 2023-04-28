@@ -3,7 +3,7 @@ import decrease from "../img/decrease.png"
 import increase from "../img/increase.png"
 import cancel from "../img/cancel.png"
 
-const OrderTaked = ({ selectedProducts }) => {
+const OrderTaked = ({ selectedProducts, setSelectedProducts }) => {
     const [productQuantity, setProductQuantity] = useState({});
 
     // const handleClick = (product) => {
@@ -30,6 +30,9 @@ const OrderTaked = ({ selectedProducts }) => {
             ...prevQuantity,
             [productId]: 0,
         }));
+        setSelectedProducts((prevProducts) =>
+            prevProducts.filter((product) => product.id !== productId)
+        );
     };
 
     return (
