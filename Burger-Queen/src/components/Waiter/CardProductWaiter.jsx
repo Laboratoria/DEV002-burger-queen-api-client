@@ -1,6 +1,8 @@
 const CardProductWaiter = ({ products, onProductClick}) => {
+
   const handleClick = (product) => {
     onProductClick(product);
+
   };
     return (
       <div className="gridCardsProductsWaiter">
@@ -21,4 +23,4 @@ const CardProductWaiter = ({ products, onProductClick}) => {
     );
   };
 
-  export default CardProductWaiter
+export default CardProductWaiter;
