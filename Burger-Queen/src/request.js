@@ -1,4 +1,5 @@
 import axios from "axios";
+// import { useNavigate } from 'react-router-dom';
 
 // const token = localStorage.getItem("token");
 
@@ -13,32 +14,18 @@ const auth = async ({ email, password }) => {
 };
 
 // Función para cerrar sesión
-// const logout = async () => {
-//     try {
-//         const token = localStorage.getItem('token');
+const logout = () => {
+    try {
+        localStorage.removeItem('token');
+        console.log('sesión cerrada');
+        // Redireccionar a la página de inicio de sesión
+        // Usar useNavigate dentro de un componente
+        useNavigate('/')
 
-//         // Si no hay token, no hacemos la petición de cierre de sesión
-//         if (!token) {
-//             console.log('no hay token')
-//             return;
-//         }
-
-//         // Enviamos la petición de cierre de sesión al servidor
-//         const response = await axios.post('http://127.0.0.1:8080/logout', null, {
-//             headers: {
-//                 Authorization: `Bearer ${token}` // Agregamos el token en la cabecera de la petición
-//             }
-//         });
-
-//         // Si la petición se procesó correctamente, eliminamos el token del almacenamiento local y redirigimos al usuario a la página de inicio de sesión
-//         localStorage.removeItem('token');
-//         window.location.replace('/');
-//         console.log('se cerro')
-//     } catch (error) {
-//         console.error(error);
-//     }
-// };
-
+    } catch (error) {
+        console.error('error al cerrar sesión', error);
+    }
+};
 
 // logout()
 
@@ -197,7 +184,7 @@ const GetProducts = async () => {
 
 export {
     auth,
-    // logout,
+    logout,
     postProducts,
     deleteProduct,
     GetProducts,

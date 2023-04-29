@@ -46,30 +46,54 @@ const Login = () => {
   return (
     <Fragment>
       <div className='logo'>
-        <img className='lyrics-logo' src={lyricsLogo} alt="lyricsLogo" />
-        <img className='img-logo' src={logo} alt="logo" />
+        <img className='lyrics-logo'
+          src={lyricsLogo}
+          alt="lyricsLogo" />
+        <img className='img-logo'
+          src={logo}
+          alt="logo" />
       </div>
       <h1 id='WAY'>Who are you?</h1>
       <div className='loginContent'>
-        <section className='form'>
-          <form className="rowForm" onSubmit={enviarDatos}>
-            <div className="col-md-3">
-              <label className='label-form'>
+        <section
+          className='form'>
+          <form
+            className="rowForm" onSubmit={enviarDatos}>
+            <div
+              className="col-md-3">
+              <label
+                className='label-form'>
                 Email
-                <input type="email" placeholder="Email" className="form-control" onChange={handleInputChange} value={email} name="email"></input>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="form-control"
+                  onChange={handleInputChange}
+                  value={email} 
+                  name="email"></input>
               </label>
             </div>
             <div className="col-md-3">
               <label className='label-form'>
                 Password
-                <input type="password" placeholder="Password" className="form-control" onChange={handleInputChange} value={password} name="password"></input>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  className="form-control"
+                  onChange={handleInputChange}
+                  value={password}
+                  name="password"></input>
               </label>
             </div>
-            <button type="submit" className="loginbtn">Login</button>
+            <button
+              type="submit"
+              className="loginbtn">Login</button>
           </form>
           {error && <div className="alert alert-danger">{error}</div>}
           <div>
-            <img src={referenceFood} alt="referenceFood" />
+            <img
+              src={referenceFood}
+              alt="referenceFood" />
           </div>
         </section>
       </div>
