@@ -26,8 +26,6 @@ const ModalEdit = ({ children, estado, cambiarEstado, props }) => {
         };
     };
 
-    
-
     const editProduct = async (id, updatedProduct) => {
         try {
             const response = await putProducts(id, updatedProduct);

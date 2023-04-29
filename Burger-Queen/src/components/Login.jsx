@@ -52,7 +52,7 @@ const Login = () => {
       <h1 id='WAY'>Who are you?</h1>
       <div className='loginContent'>
         <section className='form'>
-          <form className="row" onSubmit={enviarDatos}>
+          <form className="rowForm" onSubmit={enviarDatos}>
             <div className="col-md-3">
               <label className='label-form'>
                 Email

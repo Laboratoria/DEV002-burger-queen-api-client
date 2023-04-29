@@ -14,7 +14,7 @@ const CardProductWaiter = ({ products, onProductClick}) => {
             key={product.id}
             onClick={() => handleClick(product)}
             >
-              <p>{product.name}</p>
+              <p style={{ color: product.type === "Desayuno" ? "#EA11FC" : "#44BDCD" }}>{product.name}</p>
               <img width={'40px'} src={product.image} alt="product"/>
               <p>s/ {product.price}</p>
             </div>

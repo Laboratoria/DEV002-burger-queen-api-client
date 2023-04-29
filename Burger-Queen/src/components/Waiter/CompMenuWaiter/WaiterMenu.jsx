@@ -11,8 +11,22 @@ import { GetProducts } from "../../../request";
 
 const Waiter = () => {
 
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    // Función para actualizar el precio total
+    const updateTotalPrice = () => {
+        const total = selectedProducts.reduce(
+            (acc, curr) => acc + curr.price,
+            0
+        );
+        setTotalPrice(total);
+    };
+
+    // ------------------------
+
     const [selectedProducts, setSelectedProducts] = useState([]);
 
+    //  Función para agregar un producto a la lista de productos seleccionados
     const handleProductClick = (product) => {
         setSelectedProducts((prevProducts) => [...prevProducts, product]);
     };
@@ -58,11 +72,13 @@ const Waiter = () => {
                             </div>
                             <div className="overflowCardProductWaiter">
                                 {/* renderiza las cartas de los productos */}
-                                <p style={{ color: 'white' }}>productos</p>
+                                <p style={{ color: 'white' }}>Productos</p>
 
                                 <CardProductWaiter
+                                    // key={product.id}
                                     products={productsWaiter}
                                     onProductClick={handleProductClick}
+                                    onClick={() => handleProductClick(product)}
                                 />
 
                             </div>
@@ -96,10 +112,14 @@ const Waiter = () => {
                                 </form>
                             </section>
                             <div className="ListOrdersWaiter">
-                                <OrderTaked selectedProducts={selectedProducts} setSelectedProducts={setSelectedProducts} />
+                                <OrderTaked 
+                                selectedProducts={selectedProducts} 
+                                setSelectedProducts={setSelectedProducts} 
+                                onUpdateTotalPrice={updateTotalPrice}
+                                />
                             </div>
                             <div>
-                                <p className="cost">Costo total: s/ 80</p>
+                                <p className="cost">Costo total: S/ {totalPrice}</p>
                             </div>
                             <div>
                                 <button id="inputSendWaiter" className="inputWaiter">Enviar al chef</button>

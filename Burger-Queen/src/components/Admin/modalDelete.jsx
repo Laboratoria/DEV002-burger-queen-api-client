@@ -24,8 +24,10 @@ const ModalDelete = ({ estado, cambiarEstado, onUpdateProducts }) => {
         <div>
             {estado &&
                 <div className="overlay" >
-                    <div className="bodyOfModal">
-                        <img id="exit" onClick={() => cambiarEstado(false)} className="exitIcon" src={exitIcon} />
+                    <div className="bodyOfModalDelete">
+                        <div>
+                            <img className="exitModalDelete" onClick={() => cambiarEstado(false)} className="exitIcon" src={exitIcon} />
+                        </div>
                         <p>¿Estás segura(o) que quieres eliminar este producto del inventario?</p>
                         <button
                             className="buttonDeleteModal"

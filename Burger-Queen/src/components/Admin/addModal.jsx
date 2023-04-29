@@ -9,32 +9,32 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
     const [formValues, setFormValues] = useState({
         name: "",
         image: "",
-      });
-      
-      const handleInputChange = (event) => {
+    });
+
+    const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormValues({ ...formValues, [name]: value });
-      };
-      
-      const handleImageChange = (event) => {
+    };
+
+    const handleImageChange = (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-          setFormValues({ ...formValues, image: reader.result });
+            setFormValues({ ...formValues, image: reader.result });
         };
-      };
-      
-      const sendData = async (event) => {
+    };
+
+    const sendData = async (event) => {
         event.preventDefault();
         const { name, image } = formValues;
-        
-        if (image ) {
-          await postProducts({ name, price, image, type }); 
-          cambiarEstado(false)
+
+        if (image) {
+            await postProducts({ name, price, image, type });
+            cambiarEstado(false)
         }
-      };
-    
+    };
+
     return (
         <div>
             {estado &&
@@ -48,12 +48,12 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
                             <div className="formAddProduct">
                                 <label className='label-form'>
                                     Nombre
-                                    <input 
-                                    type="text" 
-                                    placeholder="Nombre" 
-                                    className="inputModalProduct" 
-                                    name="name"
-                                    onChange={handleInputChange}
+                                    <input
+                                        type="text"
+                                        placeholder="Nombre"
+                                        className="inputModalProduct"
+                                        name="name"
+                                        onChange={handleInputChange}
                                     ></input>
                                 </label>
                             </div>
@@ -61,35 +61,33 @@ const AddModal = ({ children, estado, cambiarEstado, props }) => {
                             <div className="formAddProduct">
                                 <label className='label-form'>
                                     Imagen
-                                    <input 
-                                    type="file" 
-                                    id="inputImage" 
-                                    className="inputModalProduct" 
-                                    name="image" 
-                                    onChange={(e) => {
-                                        handleImageChange(e);
-                                        const file = e.target.files[0];
-                                        // console.log('file' , file)
-                                        const reader = new FileReader();
-                                        console.log('reader', reader)
-                                        reader.readAsDataURL(file);
-                                        // console.log('b', b)
-                                        reader.onload = () => {
-                                            const imgPreview = document.getElementById("img-preview");
-                                             const src = imgPreview.src = reader.result;
-                                            // console.log('src', src)
-                                            imgPreview.style.display = "block";
-                                        };
-                                    }}
-                                    
+                                    <input
+                                        type="file"
+                                        id="inputImage"
+                                        className="inputModalProduct"
+                                        name="image"
+                                        onChange={(e) => {
+                                            handleImageChange(e);
+                                            const file = e.target.files[0];
+                                            // console.log('file' , file)
+                                            const reader = new FileReader();
+                                            console.log('reader', reader)
+                                            reader.readAsDataURL(file);
+                                            // console.log('b', b)
+                                            reader.onload = () => {
+                                                const imgPreview = document.getElementById("img-preview");
+                                                const src = imgPreview.src = reader.result;
+                                                // console.log('src', src)
+                                                imgPreview.style.display = "block";
+                                            };
+                                        }}
                                     ></input>
                                 </label>
                             </div>
-                            {/* <div className="formAddProduct">
-                            <img id="img-preview" src={formValues.image} alt="" style={{ display: "none", maxWidth: "100%" }} />
-                            </div> */}
-
-                            <button type="submit" className="buttonAddModal">Añadir un nuevo producto</button>
+                            <div className="imgAndButtonModalAdd">
+                                <img id="img-preview" src={formValues.image} alt="" style={{ display: "none", maxWidth: "100%" }} />
+                                <button type="submit" className="buttonAddModal">Añadir un nuevo producto</button>
+                            </div>
                         </form>
                     </div>
                 </div>

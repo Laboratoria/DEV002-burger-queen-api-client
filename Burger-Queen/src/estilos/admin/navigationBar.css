@@ -272,7 +272,28 @@ body {
 
 }
 
+#exitModalDelete {
+    margin-left: 20px;
+    padding-left: 20px;
+    position: absolute;
+}
+
 .bodyOfModal {
+    width: 500px;
+    min-height: 100px;
+    background: #ff1414;
+    position: relative;
+    border-radius: 0px 0px 5px 5px;
+    box-shadow: rgba(100, 100, 111, 0.2);
+    padding: 20px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: left !important;
+    display: flex;
+}
+
+.bodyOfModalDelete {
+    display: flex;
+    flex-direction: column;
     width: 500px;
     min-height: 100px;
     background: #ff1414;
@@ -297,9 +318,12 @@ body {
     border-radius: 5px;
     background-color: #F8FD03;
     border: none;
-    width: 300px;
+    margin-top: 10px;
     font-family: 'Inknut Antiqua', serif;
     cursor: pointer;
+    width: 37vw;
+    display: flex;
+    justify-content: center;
 }
 
 .formAddProduct {
@@ -506,6 +530,12 @@ body {
     align-items: center;
 }
 
+.rowForm {
+    display:  flex;
+    flex-direction: column;
+
+}
+
 .ListOrdersWaiter {
     width: 40vw;
     height: 40vh;
@@ -612,6 +642,21 @@ body {
     color: white;
 }
 
+#priceListProduct {
+    color: #232324;
+}
+
+#menuWaiter {
+    padding: 0 15px;
+}
+
+.imgAndButtonModalAdd {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .nameProductOrder {
     color: #EA11FC;
 }
@@ -675,3 +720,56 @@ body {
     }
 
 }
+
+.loginbtn {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: #fff;
+    text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 15px #fff, 0 0 10px #4af;
+    border: none;
+  }
+  
+  .loginbtn:before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    bottom: -5px;
+    right: -5px;
+    /* background: rgb(210, 45, 45); */
+    z-index: -1;
+    filter: blur(10px);
+  }
+  
+  .loginbtn:after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    bottom: -5px;
+    right: -5px;
+    z-index: -2;
+    background: rgb(60, 238, 128);
+    border-radius: 10px;
+  }
+  
+  .loginbtn:hover:before {
+    animation: blur-glow 1s ease-out infinite alternate;
+  }
+  
+  .loginbtn:hover:after {
+    animation: blur-glow 1s ease-out infinite alternate-reverse;
+  }
+  
+  @keyframes blur-glow {
+    0% {
+      opacity: 0.2;
+      filter: blur(10px);
+    }
+    100% {
+      opacity: 1;
+      filter: blur(20px);
+    }
+  }

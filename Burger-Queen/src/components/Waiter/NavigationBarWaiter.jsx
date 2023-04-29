@@ -8,7 +8,7 @@ import { Link, useLocation } from 'react-router-dom';
 const NavigationBarWaiter = () => {
   const location = useLocation();
   console.log(location)
-  const isEmployeesRoute = location.pathname === "/employees";
+  const isEmployeesRoute = location.pathname === "/menuWaiter";
   console.log(isEmployeesRoute)
 
 
@@ -19,9 +19,9 @@ const NavigationBarWaiter = () => {
       <ul className="navigation__list">
 
         <li>
-          <div id='item_menu' className="navigation__item" style={{ background: `${location.pathname === '/WaiterMenu' ? "linear-gradient(0deg, rgba(217,217,217,1) 0%, rgba(150,91,91,1) 66%, rgba(107,61,61,1) 100%)" : ""}` }}>
+          <div id='item_menu' className="navigation__item" style={{ background: `${location.pathname === '/menuWaiter' ? "linear-gradient(0deg, rgba(217,217,217,1) 0%, rgba(150,91,91,1) 66%, rgba(107,61,61,1) 100%)" : ""}` }}>
             <img className='menu' src={menu} alt='menu'></img>
-            <Link to="/WaiterMenu" id='' className='link'>Menu </Link>
+            <Link to="/WaiterMenu" id='menuWaiter' className='link'>Menu</Link>
           </div>
         </li>
 

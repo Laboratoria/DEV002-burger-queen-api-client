@@ -21,9 +21,9 @@ const ModalDeleteUser = ({estado, cambiarEstado}) => {
         <div>
             {estado &&
                 <div className="overlay" >
-                    <div className="bodyOfModal">
+                    <div className="bodyOfModalDelete">
                         <img id="exit" onClick={() => cambiarEstado(false)} className="exitIcon" src={exitIcon} />
-                        <p>¿Estás segura(o) que quieres eliminar este producto del inventario?</p>
+                        <p>¿Estás segura(o) que quieres eliminar este usuario?</p>
                         <button
                             className="buttonDeleteModal"
                             type="button"

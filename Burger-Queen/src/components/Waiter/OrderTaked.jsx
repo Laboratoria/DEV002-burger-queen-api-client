@@ -4,7 +4,11 @@ import increase from "../img/increase.png"
 import cancel from "../img/cancel.png"
 
 const OrderTaked = ({ selectedProducts, setSelectedProducts }) => {
+
+
+
     const [productQuantity, setProductQuantity] = useState({});
+
 
     // const handleClick = (product) => {
     //     // Aquí puedes agregar cualquier otra lógica que necesites al hacer clic en la carta del producto.
@@ -35,6 +39,20 @@ const OrderTaked = ({ selectedProducts, setSelectedProducts }) => {
         );
     };
 
+    // Tratando que se guarde un array todos los 
+
+    // const [costoTotal, setCostoTotal] = useState(0);
+
+    // const sumaTotal = () => {
+    //     let arrSumaTotal = product.id;
+    //     products.forEach((product) => {
+    //         arrSumaTotal += product.price * (productQuantity[product.id] || 1);
+    //     });
+    //     setCostoTotal(arrSumaTotal);
+    // };
+
+    // llama a SumaTotal en algún momento para actualizar el estado de costoTotal
+
     return (
         <>
             {/* Estructura de las cartas que se van eligiendo para tomar la orden */}
@@ -56,6 +74,11 @@ const OrderTaked = ({ selectedProducts, setSelectedProducts }) => {
                         <p className="nameProductOrder">{product.name}</p>
                         {/* Aquí tengo que mostrar un numero que será el resultado de product.price multiplicado por el número que representa {productQuantity[product.id] || 1} en la etiqueta <p> */}
                         <p className="price">S/ {product.price * (productQuantity[product.id] || 1)}</p>
+
+                        {/* {costoTotal == product.id ? 
+                            <p>{product.id}</p>:
+                            <div>Precio total: S/ {costoTotal}</div>
+                        } */}
 
                     </div>
                     <div className="iconosProductSelected">

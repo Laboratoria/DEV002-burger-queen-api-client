@@ -22,7 +22,7 @@ const ProductList = ({ products, onClickDeleteProduct, onClickEditProduct }) => 
               {product.name}
             </h2>
             <img className="img-card" src={product.image} alt={product.name} />
-            <p className="price">{product.price} soles</p>
+            <p  id="priceListProduct" className="price">{product.price} soles</p>
             <div className="card-Body">
               <img className="trash" src={trash} alt="Eliminar" onClick={() => handleDeleteClick(product.id)} />
               <img className="edit" src={edit} alt="Editar" onClick={() => handleEditClick(product.id)} />
