@@ -721,6 +721,17 @@ body {
 
 }
 
+.logoutButton {
+    border: none;
+    font-family: 'Inknut Antiqua', serif;
+    line-height: 15px;
+    margin-bottom: 5px;
+    background-color: #a49e9e;
+    padding: 5px;
+    cursor: pointer;
+    
+}
+
 .loginbtn {
     position: relative;
     display: inline-block;
