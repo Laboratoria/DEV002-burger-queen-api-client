@@ -9,7 +9,7 @@ import Logotype from "../../../components/Admin/logotype.jsx"
 import OnlyButtonsWaiter from "../OnlyButtonsWaiter";
 import trash from "../../img/trash.png"
 import CardProductWaiter from "../CardProductWaiter";
-import { GetProducts } from "../../../request";
+import { GetProducts, postOrder } from "../../../request";
 
 const Waiter = () => {
 
@@ -91,6 +91,17 @@ const Waiter = () => {
         // Usa la constante `inputValue` aquí para hacer algo con el valor del input
         console.log(`El valor del input es: ${inputValue}`);
       }
+
+      const order = {
+        orderNumber: 1234, // número de pedido
+        customerName: 'maria', // valor del input del nombre
+        // productImage: selectedProducts[0].image, // imagen del primer producto seleccionado
+        productName: 'pizza', // nombre del primer producto seleccionado
+        productQuantity: 3 // cantidad del primer producto seleccionado
+      };
+      
+    //   postOrder(order);
+      
 
     return (
         <div className="container">

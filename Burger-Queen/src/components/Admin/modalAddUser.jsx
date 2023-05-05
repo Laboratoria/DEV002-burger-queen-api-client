@@ -134,7 +134,7 @@ const ModalAddUsers = ({ estado, cambiarEstado }) => {
                                 <img id="img-preview" src={formValues.image} alt="" style={{ display: "none", maxWidth: "100%" }} />
                             </div>
                             <div id="buttonModal">
-                              <button id="buttonModal" type="submit" className="buttonAddModal">Añadir un nuevo producto</button>  
+                              <button id="buttonModal" type="submit" className="buttonAddModal">Añadir nuevx usuarix</button>  
                             </div>
 
                             

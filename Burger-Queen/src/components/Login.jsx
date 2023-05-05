@@ -8,6 +8,8 @@ import referenceFood from "./img/referenceFood.png";
 
 const Login = () => {
 
+
+  const onNavigate = useNavigate();
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
 
@@ -28,18 +30,18 @@ const Login = () => {
         console.log('response', response)
         localStorage.setItem('token', response.data.accessToken);
         // redirigir a la página principal
-        useNavigate('/menuAdmin')
+        onNavigate('/menuAdmin')
+      } else if (response.data.user.role == 'waiter') {
+        console.log('LOGIN WAITER', response)
+        localStorage.setItem('token', response.data.accessToken);
+        // redirigir a la página principal
+        onNavigate('/WaiterMenu')
       }
-      // } else if (response.data.user.role == 'waiter') {
-      //   console.log('LOGIN WAITER', response)
-      //   localStorage.setItem('token', response.data.accessToken);
-      //   // redirigir a la página principal
-      //   onNavigate('/WaiterMenu')
-      // }
     } catch (error) {
-      setError(error.response);
+      setError(error.response.data.message);
     }
   };
+
 
   return (
     <Fragment>
@@ -67,7 +69,7 @@ const Login = () => {
                   placeholder="Email"
                   className="form-control"
                   onChange={handleInputChange}
-                  value={email}
+                  value={email} 
                   name="email"></input>
               </label>
             </div>

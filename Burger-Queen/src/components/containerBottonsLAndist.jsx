@@ -8,12 +8,9 @@ const ContainerBottonsAndList = ({handleAddClick, onClickEditUser, onClickDelete
 
     const handleWaiterClick = async () => {
         const data = await getUsers();
-        console.log('data', data)
         const filteredWaiters = data.filter(
-            (user) => user.role === "waiter"
+            (user) => user.role === "waiters"
         );
-        console.log(data)
-        console.log('onhandleWaiterClick')
         setUsers(filteredWaiters)
     };
 
@@ -23,7 +20,7 @@ const ContainerBottonsAndList = ({handleAddClick, onClickEditUser, onClickDelete
             (user) => user.role === "cooks"
         );
         setUsers(filteredCooks)
-    }
+    };
 
     return (
         <div className="containerBottonsList">
@@ -43,6 +40,6 @@ const ContainerBottonsAndList = ({handleAddClick, onClickEditUser, onClickDelete
             </div>
         </div>
     )
-}
+};
 
 export default ContainerBottonsAndList;
