@@ -78,6 +78,20 @@ const Waiter = () => {
     }, [selectedProducts, productQuantity]);
 
 
+    // -------------------------------
+    const [inputValue, setInputValue] = useState('');
+
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+        console.log('inputValue', inputValue)
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // Usa la constante `inputValue` aquí para hacer algo con el valor del input
+        console.log(`El valor del input es: ${inputValue}`);
+      }
+
     return (
         <div className="container">
             <div className="logotype">
@@ -106,94 +120,102 @@ const Waiter = () => {
                                     onProductClick={handleProductClick}
                                     onClick={() => handleProductClick(product)}
                                 />
-
                             </div>
                         </div>
-                        <div className="rightSideListOrder">
-                            <div className="topOrderListWaiter">
-                                <p className="order">Pedido: 7</p>
-                                <img className="iconOrderTaked" src={trash} width={'40px'} height={'40px'}></img>
-                            </div>
-                            <section className='form'>
-                                <form className="row">
-                                    <div className="labelNameWaiter">
-                                        <label className='labelWaiter'>
-                                            Nombre del cliente
-                                            <input type="text" placeholder="Nombre del cliente" className="inputWaiter"></input>
-                                        </label>
-                                    </div>
-                                    <div className="labelTableWaiter">
-                                        <label className='labelWaiter'>
-                                            N° de mesa
-                                            <select className="inputWaiter" defaultValue="">
-                                                <option value="" disabled>N° de mesa</option>
-                                                <option value="mesa1">mesa 1</option>
-                                                <option value="mesa2">mesa 2</option>
-                                                <option value="mesa3">mesa 3</option>
-                                                <option value="mesa4">mesa 4</option>
-                                            </select>
-
-                                        </label>
-                                    </div>
-                                </form>
-                            </section>
-                            <div className="ListOrdersWaiter">
-                                <>
-                                    {selectedProducts.map((product) => (
-                                        <div className="orderTaked" key={product.id}>
-                                            <div className="descriptionProduct">
-                                                <div
-                                                    id="iconOrderTaked"
-                                                    className="CardProductWaiter"
-                                                >
-                                                    <p>{product.name}</p>
-                                                    <img width={'40px'} src={product.image} alt="product" />
-                                                    <p>s/ {product.price}</p>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <p className="nameProductOrder">{product.name}</p>
-                                                <p className="price">S/ {product.price * (productQuantity[product.id] || 1)}</p>
-                                            </div>
-                                            <div className="iconosProductSelected">
-                                                <div>
-                                                    <img
-                                                        className="iconOrderTaked"
-                                                        width={'25px'}
-                                                        src={decrease}
-                                                        onClick={() => handleDecrease(product.id)}
-                                                    />
-                                                    <p style={{ color: "white" }}>{productQuantity[product.id] || 1}</p>
-                                                    <img
-                                                        className="iconOrderTaked"
-                                                        width={'25px'}
-                                                        src={increase}
-                                                        onClick={() => handleIncrease(product.id)}
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <img
-                                                        className="iconOrderTaked"
-                                                        width={'25px'}
-                                                        src={cancel}
-                                                        onClick={() => handleCancel(product.id)}
-                                                    />
-                                                </div>
-                                            </div>
-                                            
+                        <form onSubmit={handleSubmit}>
+                            <div className="rightSideListOrder">
+                                <div className="topOrderListWaiter">
+                                    <p className="order"></p>
+                                    <img className="iconOrderTaked" src={trash} width={'40px'} height={'40px'}></img>
+                                </div>
+                                <section className='form'>
+                                    <form className="row">
+                                        <div className="labelNameWaiter">
+                                            <label className='labelWaiter'>
+                                                Nombre del cliente
+                                                <input 
+                                                type="text" 
+                                                placeholder="Nombre del cliente" 
+                                                className="inputWaiter" 
+                                                onChange={handleInputChange}></input>
+                                            </label>
                                         </div>
-                                    ))}
-                                </>
+                                        <div className="labelTableWaiter">
+                                            <label className='labelWaiter'>
+                                                N° de mesa
+                                                <select className="inputWaiter" defaultValue="">
+                                                    <option value="" disabled>N° de mesa</option>
+                                                    <option value="mesa1">mesa 1</option>
+                                                    <option value="mesa2">mesa 2</option>
+                                                    <option value="mesa3">mesa 3</option>
+                                                    <option value="mesa4">mesa 4</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                    </form>
+                                </section>
+                                <div className="ListOrdersWaiter">
+                                    <>
+                                        {selectedProducts.map((product) => (
+                                            <div className="orderTaked" key={product.id}>
+                                                <div className="descriptionProduct">
+                                                    <div
+                                                        id="iconOrderTaked"
+                                                        className="CardProductWaiter"
+                                                    >
+                                                        <p>{product.name}</p>
+                                                        <img width={'40px'} src={product.image} alt="product" />
+                                                        <p>s/ {product.price}</p>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p className="nameProductOrder">{product.name}</p>
+                                                    <p className="price">S/ {product.price * (productQuantity[product.id] || 1)}</p>
+                                                </div>
+                                                <div className="iconosProductSelected">
+                                                    <div>
+                                                        <img
+                                                            className="iconOrderTaked"
+                                                            width={'25px'}
+                                                            src={decrease}
+                                                            onClick={() => handleDecrease(product.id)}
+                                                        />
+                                                        <p style={{ color: "white" }}>{productQuantity[product.id] || 1}</p>
+                                                        <img
+                                                            className="iconOrderTaked"
+                                                            width={'25px'}
+                                                            src={increase}
+                                                            onClick={() => handleIncrease(product.id)}
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <img
+                                                            className="iconOrderTaked"
+                                                            width={'25px'}
+                                                            src={cancel}
+                                                            onClick={() => handleCancel(product.id)}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </>
+                                </div>
+                                <div>
+                                    <p className="cost">Costo total: S/ {sumaT}</p>
+                                </div>
+                                <div>
+                                    <button
+                                        type="submit"
+                                        id="inputSendWaiter"
+                                        className="inputWaiter"
+                                    >Enviar al chef</button>
+                                    <button
+                                        id="inputSaveWaiter"
+                                        className="inputWaiter">Guardar</button>
+                                </div>
                             </div>
-                            <div>
-                                <p className="cost">Costo total: S/ {sumaT}</p>
-                            </div>
-                            <div>
-                                <button id="inputSendWaiter" className="inputWaiter">Enviar al chef</button>
-                                <button id="inputSaveWaiter" className="inputWaiter">Guardar</button>
-
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

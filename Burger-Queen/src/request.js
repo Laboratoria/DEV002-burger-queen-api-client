@@ -13,23 +13,6 @@ const auth = async ({ email, password }) => {
     })
 };
 
-// Función para cerrar sesión
-const logout = () => {
-    try {
-        localStorage.removeItem('token');
-        console.log('sesión cerrada');
-        // Redireccionar a la página de inicio de sesión
-        // Usar useNavigate dentro de un componente
-        useNavigate('/')
-
-    } catch (error) {
-        console.error('error al cerrar sesión', error);
-    }
-};
-
-// logout()
-
-
 // Traer a todos los usuarios
 const getUsers = async () => {
     const token = localStorage.getItem("token");
@@ -178,13 +161,26 @@ const GetProducts = async () => {
     }
 };
 
-
-
-
+// Crear una orden
+const postOrder = async (object) => {
+    const token = localStorage.getItem("token")
+    const urlBurguerApi = "http://localhost:8080/orders";
+    try {
+        const response = await axios.post(urlBurguerApi, object , {
+            method: 'POST',
+            headers: {
+                Authorization: "Bearer " + token,
+            },
+        });
+        const data = response.data;
+        console.log('data', data)
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 export {
     auth,
-    logout,
     postProducts,
     deleteProduct,
     GetProducts,
@@ -193,4 +189,5 @@ export {
     addEmployee,
     editUser,
     deleteUser,
+    postOrder,
 }
