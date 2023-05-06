@@ -1,7 +1,6 @@
 import increase from "../../img/increase.png"
 import decrease from "../../img/decrease.png"
 import cancel from "../../img/cancel.png"
-import React from "react";
 import NavigationBarWaiter from "../NavigationBarWaiter";
 import "../../../estilos/admin/navigationBar.css";
 import { useState, useEffect } from "react";
@@ -83,25 +82,57 @@ const Waiter = () => {
 
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
-        console.log('inputValue', inputValue)
+        // console.log('inputValue', inputValue)
+    };
+
+    // -------------------------------
+    const [tableNumber, setTableNumber] = useState('');
+
+    const handleTableNumberChange = (event) => {
+        setTableNumber(event.target.value);
+    }
+
+    // -------------------------------
+    const [status, setStatus] = useState('pending');
+
+    // -------------------------------
+    const [fechaCreacion, setFechaCreacion] = useState('');
+
+    const handledate = () => {
+        const fecha = new Date();
+        setFechaCreacion(fecha.toString());
+        console.log('fecha de creacion', fecha)
+    };
+
+
+    const order = {
+        client: inputValue,
+        tableNumber: tableNumber, // valor del número de mesa seleccionado
+        products: [ //array de productos seleccionados
+            {
+                qty: ,
+                product: {
+                    id: ,
+                    name: ,
+                    price: ,
+                    image: ,
+                    type: ,
+                    dateEntry: fechaCreacion
+                }
+            }
+        ],
+        status: status, //status e la orden
+        dateEntry: fechaCreacion, //fecha de creación de la orden
+
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
         // Usa la constante `inputValue` aquí para hacer algo con el valor del input
         console.log(`El valor del input es: ${inputValue}`);
-      }
-
-      const order = {
-        orderNumber: 1234, // número de pedido
-        customerName: 'maria', // valor del input del nombre
-        // productImage: selectedProducts[0].image, // imagen del primer producto seleccionado
-        productName: 'pizza', // nombre del primer producto seleccionado
-        productQuantity: 3 // cantidad del primer producto seleccionado
-      };
-      
-    //   postOrder(order);
-      
+        handledate()
+        postOrder(order);
+    };
 
     return (
         <div className="container">
@@ -139,32 +170,30 @@ const Waiter = () => {
                                     <p className="order"></p>
                                     <img className="iconOrderTaked" src={trash} width={'40px'} height={'40px'}></img>
                                 </div>
-                                <section className='form'>
-                                    <form className="row">
-                                        <div className="labelNameWaiter">
-                                            <label className='labelWaiter'>
-                                                Nombre del cliente
-                                                <input 
-                                                type="text" 
-                                                placeholder="Nombre del cliente" 
-                                                className="inputWaiter" 
+                                <div className="row">
+                                    <div className="labelNameWaiter">
+                                        <label className='labelWaiter'>
+                                            Nombre del cliente
+                                            <input
+                                                type="text"
+                                                placeholder="Nombre del cliente"
+                                                className="inputWaiter"
                                                 onChange={handleInputChange}></input>
-                                            </label>
-                                        </div>
-                                        <div className="labelTableWaiter">
-                                            <label className='labelWaiter'>
-                                                N° de mesa
-                                                <select className="inputWaiter" defaultValue="">
-                                                    <option value="" disabled>N° de mesa</option>
-                                                    <option value="mesa1">mesa 1</option>
-                                                    <option value="mesa2">mesa 2</option>
-                                                    <option value="mesa3">mesa 3</option>
-                                                    <option value="mesa4">mesa 4</option>
-                                                </select>
-                                            </label>
-                                        </div>
-                                    </form>
-                                </section>
+                                        </label>
+                                    </div>
+                                    <div className="labelTableWaiter">
+                                        <label className='labelWaiter'>
+                                            N° de mesa
+                                            <select className="inputWaiter" defaultValue="" onClick={handleTableNumberChange}>
+                                                <option value="" disabled>N° de mesa</option>
+                                                <option value="mesa1">mesa 1</option>
+                                                <option value="mesa2">mesa 2</option>
+                                                <option value="mesa3">mesa 3</option>
+                                                <option value="mesa4">mesa 4</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                </div>
                                 <div className="ListOrdersWaiter">
                                     <>
                                         {selectedProducts.map((product) => (

@@ -7,9 +7,9 @@ import { Link, useLocation } from 'react-router-dom';
 
 const NavigationBarWaiter = () => {
   const location = useLocation();
-  console.log(location)
+  // console.log(location)
   const isEmployeesRoute = location.pathname === "/menuWaiter";
-  console.log(isEmployeesRoute)
+  // console.log(isEmployeesRoute)
 
 
   //   crear nuevos estilos
