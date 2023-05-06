@@ -44,6 +44,96 @@ const Waiter = () => {
 
     const [sumaT, setSumaT] = useState();
 
+    // const [productQuantity, setProductQuantity] = useState({});
+
+    // const handleDecrease = (productId) => {
+    //     setProductQuantity((prevQuantity) => ({
+    //         ...prevQuantity,
+    //         [productId]: (prevQuantity[productId] || 1) - 1,
+    //     }));
+    // };
+
+    // const handleIncrease = (productId) => {
+    //     setProductQuantity((prevQuantity) => ({
+    //         ...prevQuantity,
+    //         [productId]: (prevQuantity[productId] || 1) + 1,
+    //     }));
+    // };
+
+    // const handleCancel = (productId) => {
+    //     setProductQuantity((prevQuantity) => ({
+    //         ...prevQuantity,
+    //         [productId]: 0,
+    //     }));
+    //     setSelectedProducts((prevProducts) =>
+    //         prevProducts.filter((product) => product.id !== productId)
+    //     );
+    // };
+
+    // useEffect(() => {
+    //     const prices = selectedProducts.map(product => product.price * (productQuantity[product.id] || 1));
+    //     const total = prices.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    //     setSumaT(total);
+    // }, [selectedProducts, productQuantity]);
+
+
+    // // -------------------------------
+    const [inputValue, setInputValue] = useState('');
+
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+        // console.log('inputValue', inputValue)
+    };
+
+    // // -------------------------------
+    const [tableNumber, setTableNumber] = useState('');
+
+    const handleTableNumberChange = (event) => {
+        setTableNumber(event.target.value);
+    }
+
+    // // -------------------------------
+    const [status, setStatus] = useState('pending');
+
+    // // -------------------------------
+    const [fechaCreacion, setFechaCreacion] = useState('');
+
+    const handledate = () => {
+        const fecha = new Date();
+        setFechaCreacion(fecha.toString());
+        console.log('fecha de creacion', fecha)
+    };
+
+
+    // const order = {
+    //     client: inputValue,
+    //     tableNumber: tableNumber, // valor del número de mesa seleccionado
+    //     products: [ //array de productos seleccionados
+    //         {
+    //             qty: ,
+    //             product: {
+    //                 id: ,
+    //                 name: ,
+    //                 price: ,
+    //                 image: ,
+    //                 type: ,
+    //                 dateEntry: fechaCreacion
+    //             }
+    //         }
+    //     ],
+    //     status: status, //status e la orden
+    //     dateEntry: fechaCreacion, //fecha de creación de la orden
+
+    // };
+
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     // Usa la constante `inputValue` aquí para hacer algo con el valor del input
+    //     console.log(`El valor del input es: ${inputValue}`);
+    //     handledate()
+    //     postOrder(order);
+    // };
+
     const [productQuantity, setProductQuantity] = useState({});
 
     const handleDecrease = (productId) => {
@@ -76,62 +166,36 @@ const Waiter = () => {
         setSumaT(total);
     }, [selectedProducts, productQuantity]);
 
+    // ...
 
-    // -------------------------------
-    const [inputValue, setInputValue] = useState('');
-
-    const handleInputChange = (event) => {
-        setInputValue(event.target.value);
-        // console.log('inputValue', inputValue)
-    };
-
-    // -------------------------------
-    const [tableNumber, setTableNumber] = useState('');
-
-    const handleTableNumberChange = (event) => {
-        setTableNumber(event.target.value);
-    }
-
-    // -------------------------------
-    const [status, setStatus] = useState('pending');
-
-    // -------------------------------
-    const [fechaCreacion, setFechaCreacion] = useState('');
-
-    const handledate = () => {
-        const fecha = new Date();
-        setFechaCreacion(fecha.toString());
-        console.log('fecha de creacion', fecha)
-    };
-
-
-    const order = {
-        client: inputValue,
-        tableNumber: tableNumber, // valor del número de mesa seleccionado
-        products: [ //array de productos seleccionados
-            {
-                qty: ,
-                product: {
-                    id: ,
-                    name: ,
-                    price: ,
-                    image: ,
-                    type: ,
-                    dateEntry: fechaCreacion
-                }
-            }
-        ],
-        status: status, //status e la orden
-        dateEntry: fechaCreacion, //fecha de creación de la orden
-
-    };
-
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // Usa la constante `inputValue` aquí para hacer algo con el valor del input
         console.log(`El valor del input es: ${inputValue}`);
-        handledate()
-        postOrder(order);
+        handledate();
+
+        // Crear el array de productos de la orden
+        const productsOrder = selectedProducts.map(product => ({
+            qty: productQuantity[product.id] || 1,
+            product: {
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                type: product.type,
+                dateEntry: fechaCreacion
+            }
+        }));
+
+        // Asignar los valores necesarios al objeto order
+        const order = {
+            client: inputValue,
+            tableNumber: tableNumber,
+            products: productsOrder,
+            status: status,
+            dateEntry: fechaCreacion,
+        };
+
+        await postOrder(order);
     };
 
     return (
