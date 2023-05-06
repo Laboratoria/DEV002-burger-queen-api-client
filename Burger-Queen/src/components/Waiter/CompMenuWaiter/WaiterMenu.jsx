@@ -169,7 +169,7 @@ const Waiter = () => {
     // ...
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
+        // event.preventDefault();
         console.log(`El valor del input es: ${inputValue}`);
         handledate();
 

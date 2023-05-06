@@ -179,6 +179,24 @@ const postOrder = async (object) => {
     }
 };
 
+const getOrder = async() => {
+    const token = localStorage.getItem("token")
+    const urlBurguerApi = "http://localhost:8080/orders";
+    try {
+        const response = await axios.get(urlBurguerApi, {
+            headers: {
+                Authorization: "Bearer " + token,
+            },
+        });
+        const data = response.data;
+        console.log('data', data)
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+// getOrder()
+
 export {
     auth,
     postProducts,
@@ -190,4 +208,5 @@ export {
     editUser,
     deleteUser,
     postOrder,
+    getOrder,
 }
