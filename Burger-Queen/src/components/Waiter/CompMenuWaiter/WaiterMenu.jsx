@@ -44,39 +44,6 @@ const Waiter = () => {
 
     const [sumaT, setSumaT] = useState();
 
-    // const [productQuantity, setProductQuantity] = useState({});
-
-    // const handleDecrease = (productId) => {
-    //     setProductQuantity((prevQuantity) => ({
-    //         ...prevQuantity,
-    //         [productId]: (prevQuantity[productId] || 1) - 1,
-    //     }));
-    // };
-
-    // const handleIncrease = (productId) => {
-    //     setProductQuantity((prevQuantity) => ({
-    //         ...prevQuantity,
-    //         [productId]: (prevQuantity[productId] || 1) + 1,
-    //     }));
-    // };
-
-    // const handleCancel = (productId) => {
-    //     setProductQuantity((prevQuantity) => ({
-    //         ...prevQuantity,
-    //         [productId]: 0,
-    //     }));
-    //     setSelectedProducts((prevProducts) =>
-    //         prevProducts.filter((product) => product.id !== productId)
-    //     );
-    // };
-
-    // useEffect(() => {
-    //     const prices = selectedProducts.map(product => product.price * (productQuantity[product.id] || 1));
-    //     const total = prices.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    //     setSumaT(total);
-    // }, [selectedProducts, productQuantity]);
-
-
     // // -------------------------------
     const [inputValue, setInputValue] = useState('');
 
@@ -100,39 +67,12 @@ const Waiter = () => {
 
     const handledate = () => {
         const fecha = new Date();
-        setFechaCreacion(fecha.toString());
-        console.log('fecha de creacion', fecha)
+        const hora = fecha.getHours()
+        const minutos = fecha.getMinutes();
+        // console.log('hora',hora, 'minutos', minutos)
+        setFechaCreacion(`${hora}:${minutos}`);
+
     };
-
-
-    // const order = {
-    //     client: inputValue,
-    //     tableNumber: tableNumber, // valor del número de mesa seleccionado
-    //     products: [ //array de productos seleccionados
-    //         {
-    //             qty: ,
-    //             product: {
-    //                 id: ,
-    //                 name: ,
-    //                 price: ,
-    //                 image: ,
-    //                 type: ,
-    //                 dateEntry: fechaCreacion
-    //             }
-    //         }
-    //     ],
-    //     status: status, //status e la orden
-    //     dateEntry: fechaCreacion, //fecha de creación de la orden
-
-    // };
-
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     // Usa la constante `inputValue` aquí para hacer algo con el valor del input
-    //     console.log(`El valor del input es: ${inputValue}`);
-    //     handledate()
-    //     postOrder(order);
-    // };
 
     const [productQuantity, setProductQuantity] = useState({});
 
@@ -169,7 +109,7 @@ const Waiter = () => {
     // ...
 
     const handleSubmit = async (event) => {
-        // event.preventDefault();
+        event.preventDefault();
         console.log(`El valor del input es: ${inputValue}`);
         handledate();
 

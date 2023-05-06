@@ -190,6 +190,7 @@ const getOrder = async() => {
         });
         const data = response.data;
         console.log('data', data)
+        return data;
     } catch (error) {
         console.log(error);
     }
