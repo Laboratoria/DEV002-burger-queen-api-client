@@ -5,6 +5,7 @@ import OrdersAdmin from './components/Admin/compMenu/ordersAdmin';
 import Employees from './components/Admin/compMenu/employees';
 import WaiterMenu from './components/Waiter/CompMenuWaiter/WaiterMenu';
 import WaiterOrders from './components/Waiter/CompMenuWaiter/WaiterOrders';
+import HeadChef from './components/headChef/headChef';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         {/* Waiter */}
         <Route path='/menuWaiter' element={<WaiterMenu />} />
         <Route path='/menuOrders' element={<WaiterOrders />} />
+        {/* Jefe de cocina */}
+        <Route path='/headChef' element={<HeadChef />}/>
       </Routes>
     </Router>
   );

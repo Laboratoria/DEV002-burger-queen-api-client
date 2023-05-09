@@ -196,7 +196,22 @@ const getOrder = async() => {
     }
 };
 
-// getOrder()
+// Editar una orden existente
+const editOrder = async (id, object) => {
+    const urlBurguerApi = `http://localhost:8080/orders/${id}`;
+    console.log('urlBurguerApi', urlBurguerApi)
+    const token = localStorage.getItem("token");
+    const headers = {
+        Authorization: "Bearer " + token,
+        'Content-Type': 'application/json',
+    };
+    try {
+        await axios.put(urlBurguerApi, object, { headers });
+        console.log('La order ahora es de status: derivered');
+    } catch (error) {
+        console.log('Error al actualizar la orden:', error)
+    }
+};
 
 export {
     auth,
@@ -210,4 +225,5 @@ export {
     deleteUser,
     postOrder,
     getOrder,
+    editOrder,
 }
