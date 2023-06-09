@@ -5,16 +5,28 @@ import { FaSignOutAlt } from "react-icons/fa"
 import "./css-pages/kitchen.css"
 
 const Order = (props) => {
-    const { nombre, cantidad, hora, productos } = props;
+    const { nombre, hora, productos, idOrden, handleOrderCheck } = props;
+
+    const [isChecked, setIsChecked] = useState(false);
+    const [ordersPrepared, setOrdersPrepared] = useState([]);
+    let ordenesPreparadas=[];
+
+    console.log(ordenesPreparadas)
+
+
     return (
         <>
-            <div className="hora-pedido">hora de pedido:{hora}</div>
+            {/* <div className="hora-pedido">hora de pedido:{idOrden}</div> */}
             <table>
                 <thead>
                     <tr>
-                        <th>{nombre}</th> 
-                         <th><input type="checkbox"
+                    <th>creación: {hora}</th>
+
+                        <th>cliente: {nombre}</th>
+                        <th><input type="checkbox"
                             className="checkbox"
+                            checked={isChecked}
+                            onChange={handleOrderCheck}
                         /></th>
 
                     </tr>
@@ -42,12 +54,17 @@ const Order = (props) => {
     )
 }
 
-
-
-
 export default function Kitchen() {
     const [orders, setOrders] = useState([]);
 
+
+    const handleOrderCheck = (idOrden) => {
+        let llamarmesero= confirm("¿llamar al mesero para que sirva a la mesa el pedido?");
+        if(llamarmesero){
+        setOrders((prevOrders) => {
+          return prevOrders.filter((order) => order.id !== idOrden);
+        });
+      };}
 
     const getOrdersKitchen = async () => {
         const user = JSON.parse(localStorage.getItem('user'))
@@ -80,26 +97,29 @@ export default function Kitchen() {
             </div>
             <div className="botones-menu">
                 <button><Link to="/kitchen"> pendientes </Link></button>
-                <button><Link to="/kitchen-served"> realizados </Link></button>
+                <button><Link to="/kitchen-served"> servidos </Link></button>
             </div>
 
 
+            <section className="ordenes">
+                {
+                    orders.map((order) => {
 
-            {
-                orders.map((order) => {
+                        return (
+                            <Order key={order.id}
+                                // nombre={order.products.product.name}
+                                // cantidad={order.products.qty}
+                                productos={order.products}
+                                hora={order.dateEntry}
+                                nombre={order.client}
+                                idOrden={order.id}
+                                handleOrderCheck={() => handleOrderCheck(order.id)}
 
-                    return (
-                        <Order key={order.id}
-                            // nombre={order.products.product.name}
-                            // cantidad={order.products.qty}
-                            productos={order.products}
-                            hora={order.dateEntry}
-                            nombre={order.client}
-                        />
-                    )
+                            />
+                        )
 
-                })}
-
+                    })}
+            </section>
 
         </div>);
 
