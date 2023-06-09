@@ -4,7 +4,7 @@ import { getOrdenes } from "../service.auth.js";
 import { FaSignOutAlt } from "react-icons/fa"
 import "./css-pages/kitchen.css"
 
-const Order = (props) => {
+export const Order = (props) => {
     const { nombre, hora, productos, idOrden, handleOrderCheck } = props;
 
     const [isChecked, setIsChecked] = useState(false);
@@ -61,9 +61,11 @@ export default function Kitchen() {
     const handleOrderCheck = (idOrden) => {
         let llamarmesero= confirm("¿llamar al mesero para que sirva a la mesa el pedido?");
         if(llamarmesero){
-        setOrders((prevOrders) => {
-          return prevOrders.filter((order) => order.id !== idOrden);
-        });
+            setOrders((prevOrders) => {
+                const updatedOrders = prevOrders.filter((order) => order.id !== idOrden);
+                localStorage.setItem("orders", JSON.stringify(updatedOrders));
+                return updatedOrders;
+              });
       };}
 
     const getOrdersKitchen = async () => {
